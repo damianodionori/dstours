@@ -2,22 +2,116 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>London Tour Guide</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>London Cultural Tours | Explore with a Local Guide</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <header>
-        <h1>Discover London with Me!</h1>
         <nav>
-            <a href="index.html">Home</a>
-            <a href="tours.html">Tours</a>
-            <a href="contact.html">Contact</a>
+            <div class="logo">
+                <h1>London Heritage Tours</h1>
+            </div>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#tours">Tours</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
         </nav>
     </header>
+
     <main>
-        <h2>Welcome to Your London Adventure</h2>
-        <p>Explore the historic streets and hidden gems of London!</p>
+        <section id="home" class="hero">
+            <div class="hero-content">
+                <h2>Discover London's Cultural Treasures</h2>
+                <p>Immersive guided tours of London's most iconic museums</p>
+                <a href="#tours" class="cta-button">Explore Tours</a>
+            </div>
+        </section>
+
+        <section id="tours" class="tours-section">
+            <h2>Our Signature Tours</h2>
+            
+            <div class="tour-card">
+                <img src="/images/british-museum.jpg" alt="British Museum">
+                <div class="tour-details">
+                    <h3>British Museum Tour</h3>
+                    <p>Embark on a journey through human history, art, and culture. Our expertly guided tour covers:</p>
+                    <ul>
+                        <li>The Rosetta Stone</li>
+                        <li>Ancient Egyptian Mummies</li>
+                        <li>Parthenon Sculptures</li>
+                        <li>World-renowned artifacts from every continent</li>
+                    </ul>
+                    <div class="tour-info">
+                        <span>Duration: 2 hours</span>
+                        <span>Price: £45 per person</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tour-card">
+                <img src="/images/national-gallery.jpg" alt="National Gallery">
+                <div class="tour-details">
+                    <h3>National Gallery Art Tour</h3>
+                    <p>Explore masterpieces from the Renaissance to Post-Impressionism. Highlights include:</p>
+                    <ul>
+                        <li>Van Gogh's Sunflowers</li>
+                        <li>Leonardo da Vinci's works</li>
+                        <li>Impressionist and Renaissance art</li>
+                        <li>In-depth artist and artwork stories</li>
+                    </ul>
+                    <div class="tour-info">
+                        <span>Duration: 2 hours</span>
+                        <span>Price: £40 per person</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="contact-section">
+            <h2>Book Your Tour</h2>
+            <form id="tour-booking-form">
+                <div class="form-group">
+                    <label for="name">Full Name</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="tour">Select Tour</label>
+                    <select id="tour" name="tour" required>
+                        <option value="">Choose a Tour</option>
+                        <option value="british-museum">British Museum Tour</option>
+                        <option value="national-gallery">National Gallery Tour</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="date">Preferred Date</label>
+                    <input type="date" id="date" name="date" required>
+                </div>
+                <div class="form-group">
+                    <label for="message">Additional Notes</label>
+                    <textarea id="message" name="message" rows="4"></textarea>
+                </div>
+                <button type="submit" class="submit-button">Book Tour</button>
+            </form>
+        </section>
     </main>
+
+    <footer>
+        <div class="footer-content">
+            <p>© 2024 London Heritage Tours | Registered Tour Guide</p>
+            <div class="social-links">
+                <a href="#" aria-label="Instagram">Instagram</a>
+                <a href="#" aria-label="Facebook">Facebook</a>
+                <a href="#" aria-label="TripAdvisor">TripAdvisor</a>
+            </div>
+        </div>
+    </footer>
+
     <script src="script.js"></script>
 </body>
 </html>
