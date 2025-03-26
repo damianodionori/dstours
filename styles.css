@@ -1,52 +1,173 @@
-body {
-    font-family: Arial, sans-serif;
+/* Reset and Base Styles */
+* {
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    line-height: 1.6;
+    color: #333;
     background-color: #f4f4f4;
 }
 
-.container {
-    width: 80%;
-    margin: auto;
-    overflow: hidden;
-    background: white;
-    padding: 20px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
+/* Navigation Styles */
+header {
+    background-color: #ffffff;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    position: sticky;
+    top: 0;
+    z-index: 100;
 }
 
-h1 {
-    text-align: center;
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 5%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+}
+
+nav ul li {
+    margin-left: 20px;
+}
+
+nav ul li a {
+    text-decoration: none;
     color: #333;
+    font-weight: bold;
+    transition: color 0.3s ease;
 }
 
-button {
+nav ul li a:hover {
+    color: #0066cc;
+}
+
+/* Hero Section */
+.hero {
+    background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('/images/london-skyline.jpg');
+    background-size: cover;
+    background-position: center;
+    color: white;
+    text-align: center;
+    padding: 100px 20px;
+}
+
+.hero-content {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.cta-button {
+    display: inline-block;
+    background-color: #0066cc;
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    margin-top: 20px;
+}
+
+/* Tours Section */
+.tours-section {
+    padding: 50px 5%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.tour-card {
+    display: flex;
+    background-color: white;
+    margin-bottom: 30px;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.tour-card img {
+    width: 40%;
+    object-fit: cover;
+}
+
+.tour-details {
+    padding: 20px;
+    width: 60%;
+}
+
+.tour-details ul {
+    margin-left: 20px;
+    margin-top: 10px;
+}
+
+.tour-info {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 15px;
+    font-weight: bold;
+}
+
+/* Contact Form */
+.contact-section {
+    background-color: #f9f9f9;
+    padding: 50px 5%;
+    text-align: center;
+}
+
+#tour-booking-form {
+    max-width: 500px;
+    margin: 0 auto;
+    background-color: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.form-group {
+    margin-bottom: 15px;
+    text-align: left;
+}
+
+.form-group label {
     display: block;
+    margin-bottom: 5px;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
     width: 100%;
     padding: 10px;
-    margin-top: 10px;
-    background: #28a745;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.submit-button {
+    width: 100%;
+    padding: 12px;
+    background-color: #0066cc;
     color: white;
     border: none;
+    border-radius: 5px;
     cursor: pointer;
-    border-radius: 5px;
-    font-size: 16px;
 }
 
-button:hover {
-    background: #218838;
+/* Footer */
+footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 20px;
 }
 
-.input-field {
-    width: 100%;
-    padding: 8px;
-    margin: 10px 0;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-}
-
-.error {
-    color: red;
-    font-size: 14px;
-    margin-top: 5px;
+.social-links a {
+    color: white;
+    margin: 0 10px;
+    text-decoration: none;
 }
