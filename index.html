@@ -18,6 +18,14 @@
                 <li><a href="#tours">Tours</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
+            <div class="language-switcher">
+                <button class="lang-btn" data-lang="en">
+                    🇬🇧 English
+                </button>
+                <button class="lang-btn" data-lang="it">
+                    🇮🇹 Italiano
+                </button>
+            </div>
         </nav>
     </header>
 
@@ -37,7 +45,7 @@
                 <img src="images/british-museum.jpg" alt="British Museum">
                 <div class="tour-details">
                     <h3>British Museum Tour</h3>
-                    <p>Embark on a journey through human history, art, and culture. Our expertly guided tour covers:</p>
+                    <p>Embark on a journey through human history, art, and culture.</p>
                     <ul>
                         <li>The Rosetta Stone</li>
                         <li>Ancient Egyptian Mummies</li>
@@ -55,7 +63,7 @@
                 <img src="images/national-gallery.jpeg" alt="National Gallery">
                 <div class="tour-details">
                     <h3>National Gallery Art Tour</h3>
-                    <p>Explore masterpieces from the Renaissance to Post-Impressionism. Highlights include:</p>
+                    <p>Explore masterpieces from the Renaissance to Post-Impressionism.</p>
                     <ul>
                         <li>Van Gogh's Sunflowers</li>
                         <li>Leonardo da Vinci's works</li>
@@ -99,6 +107,14 @@
                         <option value="">Select Time Preference</option>
                         <option value="am">Morning Tour (AM)</option>
                         <option value="pm">Afternoon Tour (PM)</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="language-preference">Preferred Tour Language</label>
+                    <select id="language-preference" name="language-preference" required>
+                        <option value="">Select Language</option>
+                        <option value="english">English</option>
+                        <option value="italian">Italian</option>
                     </select>
                 </div>
                 <div class="form-group">

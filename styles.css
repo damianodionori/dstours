@@ -62,6 +62,32 @@ nav ul li a:hover {
     object-fit: contain;
 }
 
+.language-switcher {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.lang-btn {
+    background: none;
+    border: 1px solid #ddd;
+    padding: 5px 10px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.lang-btn:hover {
+    background-color: #f0f0f0;
+}
+
+.lang-btn.active {
+    background-color: #e0e0e0;
+    font-weight: bold;
+}
+
 /* Hero Section */
 .hero {
     background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('images/tower-bridge.jpg');
