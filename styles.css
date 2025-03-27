@@ -161,12 +161,39 @@ nav ul li a:hover {
 }
 
 #tour-booking-form {
-    max-width: 500px;
+    max-width: 800px; /* Increased to accommodate two columns */
     margin: 0 auto;
     background-color: white;
     padding: 30px;
     border-radius: 10px;
     box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    
+    /* Grid layout */
+    display: grid;
+    grid-template-columns: 1fr; /* Single column by default */
+    gap: 15px; /* Space between grid items */
+}
+
+@media (min-width: 768px) {
+    #tour-booking-form {
+        grid-template-columns: 1fr 1fr; /* Two columns on larger screens */
+    }
+    
+    /* First two form groups will be side by side */
+    .form-group:nth-child(1),
+    .form-group:nth-child(2) {
+        grid-column: span 1;
+    }
+    
+    /* Ensure full-width elements stay full-width */
+    .form-group:nth-child(3),
+    .form-group:nth-child(4),
+    .form-group:nth-child(5),
+    .form-group:nth-child(6),
+    .form-group:nth-child(7),
+    .submit-button {
+        grid-column: 1 / -1; /* Span entire width */
+    }
 }
 
 .form-group {
@@ -196,6 +223,7 @@ nav ul li a:hover {
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    margin-top: 15px;
 }
 
 /* Footer */
