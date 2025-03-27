@@ -70,22 +70,19 @@ nav ul li a:hover {
 
 .lang-btn {
     background: none;
-    border: 1px solid #ddd;
-    padding: 5px 10px;
+    border: none;
     cursor: pointer;
-    display: flex;
-    align-items: center;
-    gap: 5px;
-    transition: background-color 0.3s ease;
+    padding: 5px;
+    transition: transform 0.2s ease;
 }
 
 .lang-btn:hover {
-    background-color: #f0f0f0;
+    transform: scale(1.1);
 }
 
-.lang-btn.active {
-    background-color: #e0e0e0;
-    font-weight: bold;
+.lang-btn img {
+    border-radius: 3px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
 /* Hero Section */
