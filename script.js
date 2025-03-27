@@ -320,18 +320,29 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // Date Picker Initialization Function
-    function initializeDatePicker(lang) {
-        const config = DATE_CONFIG[lang];
-
-        // Destroy existing picker if it exists
+    function destroyExistingDatePickers() {
+        // Remove any existing Pikaday instances
         if (window.datePicker) {
             window.datePicker.destroy();
+            window.datePicker = null;
         }
+
+        // Remove any other date picker libraries or conflicting instances
+        const existingPickers = document.querySelectorAll('.pika-single');
+        existingPickers.forEach(picker => picker.remove());
+    }
+
+    // Date Picker Initialization Function
+    function initializeDatePicker(lang) {
+        // Destroy any existing date pickers first
+        destroyExistingDatePickers();
+
+        const config = DATE_CONFIG[lang];
 
         // Create new Pikaday instance with comprehensive configuration
         window.datePicker = new Pikaday({
             field: dateInput,
+            container: document.body, // Ensure it's appended to body to avoid positioning issues
             format: config.format,
             formatStrict: config.format,
             defaultDate: null,
