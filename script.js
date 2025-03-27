@@ -123,8 +123,8 @@ const translations = {
 
 const DATE_CONFIG = {
     en: {
-        format: 'MM/DD/YYYY',
-        placeholder: 'mm/dd/yyyy'
+        format: 'DD/MM/YYYY',  
+        placeholder: 'dd/mm/yyyy' 
     }
 };
 
@@ -304,7 +304,7 @@ document.addEventListener('DOMContentLoaded', function() {
             defaultDate: null,
             setDefaultDate: false,
             onSelect: function(date) {
-                const formattedDate = moment(date).format(config.format);
+                const formattedDate = moment(date).format('DD/MM/YYYY');
                 dateInput.value = formattedDate;
                 dateInput.setAttribute('data-selected-date', formattedDate);
             }
