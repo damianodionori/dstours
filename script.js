@@ -16,9 +16,12 @@ const translations = {
         },
         tours: {
             title: "Our Signature Tours",
+            bookYourTour: "Book Your Tour",
             britishMuseum: {
                 title: "British Museum Tour",
                 description: "Embark on a journey through human history, art, and culture.",
+                duration: "Duration: 2 hours",
+                price: "Price: £120 per group",
                 highlights: [
                     "The Rosetta Stone",
                     "Ancient Egyptian Mummies",
@@ -29,6 +32,8 @@ const translations = {
             nationalGallery: {
                 title: "National Gallery Art Tour",
                 description: "Explore masterpieces from the Renaissance to Post-Impressionism.",
+                duration: "Duration: 2 hours",
+                price: "Price: £120 per group",
                 highlights: [
                     "Van Gogh's Sunflowers",
                     "Leonardo da Vinci's works",
@@ -69,9 +74,12 @@ const translations = {
         },
         tours: {
             title: "I Nostri Tour Esclusivi",
+            bookYourTour: "Prenota il Tuo Tour",
             britishMuseum: {
                 title: "Tour del British Museum",
                 description: "Intraprendi un viaggio attraverso la storia umana, l'arte e la cultura.",
+                duration: "Durata: 2 ore",
+                price: "Prezzo: £120 per gruppo",
                 highlights: [
                     "La Stele di Rosetta",
                     "Mummie Egizie Antiche",
@@ -82,6 +90,8 @@ const translations = {
             nationalGallery: {
                 title: "Tour d'Arte della National Gallery",
                 description: "Esplora capolavori dal Rinascimento al Post-Impressionismo.",
+                duration: "Durata: 2 ore",
+                price: "Prezzo: £120 per gruppo",
                 highlights: [
                     "Girasoli di Van Gogh",
                     "Opere di Leonardo da Vinci",
@@ -138,15 +148,46 @@ function switchLanguage(lang) {
     if (homeCTA) homeCTA.textContent = translations[lang].home.cta;
 
     // Update tours section
-    const toursTitle = document.querySelector('#tours h2');
+    const toursTitle = document.querySelector('#tours > h2');
     const tourTitles = document.querySelectorAll('#tours .tour-details h3');
     const tourDescriptions = document.querySelectorAll('#tours .tour-details p');
+    const tourInfoElements = document.querySelectorAll('#tours .tour-info span');
     
     if (toursTitle) toursTitle.textContent = translations[lang].tours.title;
+    
+    // Update tour titles and descriptions
     if (tourTitles[0]) tourTitles[0].textContent = translations[lang].tours.britishMuseum.title;
     if (tourTitles[1]) tourTitles[1].textContent = translations[lang].tours.nationalGallery.title;
     if (tourDescriptions[0]) tourDescriptions[0].textContent = translations[lang].tours.britishMuseum.description;
     if (tourDescriptions[1]) tourDescriptions[1].textContent = translations[lang].tours.nationalGallery.description;
+
+    // Update tour info (duration and price)
+    if (tourInfoElements.length >= 2) {
+        tourInfoElements[0].textContent = translations[lang].tours.britishMuseum.duration;
+        tourInfoElements[1].textContent = translations[lang].tours.britishMuseum.price;
+        tourInfoElements[2].textContent = translations[lang].tours.nationalGallery.duration;
+        tourInfoElements[3].textContent = translations[lang].tours.nationalGallery.price;
+    }
+
+    // Update tour highlights
+    const tourHighlightLists = document.querySelectorAll('#tours .tour-details ul');
+    if (tourHighlightLists.length >= 2) {
+        // British Museum highlights
+        const britishMuseumHighlights = tourHighlightLists[0].querySelectorAll('li');
+        britishMuseumHighlights.forEach((li, index) => {
+            li.textContent = translations[lang].tours.britishMuseum.highlights[index];
+        });
+
+        // National Gallery highlights
+        const nationalGalleryHighlights = tourHighlightLists[1].querySelectorAll('li');
+        nationalGalleryHighlights.forEach((li, index) => {
+            li.textContent = translations[lang].tours.nationalGallery.highlights[index];
+        });
+    }
+
+    // Update contact section title
+    const contactTitle = document.querySelector('#contact h2');
+    if (contactTitle) contactTitle.textContent = translations[lang].tours.bookYourTour;
 
     // Update form labels and placeholders
     const formTranslations = translations[lang].form;
@@ -190,7 +231,6 @@ function switchLanguage(lang) {
     const footerCopyright = document.querySelector('footer p');
     if (footerCopyright) footerCopyright.textContent = translations[lang].footer.copyright;
 
-    // Update language button accessibility
     document.querySelectorAll('.lang-btn').forEach(btn => {
         const btnLang = btn.getAttribute('data-lang');
         btn.setAttribute('aria-label', `Switch to ${btnLang === 'en' ? 'English' : 'Italian'}`);
