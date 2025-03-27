@@ -1,37 +1,5 @@
-document.addEventListener('DOMContentLoaded', function() {
-    const form = document.getElementById('tour-booking-form');
-    
-    form.addEventListener('submit', function(event) {
-        event.preventDefault();
-        
-        // Collect form data
-        const formData = {
-            name: document.getElementById('name').value,
-            email: document.getElementById('email').value,
-            tour: document.getElementById('tour').value,
-            date: document.getElementById('date').value,
-            tourTime: document.getElementById('tour-time').value,
-            language: document.getElementById('language-preference').value,
-            message: document.getElementById('message').value
-        };
-        
-        // Basic form validation
-        if (!formData.name || !formData.email || !formData.tour || 
-            !formData.date || !formData.tourTime || !formData.language) {
-            alert('Please fill in all required fields');
-            return;
-        }
-        
-        // In a real-world scenario, you'd send this data to a backend server
-        console.log('Booking submitted:', formData);
-        
-        // Show success message
-        alert('Tour booking request submitted! We will contact you soon.');
-        
-        // Reset form
-        form.reset();
-    });
-});
+// Supported languages
+const SUPPORTED_LANGUAGES = ['en', 'it'];
 
 // Multilingual Dictionary
 const translations = {
@@ -144,6 +112,15 @@ const translations = {
 };
 
 function switchLanguage(lang) {
+    // Validate language
+    if (!SUPPORTED_LANGUAGES.includes(lang)) {
+        console.warn(`Unsupported language: ${lang}. Defaulting to English.`);
+        lang = 'en';
+    }
+
+    // Update HTML language attribute
+    document.documentElement.lang = lang;
+
     // Update navigation links
     const navLinks = document.querySelectorAll('nav ul li a');
     const navTexts = ['home', 'tours', 'contact'];
@@ -213,20 +190,62 @@ function switchLanguage(lang) {
     const footerCopyright = document.querySelector('footer p');
     if (footerCopyright) footerCopyright.textContent = translations[lang].footer.copyright;
 
+    // Update language button accessibility
+    document.querySelectorAll('.lang-btn').forEach(btn => {
+        const btnLang = btn.getAttribute('data-lang');
+        btn.setAttribute('aria-label', `Switch to ${btnLang === 'en' ? 'English' : 'Italian'}`);
+    });
+
     // Store language preference
     localStorage.setItem('preferredLanguage', lang);
 }
 
-// Event Listeners for Language Buttons
-document.querySelectorAll('.lang-btn').forEach(btn => {
-    btn.addEventListener('click', () => {
-        const lang = btn.getAttribute('data-lang');
-        switchLanguage(lang);
+// Tour Booking Form Submission
+document.addEventListener('DOMContentLoaded', function() {
+    const form = document.getElementById('tour-booking-form');
+    
+    form.addEventListener('submit', function(event) {
+        event.preventDefault();
+        
+        // Collect form data
+        const formData = {
+            name: document.getElementById('name').value,
+            email: document.getElementById('email').value,
+            tour: document.getElementById('tour').value,
+            date: document.getElementById('date').value,
+            tourTime: document.getElementById('tour-time').value,
+            language: document.getElementById('language-preference').value,
+            message: document.getElementById('message').value
+        };
+        
+        // Basic form validation
+        if (!formData.name || !formData.email || !formData.tour || 
+            !formData.date || !formData.tourTime || !formData.language) {
+            alert('Please fill in all required fields');
+            return;
+        }
+        
+        // In a real-world scenario, you'd send this data to a backend server
+        console.log('Booking submitted:', formData);
+        
+        // Show success message
+        alert('Tour booking request submitted! We will contact you soon.');
+        
+        // Reset form
+        form.reset();
     });
-});
 
-// Load Preferred Language on Page Load
-document.addEventListener('DOMContentLoaded', () => {
+    // Event Listeners for Language Buttons
+    document.querySelectorAll('.lang-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+            const lang = btn.getAttribute('data-lang');
+            console.log('Language button clicked:', lang);
+            switchLanguage(lang);
+        });
+    });
+
+    // Load Preferred Language on Page Load
     const savedLang = localStorage.getItem('preferredLanguage') || 'en';
+    console.log('Initializing with language:', savedLang);
     switchLanguage(savedLang);
 });
