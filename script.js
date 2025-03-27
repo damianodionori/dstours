@@ -278,6 +278,7 @@ function switchLanguage(lang) {
 // Tour Booking Form Submission
 document.addEventListener('DOMContentLoaded', function() {
     const form = document.getElementById('tour-booking-form');
+    const dateInput = document.getElementById('date');
     
     form.addEventListener('submit', function(event) {
         event.preventDefault();
@@ -319,10 +320,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // Date Picker Initialization
-    const dateInput = document.getElementById('date');
-
-    // Set up Pikaday with language-specific formatting
+    // Date Picker Initialization Function
     function initializeDatePicker(lang) {
         const config = DATE_CONFIG[lang];
 
@@ -331,15 +329,20 @@ document.addEventListener('DOMContentLoaded', function() {
             window.datePicker.destroy();
         }
 
-        // Create new Pikaday instance
+        // Create new Pikaday instance with comprehensive configuration
         window.datePicker = new Pikaday({
             field: dateInput,
             format: config.format,
-            toString(date) {
-                return moment(date).format(config.format);
+            formatStrict: config.format,
+            defaultDate: null,
+            setDefaultDate: false,
+            showDaysInNextAndPreviousMonths: true,
+            enableSelectionDaysInNextAndPreviousMonths: true,
+            toString(date, format) {
+                return moment(date).format(format);
             },
-            parse(dateString) {
-                return moment(dateString, config.format).toDate();
+            parse(dateString, format) {
+                return moment(dateString, format).toDate();
             },
             i18n: {
                 previousMonth: translations[lang].calendar.previousMonth,
@@ -347,11 +350,23 @@ document.addEventListener('DOMContentLoaded', function() {
                 months: translations[lang].calendar.months,
                 weekdays: translations[lang].calendar.weekdays,
                 weekdaysShort: translations[lang].calendar.weekdaysShort
+            },
+            onSelect: function(date) {
+                // Ensure the selected date is formatted correctly
+                const formattedDate = moment(date).format(config.format);
+                dateInput.value = formattedDate;
+                dateInput.setAttribute('data-selected-date', formattedDate);
             }
         });
 
         // Update placeholder
         dateInput.setAttribute('placeholder', config.placeholder);
+
+        // Ensure input field shows selected date in correct format
+        if (dateInput.getAttribute('data-selected-date')) {
+            const savedDate = dateInput.getAttribute('data-selected-date');
+            dateInput.value = savedDate;
+        }
     }
 
     // Modify switchLanguage to include date picker reinitialization
@@ -363,6 +378,24 @@ document.addEventListener('DOMContentLoaded', function() {
         // Reinitialize date picker
         initializeDatePicker(lang);
     };
+
+    // Additional event listener to handle manual input
+    dateInput.addEventListener('change', function() {
+        const currentLang = document.documentElement.lang;
+        const config = DATE_CONFIG[currentLang];
+        
+        const inputDate = moment(this.value, config.format, true);
+        
+        if (inputDate.isValid()) {
+            // If valid, update the Pikaday instance
+            if (window.datePicker) {
+                window.datePicker.setDate(inputDate.toDate());
+            }
+        } else {
+            // Clear if invalid
+            this.value = '';
+        }
+    });
 
     // Load Preferred Language on Page Load
     const savedLang = localStorage.getItem('preferredLanguage') || 'en';
