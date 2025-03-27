@@ -10,11 +10,12 @@ document.addEventListener('DOMContentLoaded', function() {
             email: document.getElementById('email').value,
             tour: document.getElementById('tour').value,
             date: document.getElementById('date').value,
+            tourTime: document.getElementById('tour-time').value,
             message: document.getElementById('message').value
         };
         
         // Basic form validation
-        if (!formData.name || !formData.email || !formData.tour || !formData.date) {
+        if (!formData.name || !formData.email || !formData.tour || !formData.date || !formData.tourTime) {
             alert('Please fill in all required fields');
             return;
         }
