@@ -59,6 +59,18 @@ const translations = {
         },
         footer: {
             copyright: "© 2022 DS Tours | Tour Guide"
+        },
+        calendar: {
+            months: [
+                'January', 'February', 'March', 'April', 'May', 'June', 
+                'July', 'August', 'September', 'October', 'November', 'December'
+            ],
+            weekdays: [
+                'Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'
+            ],
+            weekdaysShort: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
+            previousMonth: 'Previous Month',
+            nextMonth: 'Next Month'
         }
     },
     it: {
@@ -117,7 +129,30 @@ const translations = {
         },
         footer: {
             copyright: "© 2022 DS Tours | Guida Turistica"
+        },
+        calendar: {
+            months: [
+                'Gennaio', 'Febbraio', 'Marzo', 'Aprile', 'Maggio', 'Giugno', 
+                'Luglio', 'Agosto', 'Settembre', 'Ottobre', 'Novembre', 'Dicembre'
+            ],
+            weekdays: [
+                'Domenica', 'Lunedì', 'Martedì', 'Mercoledì', 'Giovedì', 'Venerdì', 'Sabato'
+            ],
+            weekdaysShort: ['Dom', 'Lun', 'Mar', 'Mer', 'Gio', 'Ven', 'Sab'],
+            previousMonth: 'Mese precedente',
+            nextMonth: 'Mese successivo'
         }
+    }
+};
+
+const DATE_CONFIG = {
+    en: {
+        format: 'MM/DD/YYYY',
+        placeholder: 'mm/dd/yyyy'
+    },
+    it: {
+        format: 'DD/MM/YYYY',
+        placeholder: 'gg/mm/aaaa'
     }
 };
 
@@ -284,8 +319,54 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
+    // Date Picker Initialization
+    const dateInput = document.getElementById('date');
+
+    // Set up Pikaday with language-specific formatting
+    function initializeDatePicker(lang) {
+        const config = DATE_CONFIG[lang];
+
+        // Destroy existing picker if it exists
+        if (window.datePicker) {
+            window.datePicker.destroy();
+        }
+
+        // Create new Pikaday instance
+        window.datePicker = new Pikaday({
+            field: dateInput,
+            format: config.format,
+            toString(date) {
+                return moment(date).format(config.format);
+            },
+            parse(dateString) {
+                return moment(dateString, config.format).toDate();
+            },
+            i18n: {
+                previousMonth: translations[lang].calendar.previousMonth,
+                nextMonth: translations[lang].calendar.nextMonth,
+                months: translations[lang].calendar.months,
+                weekdays: translations[lang].calendar.weekdays,
+                weekdaysShort: translations[lang].calendar.weekdaysShort
+            }
+        });
+
+        // Update placeholder
+        dateInput.setAttribute('placeholder', config.placeholder);
+    }
+
+    // Modify switchLanguage to include date picker reinitialization
+    const originalSwitchLanguage = switchLanguage;
+    switchLanguage = function(lang) {
+        // Call original switchLanguage
+        originalSwitchLanguage.call(this, lang);
+
+        // Reinitialize date picker
+        initializeDatePicker(lang);
+    };
+
     // Load Preferred Language on Page Load
     const savedLang = localStorage.getItem('preferredLanguage') || 'en';
     console.log('Initializing with language:', savedLang);
     switchLanguage(savedLang);
+    initializeDatePicker(savedLang);
 });

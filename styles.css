@@ -155,6 +155,11 @@ nav ul li a:hover {
     text-align: center;
 }
 
+.tours-section h2,
+.contact-section h2 {
+    margin-bottom: 30px;
+}
+
 #tour-booking-form {
     max-width: 500px;
     margin: 0 auto;
