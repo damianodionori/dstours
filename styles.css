@@ -50,6 +50,18 @@ nav ul li a:hover {
     color: #0066cc;
 }
 
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Space between logo and text */
+}
+
+.logo-image {
+    height: 50px; /* Adjust size as needed */
+    width: auto;
+    object-fit: contain;
+}
+
 /* Hero Section */
 .hero {
     background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('images/tower-bridge.jpg');
