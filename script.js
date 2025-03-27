@@ -59,18 +59,6 @@ const translations = {
         },
         footer: {
             copyright: "© 2022 DS Tours | Tour Guide"
-        },
-        calendar: {
-            months: [
-                'January', 'February', 'March', 'April', 'May', 'June', 
-                'July', 'August', 'September', 'October', 'November', 'December'
-            ],
-            weekdays: [
-                'Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'
-            ],
-            weekdaysShort: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
-            previousMonth: 'Previous Month',
-            nextMonth: 'Next Month'
         }
     },
     it: {
@@ -129,18 +117,6 @@ const translations = {
         },
         footer: {
             copyright: "© 2022 DS Tours | Guida Turistica"
-        },
-        calendar: {
-            months: [
-                'Gennaio', 'Febbraio', 'Marzo', 'Aprile', 'Maggio', 'Giugno', 
-                'Luglio', 'Agosto', 'Settembre', 'Ottobre', 'Novembre', 'Dicembre'
-            ],
-            weekdays: [
-                'Domenica', 'Lunedì', 'Martedì', 'Mercoledì', 'Giovedì', 'Venerdì', 'Sabato'
-            ],
-            weekdaysShort: ['Dom', 'Lun', 'Mar', 'Mer', 'Gio', 'Ven', 'Sab'],
-            previousMonth: 'Mese precedente',
-            nextMonth: 'Mese successivo'
         }
     }
 };
@@ -149,10 +125,6 @@ const DATE_CONFIG = {
     en: {
         format: 'MM/DD/YYYY',
         placeholder: 'mm/dd/yyyy'
-    },
-    it: {
-        format: 'DD/MM/YYYY',
-        placeholder: 'gg/mm/aaaa'
     }
 };
 
@@ -320,50 +292,18 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    function destroyExistingDatePickers() {
-        // Remove any existing Pikaday instances
-        if (window.datePicker) {
-            window.datePicker.destroy();
-            window.datePicker = null;
-        }
-
-        // Remove any other date picker libraries or conflicting instances
-        const existingPickers = document.querySelectorAll('.pika-single');
-        existingPickers.forEach(picker => picker.remove());
-    }
-
     // Date Picker Initialization Function
-    function initializeDatePicker(lang) {
-        // Destroy any existing date pickers first
-        destroyExistingDatePickers();
+    function initializeDatePicker() {
+        const config = DATE_CONFIG['en'];
 
-        const config = DATE_CONFIG[lang];
-
-        // Create new Pikaday instance with comprehensive configuration
+        // Create new Pikaday instance with minimal configuration
         window.datePicker = new Pikaday({
             field: dateInput,
-            container: document.body, // Ensure it's appended to body to avoid positioning issues
             format: config.format,
             formatStrict: config.format,
             defaultDate: null,
             setDefaultDate: false,
-            showDaysInNextAndPreviousMonths: true,
-            enableSelectionDaysInNextAndPreviousMonths: true,
-            toString(date, format) {
-                return moment(date).format(format);
-            },
-            parse(dateString, format) {
-                return moment(dateString, format).toDate();
-            },
-            i18n: {
-                previousMonth: translations[lang].calendar.previousMonth,
-                nextMonth: translations[lang].calendar.nextMonth,
-                months: translations[lang].calendar.months,
-                weekdays: translations[lang].calendar.weekdays,
-                weekdaysShort: translations[lang].calendar.weekdaysShort
-            },
             onSelect: function(date) {
-                // Ensure the selected date is formatted correctly
                 const formattedDate = moment(date).format(config.format);
                 dateInput.value = formattedDate;
                 dateInput.setAttribute('data-selected-date', formattedDate);
@@ -386,14 +326,13 @@ document.addEventListener('DOMContentLoaded', function() {
         // Call original switchLanguage
         originalSwitchLanguage.call(this, lang);
 
-        // Reinitialize date picker
-        initializeDatePicker(lang);
+        // Always reinitialize date picker with English configuration
+        initializeDatePicker();
     };
 
     // Additional event listener to handle manual input
     dateInput.addEventListener('change', function() {
-        const currentLang = document.documentElement.lang;
-        const config = DATE_CONFIG[currentLang];
+        const config = DATE_CONFIG['en'];
         
         const inputDate = moment(this.value, config.format, true);
         
@@ -412,5 +351,5 @@ document.addEventListener('DOMContentLoaded', function() {
     const savedLang = localStorage.getItem('preferredLanguage') || 'en';
     console.log('Initializing with language:', savedLang);
     switchLanguage(savedLang);
-    initializeDatePicker(savedLang);
+    initializeDatePicker();
 });

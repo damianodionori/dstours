@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>London Cultural and Fun Tours | Explore with a Local Guide</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pikaday/1.8.2/css/pikaday.min.css">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -99,8 +98,8 @@
                     </select>
                 </div>
                 <div class="form-group">
-                    <label for="date">Preferred Date</label>
-                    <input type="date" id="date" name="date" required>
+                    <input type="text" id="date" placeholder="MM/DD/YYYY">
+                    <span id="calendar-icon">📅</span>
                 </div>
                 <div class="form-group">
                     <label for="tour-time">Preferred Tour Time</label>
@@ -138,8 +137,7 @@
             </div>
         </div>
     </footer>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pikaday/1.8.2/pikaday.min.js"></script>
+
     <script src="script.js"></script>
 </body>
 </html>
