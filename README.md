@@ -5,11 +5,18 @@ DS Tours is a tour guide website designed to provide information about tours, co
 
 ## Desktop View in English and Italian
 ![Homepage in English](images/homepage%20eng.png)
+<br>
 ![Homepage in Italian](images/homepage%20ita.png)
 
 ## Tours in English and Italian
 ![Tours in English](images/tours%20eng.png)
+<br>
 ![Tours in Italian](images/tours%20ita.png)
+
+## Booking section in English and Italian
+![Booking in English](images/booking%20eng.png)
+<br>
+![Booking in Italian](images/prenota%20ita.png)
 
 ## Features
 - Responsive footer with social media links
