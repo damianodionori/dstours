@@ -1,3 +1,6 @@
+#damianodionori-dstous
+DS Tours is a tour guide website designed to provide information about tours, connect with potential customers, and offer easy ways to get in touch.
+
 # DS Tours | Tour Guide Website
 
 ## Project Overview
