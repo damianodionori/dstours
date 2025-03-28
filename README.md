@@ -3,6 +3,14 @@
 ## Project Overview
 DS Tours is a tour guide website designed to provide information about tours, connect with potential customers, and offer easy ways to get in touch.
 
+## Desktop View in English and Italian
+![Homepage in English](../images/homepage%20eng.png)
+![Homepage in Italian](../images/homepage%20ita.png)
+
+## Tours in English and Italian
+![Tours in English](../images/tours%20eng.png)
+![Tours in Italian](../images/tours%20ita.png)
+
 ## Features
 - Responsive footer with social media links
 - Direct contact options:
