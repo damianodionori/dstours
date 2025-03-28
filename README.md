@@ -12,7 +12,6 @@ DS Tours is a tour guide website designed to provide information about tours, co
 
 ## Social Media Platforms
 - Instagram
-- Facebook
 - TripAdvisor
 - WhatsApp
 - Email
