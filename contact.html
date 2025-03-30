@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact & Booking | DS Tours London</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="header-placeholder"></div>
+    
+    <main>
+        <section id="contact" class="contact-section">
+            <h2>Book Your Tour</h2>
+            <form id="tour-booking-form">
+                <div class="form-group">
+                    <label for="name">Full Name</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="tour">Select Tour</label>
+                    <select id="tour" name="tour" required>
+                        <option value="">Choose a Tour</option>
+                        <option value="british-museum">British Museum Tour</option>
+                        <option value="national-gallery">National Gallery Tour</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="date">Preferred Date</label>
+                    <input type="date" id="date" name="date" required>
+                </div>
+                <div class="form-group">
+                    <label for="tour-time">Preferred Tour Time</label>
+                    <select id="tour-time" name="tour-time" required>
+                        <option value="">Select Time Preference</option>
+                        <option value="am">Morning Tour (AM)</option>
+                        <option value="pm">Afternoon Tour (PM)</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="language-preference">Preferred Tour Language</label>
+                    <select id="language-preference" name="language-preference" required>
+                        <option value="">Select Language</option>
+                        <option value="english">English</option>
+                        <option value="italian">Italian</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="message">Additional Notes</label>
+                    <textarea id="message" name="message" rows="4"></textarea>
+                </div>
+                <button type="submit" class="submit-button">Book Tour</button>
+            </form>
+        </section>
+    </main>
+    
+    <div id="footer-placeholder"></div>
+    
+    <script src="script.js"></script>
+    <script src="components.js"></script>
+</body>
+</html>

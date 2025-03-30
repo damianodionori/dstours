@@ -294,7 +294,20 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Date Picker Initialization Function
     function initializeDatePicker() {
-        const config = DATE_CONFIG['en'];
+        // First check if the date input exists on this page
+    const dateInput = document.getElementById('date');
+    if (!dateInput) {
+        console.log('No date input found, skipping datepicker initialization');
+        return; // Exit the function if no date input
+    }
+    
+    // Check if Pikaday is available
+    if (typeof Pikaday === 'undefined' || typeof moment === 'undefined') {
+        console.log('Pikaday or moment not available - using native date picker');
+        return;
+    }
+    
+    const config = DATE_CONFIG['en'];
 
         // Create new Pikaday instance with minimal configuration
         window.datePicker = new Pikaday({
