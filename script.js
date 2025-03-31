@@ -7,7 +7,8 @@ const translations = {
         nav: {
             home: "Home",
             tours: "Tours",
-            contact: "Contact"
+            contact: "Contact",
+            "about-us": "About Us"
         },
         home: {
             title: "Discover London's Cultural Treasures",
@@ -65,7 +66,8 @@ const translations = {
         nav: {
             home: "Home",
             tours: "Tour",
-            contact: "Contatti"
+            contact: "Contatti",
+            "about-us": "Chi Siamo"
         },
         home: {
             title: "Scopri i Tesori Culturali di Londra",
@@ -140,7 +142,7 @@ function switchLanguage(lang) {
 
     // Update navigation links
     const navLinks = document.querySelectorAll('nav ul li a');
-    const navTexts = ['home', 'tours', 'contact'];
+    const navTexts = ['home', 'tours', 'contact', 'about-us'];
     navLinks.forEach((link, index) => {
         link.textContent = translations[lang].nav[navTexts[index]];
     });
