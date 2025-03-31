@@ -294,7 +294,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Date Picker Initialization Function
     function initializeDatePicker() {
-        // First check if the date input exists on this page
     const dateInput = document.getElementById('date');
     if (!dateInput) {
         console.log('No date input found, skipping datepicker initialization');
