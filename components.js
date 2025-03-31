@@ -40,6 +40,7 @@ document.addEventListener('DOMContentLoaded', function() {
             console.error('Error loading footer:', error);
             document.getElementById('footer-placeholder').innerHTML = '<p>Error loading footer. Please refresh the page.</p>';
         });
+        initializeCarousel();
 });
 
 // Function to initialize language switcher
@@ -60,4 +61,37 @@ function initializeLanguageSwitcher() {
             });
         });
     }
+}
+
+// New function to initialize the carousel
+function initializeCarousel() {
+    // Check if jQuery and Slick are available
+    if (typeof jQuery === 'undefined' || typeof jQuery.fn.slick === 'undefined') {
+        console.error('jQuery or Slick carousel not loaded');
+        return;
+    }
+
+    // Initialize the reviews carousel
+    $('.reviews-carousel').slick({
+        dots: true,
+        arrows: true,
+        infinite: true,
+        speed: 300,
+        slidesToShow: 1,
+        centerMode: true,
+        variableWidth: true,
+        adaptiveHeight: true,
+        autoplay: true,
+        autoplaySpeed: 5000,
+        responsive: [
+            {
+                breakpoint: 768,
+                settings: {
+                    arrows: false,
+                    centerMode: false,
+                    variableWidth: false
+                }
+            }
+        ]
+    });
 }

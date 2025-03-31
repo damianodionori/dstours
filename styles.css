@@ -379,3 +379,47 @@ footer {
         height: 280px;
     }
 }
+
+/* Updated Reviews section for screenshots */
+.reviews {
+    padding: 60px 20px;
+    text-align: center;
+    background-color: #f9f9f9;
+}
+
+.reviews h2 {
+    margin-bottom: 40px;
+    color: #333;
+}
+
+.reviews-carousel {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 40px; /* Space for arrows */
+}
+
+.review-slide {
+    padding: 10px;
+}
+
+.review-slide img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    border: 1px solid #ddd;
+}
+
+/* Slick carousel customizations */
+.slick-prev:before, 
+.slick-next:before {
+    color: #0066cc;
+}
+
+.slick-dots li button:before {
+    color: #0066cc;
+}
+
+.slick-dots li.slick-active button:before {
+    color: #0066cc;
+}
