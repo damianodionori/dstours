@@ -306,7 +306,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         if (typeof emailjs !== 'undefined') {
             // Invia l'email usando EmailJS
-            emailjs.send('TUO_SERVICE_ID', 'TUO_TEMPLATE_ID', templateParams)
+            emailjs.send('service_9j66lsd', 'TUO_TEMPLATE_ID', templateParams)
                 .then(function(response) {
                     console.log('Email inviata!', response.status, response.text);
                     
