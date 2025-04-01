@@ -58,6 +58,21 @@ const translations = {
             morningTour: "Morning Tour (AM)",
             afternoonTour: "Afternoon Tour (PM)"
         },
+        aboutUs: {
+            title: "Let us introduce ourselves!",
+            team: [
+                {
+                    name: "Damiano Dionori",
+                    title: "Languages and Modern Cultures Expert",
+                    bio: "Born in beautiful Tuscany, Damiano brings authentic Italian passion to London's cultural scene. A graduate in Languages and Modern Cultures from Università della Tuscia, he's fluent in Italian and English, with conversational French and German. When he's not sharing fascinating historical insights at the Natural History Museum (his favorite spot), you might find him enjoying pizza, hiking, or cheering at motorsport events. His love for travel and animals makes his tours particularly engaging for visitors of all ages."
+                },
+                {
+                    name: "Stefania Pizzeghello",
+                    title: "Theatre, Cinema and Arts Expert",
+                    bio: "Hailing from Veneto, Stefania earned her Master's Degree in Arts from the prestigious Università Ca' Foscari in Venice. Fluent in Italian and English with some Spanish, she brings artistic flair to every tour. The National Gallery is her second home, though she knows all of London's cultural gems intimately. When not guiding, this pasta-loving, music-enthusiast can be found riding her motorbike or walking her dogs. Her vibrant personality and deep knowledge make every tour a memorable experience."
+                }
+            ]
+        },
         footer: {
             copyright: "© 2022 DS Tours | Tour Guide"
         }
@@ -116,6 +131,21 @@ const translations = {
             submit: "Prenota Tour",
             morningTour: "Tour Mattutino (AM)",
             afternoonTour: "Tour Pomeridiano (PM)"
+        },
+        aboutUs: {
+            title: "Presentazione del nostro team!",
+            team: [
+                {
+                    name: "Damiano Dionori",
+                    title: "Esperto di Lingue e Culture Moderne",
+                    bio: "Nato nella splendida Toscana, Damiano porta un'autentica passione italiana alla scena culturale di Londra. Laureato in Lingue e Culture Moderne presso l'Università della Tuscia, parla fluentemente italiano e inglese, con francese e tedesco a livello di conversazione. Quando non condivide affascinanti informazioni storiche al Natural History Museum (il suo luogo preferito), potresti trovarlo a gustare una pizza, fare escursioni o tifare per eventi motoristici. Il suo amore per i viaggi e gli animali rende i suoi tour particolarmente coinvolgenti per visitatori di tutte le età."
+                },
+                {
+                    name: "Stefania Pizzeghello",
+                    title: "Esperta di Teatro, Cinema e Arti",
+                    bio: "Originaria del Veneto, Stefania ha conseguito una Laurea Magistrale in Arti presso la prestigiosa Università Ca' Foscari di Venezia. Parla fluentemente italiano e inglese con alcune conoscenze di spagnolo, portando un tocco artistico ad ogni tour. La National Gallery è la sua seconda casa, sebbene conosca intimamente tutti i tesori culturali di Londra. Quando non fa da guida, questa appassionata di pasta e musica può essere trovata in giro con la sua moto o a passeggiare con i suoi cani. La sua personalità vivace e la sua profonda conoscenza rendono ogni tour un'esperienza memorabile."
+                }
+            ]
         },
         footer: {
             copyright: "© 2022 DS Tours | Guida Turistica"
@@ -192,6 +222,31 @@ function switchLanguage(lang) {
         nationalGalleryHighlights.forEach((li, index) => {
             li.textContent = translations[lang].tours.nationalGallery.highlights[index];
         });
+    }
+
+    const aboutUsTitle = document.querySelector('#about-us h2');
+    if (aboutUsTitle) aboutUsTitle.textContent = translations[lang].aboutUs.title;
+    
+    // Update team members information
+    const teamMembers = document.querySelectorAll('.team-member');
+    if (teamMembers.length >= 2) {
+        // Update first team member
+        const member1Name = teamMembers[0].querySelector('h3');
+        const member1Title = teamMembers[0].querySelector('h4');
+        const member1Bio = teamMembers[0].querySelector('p');
+        
+        if (member1Name) member1Name.textContent = translations[lang].aboutUs.team[0].name;
+        if (member1Title) member1Title.textContent = translations[lang].aboutUs.team[0].title;
+        if (member1Bio) member1Bio.textContent = translations[lang].aboutUs.team[0].bio;
+        
+        // Update second team member
+        const member2Name = teamMembers[1].querySelector('h3');
+        const member2Title = teamMembers[1].querySelector('h4');
+        const member2Bio = teamMembers[1].querySelector('p');
+        
+        if (member2Name) member2Name.textContent = translations[lang].aboutUs.team[1].name;
+        if (member2Title) member2Title.textContent = translations[lang].aboutUs.team[1].title;
+        if (member2Bio) member2Bio.textContent = translations[lang].aboutUs.team[1].bio;
     }
 
     // Update contact section title
@@ -306,7 +361,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         if (typeof emailjs !== 'undefined') {
             // Invia l'email usando EmailJS
-            emailjs.send('service_9j66lsd', 'TUO_TEMPLATE_ID', templateParams)
+            emailjs.send('service_nqtc5gy', 'template_vb48wy2', templateParams)
                 .then(function(response) {
                     console.log('Email inviata!', response.status, response.text);
                     
