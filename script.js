@@ -7,7 +7,7 @@ const translations = {
         nav: {
             home: "Home",
             tours: "Tours",
-            contact: "Contact",
+            contact: "Book",
             "about-us": "About Us"
         },
         home: {
@@ -22,7 +22,7 @@ const translations = {
                 title: "British Museum Tour",
                 description: "Embark on a journey through human history, art, and culture.",
                 duration: "Duration: 2 hours",
-                price: "Price: £120 per group",
+                price: "Price: From £100 per group of four",
                 highlights: [
                     "The Rosetta Stone",
                     "Ancient Egyptian Mummies",
@@ -34,7 +34,7 @@ const translations = {
                 title: "National Gallery Art Tour",
                 description: "Explore masterpieces from the Renaissance to Post-Impressionism.",
                 duration: "Duration: 2 hours",
-                price: "Price: £120 per group",
+                price: "Price: From £100 per group of four",
                 highlights: [
                     "Van Gogh's Sunflowers",
                     "Leonardo da Vinci's works",
@@ -66,7 +66,7 @@ const translations = {
         nav: {
             home: "Home",
             tours: "Tour",
-            contact: "Contatti",
+            contact: "Prenota",
             "about-us": "Chi Siamo"
         },
         home: {
@@ -81,7 +81,7 @@ const translations = {
                 title: "Tour del British Museum",
                 description: "Intraprendi un viaggio attraverso la storia umana, l'arte e la cultura.",
                 duration: "Durata: 2 ore",
-                price: "Prezzo: £120 per gruppo",
+                price: "Prezzo: Da £100 per gruppo di quattro",
                 highlights: [
                     "La Stele di Rosetta",
                     "Mummie Egizie Antiche",
@@ -93,7 +93,7 @@ const translations = {
                 title: "Tour d'Arte della National Gallery",
                 description: "Esplora capolavori dal Rinascimento al Post-Impressionismo.",
                 duration: "Durata: 2 ore",
-                price: "Prezzo: £120 per gruppo",
+                price: "Prezzo: Da £100 per gruppo di quattro",
                 highlights: [
                     "Girasoli di Van Gogh",
                     "Opere di Leonardo da Vinci",
@@ -253,6 +253,10 @@ function switchLanguage(lang) {
 document.addEventListener('DOMContentLoaded', function() {
     const form = document.getElementById('tour-booking-form');
     const dateInput = document.getElementById('date');
+
+    if (typeof emailjs !== 'undefined') {
+        emailjs.init("Nxj6VliNcy5V2PG40");
+    }
     
     form.addEventListener('submit', function(event) {
         event.preventDefault();
@@ -262,29 +266,92 @@ document.addEventListener('DOMContentLoaded', function() {
             name: document.getElementById('name').value,
             email: document.getElementById('email').value,
             tour: document.getElementById('tour').value,
+            tourText: document.getElementById('tour').options[document.getElementById('tour').selectedIndex].text,
             date: document.getElementById('date').value,
             tourTime: document.getElementById('tour-time').value,
+            tourTimeText: document.getElementById('tour-time').options[document.getElementById('tour-time').selectedIndex].text,
             language: document.getElementById('language-preference').value,
+            languageText: document.getElementById('language-preference').options[document.getElementById('language-preference').selectedIndex].text,
             message: document.getElementById('message').value
         };
-        
+
         // Basic form validation
         if (!formData.name || !formData.email || !formData.tour || 
             !formData.date || !formData.tourTime || !formData.language) {
-            alert('Please fill in all required fields');
+            const currentLang = localStorage.getItem('preferredLanguage') || 'en';
+            const errorMessage = currentLang === 'it' 
+                ? 'Per favore compila tutti i campi obbligatori' 
+                : 'Please fill in all required fields';
+            alert(errorMessage);
             return;
         }
-        
-        // In a real-world scenario, you'd send this data to a backend server
-        console.log('Booking submitted:', formData);
-        
-        // Show success message
-        alert('Tour booking request submitted! We will contact you soon.');
-        
-        // Reset form
-        form.reset();
-    });
 
+        const currentLang = localStorage.getItem('preferredLanguage') || 'en';
+
+        const submitButton = document.querySelector('.submit-button');
+        const originalButtonText = submitButton.textContent;
+        submitButton.textContent = currentLang === 'it' ? 'Invio in corso...' : 'Sending...';
+        submitButton.disabled = true;
+
+        const templateParams = {
+            from_name: formData.name,
+            from_email: formData.email,
+            tour_type: formData.tourText,
+            tour_date: formData.date,
+            tour_time: formData.tourTimeText,
+            language: formData.languageText,
+            message: formData.message,
+            site_language: currentLang
+        };
+
+        if (typeof emailjs !== 'undefined') {
+            // Invia l'email usando EmailJS
+            emailjs.send('TUO_SERVICE_ID', 'TUO_TEMPLATE_ID', templateParams)
+                .then(function(response) {
+                    console.log('Email inviata!', response.status, response.text);
+                    
+                    // Messaggio di successo
+                    const successMessage = currentLang === 'it' 
+                        ? 'Prenotazione inviata con successo! Ti contatteremo presto.' 
+                        : 'Tour booking request submitted! We will contact you soon.';
+                    alert(successMessage);
+                    
+                    // Reset form
+                    form.reset();
+                    
+                    // Ripristina il pulsante
+                    submitButton.textContent = originalButtonText;
+                    submitButton.disabled = false;
+                })
+                .catch(function(error) {
+                    console.log('Errore nell\'invio dell\'email:', error);
+                    
+                    // Messaggio di errore
+                    const errorMessage = currentLang === 'it' 
+                        ? 'Si è verificato un errore durante l\'invio. Riprova più tardi o contattaci direttamente.' 
+                        : 'An error occurred while sending. Please try again later or contact us directly.';
+                    alert(errorMessage);
+                    
+                    // Ripristina il pulsante
+                    submitButton.textContent = originalButtonText;
+                    submitButton.disabled = false;
+                });
+        } else {
+            // Fallback se EmailJS non è caricato
+            console.log('EmailJS non disponibile. Dati del form:', formData);
+            
+            // Messaggio di successo (fallback)
+            const fallbackMessage = currentLang === 'it' 
+                ? 'Sistema di invio non disponibile. Ti preghiamo di contattarci direttamente.' 
+                : 'Sending system not available. Please contact us directly.';
+            alert(fallbackMessage);
+            
+            // Ripristina il pulsante
+            submitButton.textContent = originalButtonText;
+            submitButton.disabled = false;
+        }
+    });
+    
     // Event Listeners for Language Buttons
     document.querySelectorAll('.lang-btn').forEach(btn => {
         btn.addEventListener('click', () => {
