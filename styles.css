@@ -431,3 +431,52 @@ footer {
 .slick-dots li.slick-active button:before {
     color: #0066cc;
 }
+
+.slick-dots {
+    position: absolute;
+    bottom: -25px;
+    display: block;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    text-align: center;
+    left: 0;
+    right: 0;
+}
+
+.slick-slider {
+    margin-bottom: 40px; /* Più spazio per i dots */
+}
+
+/* Assicuriamoci che i dots rimangano centrati sui dispositivi mobili */
+@media (max-width: 768px) {
+    .slick-dots {
+        padding: 0;
+        width: 100%;
+        left: 0;
+        right: 0;
+        margin: 0;
+    }
+    
+    .reviews-carousel {
+        padding: 0 20px;
+        margin-bottom: 20px;
+    }
+    
+    /* Riduciamo lo spazio tra i dots sui dispositivi mobili */
+    .slick-dots li {
+        margin: 0 3px;
+    }
+}
+/* Rendere i dots più visibili */
+.slick-dots li button:before {
+    font-size: 10px;
+    color: #0066cc;
+    opacity: 0.5;
+}
+
+.slick-dots li.slick-active button:before {
+    color: #0066cc;
+    opacity: 1;
+}

@@ -71,7 +71,7 @@ function initializeCarousel() {
         return;
     }
 
-    // Initialize the reviews carousel
+    // Initialize the reviews carousel with ottimizzazioni per i dots
     $('.reviews-carousel').slick({
         dots: true,
         arrows: true,
@@ -83,15 +83,23 @@ function initializeCarousel() {
         adaptiveHeight: true,
         autoplay: true,
         autoplaySpeed: 5000,
+        dotsClass: 'slick-dots', // Classe esplicita per i dots
         responsive: [
             {
                 breakpoint: 768,
                 settings: {
                     arrows: false,
                     centerMode: false,
-                    variableWidth: false
+                    variableWidth: false,
+                    dots: true,
+                    adaptiveHeight: true
                 }
             }
         ]
     });
+    
+    // Piccolo delay per assicurarsi che il carousel sia completamente inizializzato
+    setTimeout(function() {
+        $(window).trigger('resize');
+    }, 100);
 }
