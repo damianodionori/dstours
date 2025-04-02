@@ -99,7 +99,7 @@ function initializeTourCards() {
                 sessionStorage.setItem('selectedTour', tourTitle);
                 
                 // Redirect to the contact/booking page
-                window.location.href = 'contact.html#tour-booking-form';
+                window.location.href = 'contact.html';
             });
             
             // Add hover effects
