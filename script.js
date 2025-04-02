@@ -62,12 +62,12 @@ const translations = {
             title: "Let us introduce ourselves!",
             team: [
                 {
-                    name: "Damiano Dionori",
+                    name: "Damiano",
                     title: "Languages and Modern Cultures Expert",
                     bio: "Born in beautiful Tuscany, Damiano brings authentic Italian passion to London's cultural scene. A graduate in Languages and Modern Cultures from Università della Tuscia, he's fluent in Italian and English, with conversational French and German. When he's not sharing fascinating historical insights at the Natural History Museum (his favorite spot), you might find him enjoying pizza, hiking, or cheering at motorsport events. His love for travel and animals makes his tours particularly engaging for visitors of all ages."
                 },
                 {
-                    name: "Stefania Pizzeghello",
+                    name: "Stefania",
                     title: "Theatre, Cinema and Arts Expert",
                     bio: "Hailing from Veneto, Stefania earned her Master's Degree in Arts from the prestigious Università Ca' Foscari in Venice. Fluent in Italian and English with some Spanish, she brings artistic flair to every tour. The National Gallery is her second home, though she knows all of London's cultural gems intimately. When not guiding, this pasta-loving, music-enthusiast can be found riding her motorbike or walking her dogs. Her vibrant personality and deep knowledge make every tour a memorable experience."
                 }
@@ -136,12 +136,12 @@ const translations = {
             title: "Presentazione del nostro team!",
             team: [
                 {
-                    name: "Damiano Dionori",
+                    name: "Damiano",
                     title: "Esperto di Lingue e Culture Moderne",
                     bio: "Nato nella splendida Toscana, Damiano porta un'autentica passione italiana alla scena culturale di Londra. Laureato in Lingue e Culture Moderne presso l'Università della Tuscia, parla fluentemente italiano e inglese, con francese e tedesco a livello di conversazione. Quando non condivide affascinanti informazioni storiche al Natural History Museum (il suo luogo preferito), potresti trovarlo a gustare una pizza, fare escursioni o tifare per eventi motoristici. Il suo amore per i viaggi e gli animali rende i suoi tour particolarmente coinvolgenti per visitatori di tutte le età."
                 },
                 {
-                    name: "Stefania Pizzeghello",
+                    name: "Stefania",
                     title: "Esperta di Teatro, Cinema e Arti",
                     bio: "Originaria del Veneto, Stefania ha conseguito una Laurea Magistrale in Arti presso la prestigiosa Università Ca' Foscari di Venezia. Parla fluentemente italiano e inglese con alcune conoscenze di spagnolo, portando un tocco artistico ad ogni tour. La National Gallery è la sua seconda casa, sebbene conosca intimamente tutti i tesori culturali di Londra. Quando non fa da guida, questa appassionata di pasta e musica può essere trovata in giro con la sua moto o a passeggiare con i suoi cani. La sua personalità vivace e la sua profonda conoscenza rendono ogni tour un'esperienza memorabile."
                 }
