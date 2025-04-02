@@ -427,10 +427,18 @@ document.addEventListener('DOMContentLoaded', function() {
     // Check if Pikaday is available
     if (typeof Pikaday === 'undefined' || typeof moment === 'undefined') {
         console.log('Pikaday or moment not available - using native date picker');
+        const today = new Date();
+        const yyyy = today.getFullYear();
+        const mm = String(today.getMonth() + 1).padStart(2, '0');
+        const dd = String(today.getDate()).padStart(2, '0');
+        const formattedToday = `${yyyy}-${mm}-${dd}`;
+        
+        dateInput.setAttribute('min', formattedToday);
         return;
     }
     
     const config = DATE_CONFIG['en'];
+    const today = new Date();
 
         // Create new Pikaday instance with minimal configuration
         window.datePicker = new Pikaday({
@@ -439,6 +447,11 @@ document.addEventListener('DOMContentLoaded', function() {
             formatStrict: config.format,
             defaultDate: null,
             setDefaultDate: false,
+            minDate: today, // Set minimum date to today
+            disableDayFn: function(date) {
+                // Return true to disable a date
+                return date < new Date(today.setHours(0, 0, 0, 0));
+            },
             onSelect: function(date) {
                 const formattedDate = moment(date).format('DD/MM/YYYY');
                 dateInput.value = formattedDate;
