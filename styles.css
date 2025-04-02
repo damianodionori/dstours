@@ -291,6 +291,41 @@ footer {
     }
 }
 
+.tour-card {
+    /* Keep your existing styles */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+}
+
+.tour-card::after {
+    content: "Click to book this tour";
+    position: absolute;
+    bottom: 15px;
+    right: 15px;
+    background-color: #0066cc;
+    color: white;
+    padding: 6px 12px;
+    border-radius: 4px;
+    font-size: 14px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+}
+
+.tour-card-hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 15px rgba(0,0,0,0.15);
+}
+
+.tour-card-hover::after {
+    opacity: 1;
+}
+
+/* Make sure the text is translated for Italian language */
+html[lang="it"] .tour-card::after {
+    content: "Clicca per prenotare questo tour";
+}
+
 /* ===== Tour Guides Section ===== */
 .guides-section {
     padding: 60px 5%;
