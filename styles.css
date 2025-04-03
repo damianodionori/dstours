@@ -16,11 +16,10 @@ body {
     background-color: #f4f4f4;
     display: flex;
     flex-direction: column;
-    min-height: 100vh; /* Ensures body fills viewport */
+    min-height: 100vh;
 }
 
-
-/* Navigation Styles - UPDATED */
+/* Navigation Styles */
 header {
     background-color: #ffffff;
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
@@ -39,18 +38,15 @@ nav {
     flex-wrap: wrap;
 }
 
-/* Make the three sections equal width */
 .logo, nav ul, .language-switcher {
     flex: 1;
     display: flex;
 }
 
-/* Left align the logo */
 .logo {
     justify-content: flex-start;
 }
 
-/* Center align the navigation menu */
 nav ul {
     justify-content: center;
     margin: 0;
@@ -58,13 +54,12 @@ nav ul {
     list-style: none;
 }
 
-/* Right align the language switcher */
 .language-switcher {
     justify-content: flex-end;
 }
 
 nav ul li {
-    margin: 0 10px; /* Equal margin on both sides */
+    margin: 0 10px;
 }
 
 nav ul li a {
@@ -78,21 +73,11 @@ nav ul li a:hover {
     color: #0066cc;
 }
 
-/* Responsive adjustments for mobile */
+/* Responsive navigation */
 @media (max-width: 768px) {
     nav {
-        display: flex;
         flex-direction: column;
         padding: 1rem;
-        align-items: stretch;
-    }
-    
-    /* Create a top row container for logo and language switcher */
-    nav::before {
-        content: "";
-        display: flex;
-        justify-content: space-between;
-        width: 100%;
     }
     
     .logo {
@@ -100,7 +85,6 @@ nav ul li a:hover {
         top: 1rem;
         left: 1rem;
         flex: initial;
-        margin: 0;
     }
     
     .language-switcher {
@@ -108,16 +92,12 @@ nav ul li a:hover {
         top: 1rem;
         right: 1rem;
         flex: initial;
-        margin: 0;
     }
     
     nav ul {
-        flex: 0 0 100%;
         flex-direction: column;
-        align-items: center;
+        margin-top: 70px;
         width: 100%;
-        margin-top: 70px; /* Space for the logo and language switcher */
-        padding: 0;
     }
     
     nav ul li {
@@ -127,15 +107,13 @@ nav ul li a:hover {
     }
     
     .logo-image {
-        height: 40px; /* Slightly smaller on mobile */
+        height: 40px;
     }
 }
 
-/* For very small screens, stack the nav items vertically */
 @media (max-width: 480px) {
     nav ul {
         flex-direction: column;
-        align-items: center;
     }
     
     nav ul li {
@@ -145,7 +123,7 @@ nav ul li a:hover {
 
 .logo a {
     text-decoration: none;
-    color: inherit; /* Inherits the color from parent */
+    color: inherit;
     display: flex;
     align-items: center;
 }
@@ -180,6 +158,7 @@ nav ul li a:hover {
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
+/* Hero Section */
 .hero {
     background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('images/tower-bridge.jpg');
     background-size: cover;
@@ -187,7 +166,7 @@ nav ul li a:hover {
     color: white;
     text-align: center;
     padding: 100px 20px;
-    flex: 1; /* Takes remaining space */
+    flex: 1;
 }
 
 .hero-content {
@@ -209,7 +188,7 @@ nav ul li a:hover {
     background-color: #0055aa;
 }
 
-/* Tours Section */
+/* Tours Section - Alternating Layout */
 .tours-section {
     padding: 50px 5%;
     max-width: 1200px;
@@ -219,32 +198,107 @@ nav ul li a:hover {
 .tour-card {
     display: flex;
     background-color: white;
-    margin-bottom: 30px;
+    margin-bottom: 50px;
     border-radius: 10px;
     overflow: hidden;
     box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
 }
 
+/* Default layout (image left, content right) */
 .tour-card img {
     width: 40%;
     object-fit: cover;
 }
 
 .tour-details {
-    padding: 20px;
+    padding: 30px;
     width: 60%;
 }
 
+/* Alternate layout for even cards (image right, content left) */
+.tour-card:nth-child(even) {
+    flex-direction: row-reverse;
+}
+
+/* Visual connection between cards */
+.tour-card:not(:last-child)::after {
+    content: "";
+    position: absolute;
+    bottom: -25px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 2px;
+    height: 25px;
+    background-color: #0066cc;
+}
+
+/* Different background for alternating cards */
+.tour-card:nth-child(odd) {
+    background-color: #ffffff;
+}
+
+.tour-card:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.tour-details h3 {
+    color: #0066cc;
+    margin-bottom: 15px;
+    font-size: 1.5rem;
+}
+
+.tour-details p {
+    margin-bottom: 15px;
+    color: #555;
+}
+
 .tour-details ul {
-    margin-left: 20px;
-    margin-top: 10px;
+    margin: 15px 0 15px 20px;
+    color: #444;
+}
+
+.tour-details ul li {
+    margin-bottom: 8px;
 }
 
 .tour-info {
     display: flex;
     justify-content: space-between;
-    margin-top: 15px;
+    margin-top: 20px;
     font-weight: bold;
+    color: #333;
+}
+
+/* Hover effects */
+.tour-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 15px rgba(0,0,0,0.15);
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+    .tour-card,
+    .tour-card:nth-child(even) {
+        flex-direction: column;
+    }
+    
+    .tour-card img {
+        width: 100%;
+        height: 200px;
+    }
+    
+    .tour-details {
+        width: 100%;
+        padding: 20px;
+    }
+    
+    .tour-card:not(:last-child)::after {
+        left: 30px;
+        bottom: -15px;
+        height: 15px;
+    }
 }
 
 /* Contact Form */
@@ -257,6 +311,19 @@ nav ul li a:hover {
 .tours-section h2,
 .contact-section h2 {
     margin-bottom: 30px;
+    text-align: center;
+    color: #222;
+    position: relative;
+}
+
+.tours-section h2::after,
+.contact-section h2::after {
+    content: "";
+    display: block;
+    width: 80px;
+    height: 3px;
+    background: #0066cc;
+    margin: 15px auto 0;
 }
 
 #tour-booking-form {
@@ -299,6 +366,7 @@ nav ul li a:hover {
 .form-group label {
     display: block;
     margin-bottom: 5px;
+    font-weight: bold;
 }
 
 .form-group input,
@@ -308,6 +376,7 @@ nav ul li a:hover {
     padding: 10px;
     border: 1px solid #ddd;
     border-radius: 5px;
+    font-family: inherit;
 }
 
 .submit-button {
@@ -319,75 +388,32 @@ nav ul li a:hover {
     border-radius: 5px;
     cursor: pointer;
     margin-top: 15px;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
 }
 
-/* Footer - FIXED */
+.submit-button:hover {
+    background-color: #0055aa;
+}
+
+/* Footer */
 footer {
     background-color: #333;
     color: white;
     text-align: center;
     padding: 20px;
     width: 100%;
-    margin-top: auto; /* Pushes footer to bottom */
+    margin-top: auto;
 }
 
 .social-links a {
     color: white;
     margin: 0 10px;
     text-decoration: none;
+    font-size: 1.2rem;
 }
 
-/* Mobile responsiveness */
-@media (max-width: 768px) {
-    .hero {
-        padding-top: 80px; /* Adjust if header is fixed */
-    }
-    
-    .tour-card {
-        flex-direction: column;
-    }
-    
-    .tour-card img {
-        width: 100%;
-        height: 200px;
-    }
-    
-    .tour-details {
-        width: 100%;
-    }
-}
-
-.tour-card {
-    /* Keep your existing styles */
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    position: relative;
-}
-
-.tour-card::after {
-    position: absolute;
-    bottom: 15px;
-    right: 15px;
-    background-color: #0066cc;
-    color: white;
-    padding: 6px 12px;
-    border-radius: 4px;
-    font-size: 14px;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-    pointer-events: none;
-}
-
-.tour-card-hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 15px rgba(0,0,0,0.15);
-}
-
-.tour-card-hover::after {
-    opacity: 1;
-}
-
-
-/* ===== Tour Guides Section ===== */
+/* Tour Guides Section */
 .guides-section {
     padding: 60px 5%;
     max-width: 1200px;
@@ -464,6 +490,61 @@ footer {
     font-size: 1rem;
 }
 
+/* Reviews Section */
+.reviews {
+    padding: 60px 20px;
+    text-align: center;
+    background-color: #f9f9f9;
+}
+
+.reviews h2 {
+    margin-bottom: 40px;
+    color: #333;
+}
+
+.reviews-carousel {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 40px;
+}
+
+.review-slide {
+    padding: 10px;
+}
+
+.review-slide img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    border: 1px solid #ddd;
+}
+
+/* Slick Carousel Customizations */
+.slick-prev:before, 
+.slick-next:before {
+    color: #0066cc;
+}
+
+.slick-dots li button:before {
+    color: #0066cc;
+    opacity: 0.5;
+    font-size: 10px;
+}
+
+.slick-dots li.slick-active button:before {
+    color: #0066cc;
+    opacity: 1;
+}
+
+.slick-dots {
+    bottom: -25px;
+}
+
+.slick-slider {
+    margin-bottom: 40px;
+}
+
 /* Responsive Adjustments */
 @media (max-width: 768px) {
     .guides-section {
@@ -482,97 +563,8 @@ footer {
     .guide-image {
         height: 280px;
     }
-}
-
-/* Updated Reviews section for screenshots */
-.reviews {
-    padding: 60px 20px;
-    text-align: center;
-    background-color: #f9f9f9;
-}
-
-.reviews h2 {
-    margin-bottom: 40px;
-    color: #333;
-}
-
-.reviews-carousel {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 0 40px; /* Space for arrows */
-}
-
-.review-slide {
-    padding: 10px;
-}
-
-.review-slide img {
-    width: 100%;
-    height: auto;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-    border: 1px solid #ddd;
-}
-
-/* Slick carousel customizations */
-.slick-prev:before, 
-.slick-next:before {
-    color: #0066cc;
-}
-
-.slick-dots li button:before {
-    color: #0066cc;
-}
-
-.slick-dots li.slick-active button:before {
-    color: #0066cc;
-}
-
-.slick-dots {
-    position: absolute;
-    bottom: -25px;
-    display: block;
-    width: 100%;
-    padding: 0;
-    margin: 0;
-    list-style: none;
-    text-align: center;
-    left: 0;
-    right: 0;
-}
-
-.slick-slider {
-    margin-bottom: 40px; /* Più spazio per i dots */
-}
-
-/* Assicuriamoci che i dots rimangano centrati sui dispositivi mobili */
-@media (max-width: 768px) {
-    .slick-dots {
-        padding: 0;
-        width: 100%;
-        left: 0;
-        right: 0;
-        margin: 0;
-    }
     
     .reviews-carousel {
         padding: 0 20px;
-        margin-bottom: 20px;
     }
-    
-    /* Riduciamo lo spazio tra i dots sui dispositivi mobili */
-    .slick-dots li {
-        margin: 0 3px;
-    }
-}
-/* Rendere i dots più visibili */
-.slick-dots li button:before {
-    font-size: 10px;
-    color: #0066cc;
-    opacity: 0.5;
-}
-
-.slick-dots li.slick-active button:before {
-    color: #0066cc;
-    opacity: 1;
 }

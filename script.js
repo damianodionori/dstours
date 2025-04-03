@@ -139,7 +139,7 @@ const translations = {
                 ]
             },
             naturalHistoryMuseum: {
-                title: "Tour Privato del Natural History Museum",
+                title: "Tour Privato del Museo di Storia Naturale",
                 description: "Un viaggio attraverso le meraviglie della Terra, dai dinosauri ai diamanti.",
                 duration: "Durata: 2 ore",
                 price: "Prezzo: Da £100 per gruppo di quattro",
