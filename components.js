@@ -46,50 +46,31 @@ document.addEventListener('DOMContentLoaded', function() {
     initializeTourCards();
     
     // Handle pre-selected tour if on contact page
-    if (document.getElementById('tour') && sessionStorage.getItem('selectedTour')) {
+    if (document.getElementById('tour') && sessionStorage.getItem('selectedTourId')) {
         const tourSelect = document.getElementById('tour');
-        const selectedTour = sessionStorage.getItem('selectedTour');
+        const selectedTourId = sessionStorage.getItem('selectedTourId');
         
         // Log for debugging
-        console.log('Pre-selecting tour:', selectedTour);
-        console.log('Available options:', Array.from(tourSelect.options).map(o => o.text));
+        console.log('Pre-selecting tour ID:', selectedTourId);
+        console.log('Available options values:', Array.from(tourSelect.options).map(o => o.value));
         
-        // Find the option matching the selected tour and set it as selected
+        // Find the option matching the selected tour ID and set it as selected
         let found = false;
         Array.from(tourSelect.options).forEach(option => {
-            // Normalize text comparison by trimming whitespace and converting to lowercase
-            if (option.text.trim().toLowerCase() === selectedTour.trim().toLowerCase()) {
+            if (option.value === selectedTourId) {
                 option.selected = true;
                 found = true;
-                console.log('Match found for:', option.text);
+                console.log('Match found for ID:', option.value);
             }
         });
         
         if (!found) {
-            console.warn('No matching option found for:', selectedTour);
+            console.warn('No matching option found for ID:', selectedTourId);
         }
         
         // Clear the session storage to avoid issues on page refresh
-        sessionStorage.removeItem('selectedTour');
+        sessionStorage.removeItem('selectedTourId');
     }
-    
-    // Remove "Book Your Tour Now" button if it exists
-    const bookNowCta = document.querySelector('.book-now-cta');
-    if (bookNowCta) {
-        bookNowCta.style.display = 'none';
-    }
-    
-    // Add CSS to override any hover button styles
-    const style = document.createElement('style');
-    style.textContent = `
-        .tour-card:hover .tour-book-button,
-        .tour-card-hover .tour-book-button,
-        .tour-card:hover .cta-button,
-        .tour-card-hover .cta-button {
-            display: none !important;
-        }
-    `;
-    document.head.appendChild(style);
 });
 
 // Function to initialize language switcher
@@ -126,12 +107,18 @@ function initializeTourCards() {
             
             // Add click event to redirect to booking page
             card.addEventListener('click', function() {
-                // Get the tour name to pre-select in the booking form
+                // Get the tour ID from the data attribute
+                const tourId = this.getAttribute('data-tour-id');
                 const tourTitle = this.querySelector('h3').textContent;
-                console.log('Tour card clicked:', tourTitle);
+                console.log('Tour card clicked:', tourTitle, 'with ID:', tourId);
                 
-                // Save selected tour in session storage
-                sessionStorage.setItem('selectedTour', tourTitle);
+                if (!tourId) {
+                    console.warn('No data-tour-id found on tour card:', tourTitle);
+                    return;
+                }
+                
+                // Save selected tour ID in session storage
+                sessionStorage.setItem('selectedTourId', tourId);
                 
                 // Redirect to the contact/booking page
                 window.location.href = 'contact.html';
