@@ -45,30 +45,14 @@ document.addEventListener('DOMContentLoaded', function() {
     initializeCarousel();
     initializeTourCards();
     
-    // Handle pre-selected tour if on contact page
     if (document.getElementById('tour') && sessionStorage.getItem('selectedTourId')) {
         const tourSelect = document.getElementById('tour');
         const selectedTourId = sessionStorage.getItem('selectedTourId');
         
-        // Log for debugging
-        console.log('Pre-selecting tour ID:', selectedTourId);
-        console.log('Available options values:', Array.from(tourSelect.options).map(o => o.value));
+        // Simply set the value - language switching will handle the text
+        tourSelect.value = selectedTourId;
         
-        // Find the option matching the selected tour ID and set it as selected
-        let found = false;
-        Array.from(tourSelect.options).forEach(option => {
-            if (option.value === selectedTourId) {
-                option.selected = true;
-                found = true;
-                console.log('Match found for ID:', option.value);
-            }
-        });
-        
-        if (!found) {
-            console.warn('No matching option found for ID:', selectedTourId);
-        }
-        
-        // Clear the session storage to avoid issues on page refresh
+        // Clear the session storage
         sessionStorage.removeItem('selectedTourId');
     }
 });

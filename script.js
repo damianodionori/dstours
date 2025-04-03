@@ -1,7 +1,7 @@
 // Supported languages
 const SUPPORTED_LANGUAGES = ['en', 'it'];
 
-// Multilingual Dictionary
+// Multilingual Dictionary with numeric tour IDs
 const translations = {
     en: {
         nav: {
@@ -18,6 +18,10 @@ const translations = {
         tours: {
             title: "Our Signature Tours",
             bookYourTour: "Book Your Tour",
+            options: {
+                1: "British Museum Private Tour",
+                2: "National Gallery Private Tour"
+            },
             britishMuseum: {
                 title: "British Museum Private Tour",
                 description: "Embark on a journey through human history, art, and culture.",
@@ -92,6 +96,10 @@ const translations = {
         tours: {
             title: "I Nostri Tour Esclusivi",
             bookYourTour: "Prenota il Tuo Tour",
+            options: {
+                1: "Tour Privato del British Museum",
+                2: "Tour Privato della National Gallery"
+            },
             britishMuseum: {
                 title: "Tour Privato del British Museum",
                 description: "Intraprendi un viaggio attraverso la storia umana, l'arte e la cultura.",
@@ -276,7 +284,17 @@ function switchLanguage(lang) {
             const firstOption = element.querySelector('option');
             
             if (firstOption) {
-                if (elementId === 'tour') firstOption.textContent = formTranslations.tourPlaceholder;
+                if (elementId === 'tour') {
+                    firstOption.textContent = formTranslations.tourPlaceholder;
+                    // Update all tour options
+                    const tourOptions = translations[lang].tours.options;
+                    for (let i = 1; i <= Object.keys(tourOptions).length; i++) {
+                        const option = element.querySelector(`option[value="${i}"]`);
+                        if (option) {
+                            option.textContent = tourOptions[i];
+                        }
+                    }
+                }
                 if (elementId === 'tour-time') {
                     firstOption.textContent = formTranslations.timePlaceholder;
                     element.querySelectorAll('option')[1].textContent = formTranslations.morningTour;
@@ -360,48 +378,39 @@ document.addEventListener('DOMContentLoaded', function() {
         };
 
         if (typeof emailjs !== 'undefined') {
-            // Invia l'email usando EmailJS
             emailjs.send('service_nqtc5gy', 'template_vb48wy2', templateParams)
                 .then(function(response) {
-                    console.log('Email inviata!', response.status, response.text);
+                    console.log('Email sent!', response.status, response.text);
                     
-                    // Messaggio di successo
                     const successMessage = currentLang === 'it' 
                         ? 'Prenotazione inviata con successo! Ti contatteremo presto.' 
                         : 'Tour booking request submitted! We will contact you soon.';
                     alert(successMessage);
                     
-                    // Reset form
                     form.reset();
                     
-                    // Ripristina il pulsante
                     submitButton.textContent = originalButtonText;
                     submitButton.disabled = false;
                 })
                 .catch(function(error) {
-                    console.log('Errore nell\'invio dell\'email:', error);
+                    console.log('Email sending error:', error);
                     
-                    // Messaggio di errore
                     const errorMessage = currentLang === 'it' 
                         ? 'Si è verificato un errore durante l\'invio. Riprova più tardi o contattaci direttamente.' 
                         : 'An error occurred while sending. Please try again later or contact us directly.';
                     alert(errorMessage);
                     
-                    // Ripristina il pulsante
                     submitButton.textContent = originalButtonText;
                     submitButton.disabled = false;
                 });
         } else {
-            // Fallback se EmailJS non è caricato
-            console.log('EmailJS non disponibile. Dati del form:', formData);
+            console.log('EmailJS not available. Form data:', formData);
             
-            // Messaggio di successo (fallback)
             const fallbackMessage = currentLang === 'it' 
                 ? 'Sistema di invio non disponibile. Ti preghiamo di contattarci direttamente.' 
                 : 'Sending system not available. Please contact us directly.';
             alert(fallbackMessage);
             
-            // Ripristina il pulsante
             submitButton.textContent = originalButtonText;
             submitButton.disabled = false;
         }
@@ -418,38 +427,35 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Date Picker Initialization Function
     function initializeDatePicker() {
-    const dateInput = document.getElementById('date');
-    if (!dateInput) {
-        console.log('No date input found, skipping datepicker initialization');
-        return; // Exit the function if no date input
-    }
-    
-    // Check if Pikaday is available
-    if (typeof Pikaday === 'undefined' || typeof moment === 'undefined') {
-        console.log('Pikaday or moment not available - using native date picker');
-        const today = new Date();
-        const yyyy = today.getFullYear();
-        const mm = String(today.getMonth() + 1).padStart(2, '0');
-        const dd = String(today.getDate()).padStart(2, '0');
-        const formattedToday = `${yyyy}-${mm}-${dd}`;
+        const dateInput = document.getElementById('date');
+        if (!dateInput) {
+            console.log('No date input found, skipping datepicker initialization');
+            return;
+        }
         
-        dateInput.setAttribute('min', formattedToday);
-        return;
-    }
-    
-    const config = DATE_CONFIG['en'];
-    const today = new Date();
+        if (typeof Pikaday === 'undefined' || typeof moment === 'undefined') {
+            console.log('Pikaday or moment not available - using native date picker');
+            const today = new Date();
+            const yyyy = today.getFullYear();
+            const mm = String(today.getMonth() + 1).padStart(2, '0');
+            const dd = String(today.getDate()).padStart(2, '0');
+            const formattedToday = `${yyyy}-${mm}-${dd}`;
+            
+            dateInput.setAttribute('min', formattedToday);
+            return;
+        }
+        
+        const config = DATE_CONFIG['en'];
+        const today = new Date();
 
-        // Create new Pikaday instance with minimal configuration
         window.datePicker = new Pikaday({
             field: dateInput,
             format: config.format,
             formatStrict: config.format,
             defaultDate: null,
             setDefaultDate: false,
-            minDate: today, // Set minimum date to today
+            minDate: today,
             disableDayFn: function(date) {
-                // Return true to disable a date
                 return date < new Date(today.setHours(0, 0, 0, 0));
             },
             onSelect: function(date) {
@@ -459,10 +465,8 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
 
-        // Update placeholder
         dateInput.setAttribute('placeholder', config.placeholder);
 
-        // Ensure input field shows selected date in correct format
         if (dateInput.getAttribute('data-selected-date')) {
             const savedDate = dateInput.getAttribute('data-selected-date');
             dateInput.value = savedDate;
@@ -472,29 +476,25 @@ document.addEventListener('DOMContentLoaded', function() {
     // Modify switchLanguage to include date picker reinitialization
     const originalSwitchLanguage = switchLanguage;
     switchLanguage = function(lang) {
-        // Call original switchLanguage
         originalSwitchLanguage.call(this, lang);
-
-        // Always reinitialize date picker with English configuration
         initializeDatePicker();
     };
 
     // Additional event listener to handle manual input
-    dateInput.addEventListener('change', function() {
-        const config = DATE_CONFIG['en'];
-        
-        const inputDate = moment(this.value, config.format, true);
-        
-        if (inputDate.isValid()) {
-            // If valid, update the Pikaday instance
-            if (window.datePicker) {
-                window.datePicker.setDate(inputDate.toDate());
+    if (dateInput) {
+        dateInput.addEventListener('change', function() {
+            const config = DATE_CONFIG['en'];
+            const inputDate = moment(this.value, config.format, true);
+            
+            if (inputDate.isValid()) {
+                if (window.datePicker) {
+                    window.datePicker.setDate(inputDate.toDate());
+                }
+            } else {
+                this.value = '';
             }
-        } else {
-            // Clear if invalid
-            this.value = '';
-        }
-    });
+        });
+    }
 
     // Load Preferred Language on Page Load
     const savedLang = localStorage.getItem('preferredLanguage') || 'en';
