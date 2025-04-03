@@ -50,16 +50,46 @@ document.addEventListener('DOMContentLoaded', function() {
         const tourSelect = document.getElementById('tour');
         const selectedTour = sessionStorage.getItem('selectedTour');
         
+        // Log for debugging
+        console.log('Pre-selecting tour:', selectedTour);
+        console.log('Available options:', Array.from(tourSelect.options).map(o => o.text));
+        
         // Find the option matching the selected tour and set it as selected
+        let found = false;
         Array.from(tourSelect.options).forEach(option => {
-            if (option.text === selectedTour) {
+            // Normalize text comparison by trimming whitespace and converting to lowercase
+            if (option.text.trim().toLowerCase() === selectedTour.trim().toLowerCase()) {
                 option.selected = true;
+                found = true;
+                console.log('Match found for:', option.text);
             }
         });
+        
+        if (!found) {
+            console.warn('No matching option found for:', selectedTour);
+        }
         
         // Clear the session storage to avoid issues on page refresh
         sessionStorage.removeItem('selectedTour');
     }
+    
+    // Remove "Book Your Tour Now" button if it exists
+    const bookNowCta = document.querySelector('.book-now-cta');
+    if (bookNowCta) {
+        bookNowCta.style.display = 'none';
+    }
+    
+    // Add CSS to override any hover button styles
+    const style = document.createElement('style');
+    style.textContent = `
+        .tour-card:hover .tour-book-button,
+        .tour-card-hover .tour-book-button,
+        .tour-card:hover .cta-button,
+        .tour-card-hover .cta-button {
+            display: none !important;
+        }
+    `;
+    document.head.appendChild(style);
 });
 
 // Function to initialize language switcher
@@ -82,7 +112,7 @@ function initializeLanguageSwitcher() {
     }
 }
 
-// New function to initialize the tour cards
+// Updated function to initialize the tour cards
 function initializeTourCards() {
     const tourCards = document.querySelectorAll('.tour-card');
     if (tourCards.length > 0) {
@@ -90,10 +120,15 @@ function initializeTourCards() {
             // Make the card visually appear clickable
             card.style.cursor = 'pointer';
             
+            // Remove any existing tour-book-button or cta-button elements
+            const bookButtons = card.querySelectorAll('.tour-book-button, .cta-button');
+            bookButtons.forEach(btn => btn.remove());
+            
             // Add click event to redirect to booking page
             card.addEventListener('click', function() {
                 // Get the tour name to pre-select in the booking form
                 const tourTitle = this.querySelector('h3').textContent;
+                console.log('Tour card clicked:', tourTitle);
                 
                 // Save selected tour in session storage
                 sessionStorage.setItem('selectedTour', tourTitle);
@@ -102,7 +137,7 @@ function initializeTourCards() {
                 window.location.href = 'contact.html';
             });
             
-            // Add hover effects
+            // Add hover effects - but don't add any booking button or other elements
             card.addEventListener('mouseenter', function() {
                 this.classList.add('tour-card-hover');
             });

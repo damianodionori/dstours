@@ -19,7 +19,7 @@ const translations = {
             title: "Our Signature Tours",
             bookYourTour: "Book Your Tour",
             britishMuseum: {
-                title: "British Museum Tour",
+                title: "British Museum Private Tour",
                 description: "Embark on a journey through human history, art, and culture.",
                 duration: "Duration: 2 hours",
                 price: "Price: From £100 per group of four",
@@ -31,7 +31,7 @@ const translations = {
                 ]
             },
             nationalGallery: {
-                title: "National Gallery Art Tour",
+                title: "National Gallery Private Tour",
                 description: "Explore masterpieces from the Renaissance to Post-Impressionism.",
                 duration: "Duration: 2 hours",
                 price: "Price: From £100 per group of four",
@@ -93,7 +93,7 @@ const translations = {
             title: "I Nostri Tour Esclusivi",
             bookYourTour: "Prenota il Tuo Tour",
             britishMuseum: {
-                title: "Tour del British Museum",
+                title: "Tour Privato del British Museum",
                 description: "Intraprendi un viaggio attraverso la storia umana, l'arte e la cultura.",
                 duration: "Durata: 2 ore",
                 price: "Prezzo: Da £100 per gruppo di quattro",
@@ -105,7 +105,7 @@ const translations = {
                 ]
             },
             nationalGallery: {
-                title: "Tour d'Arte della National Gallery",
+                title: "Tour Privato della National Gallery",
                 description: "Esplora capolavori dal Rinascimento al Post-Impressionismo.",
                 duration: "Durata: 2 ore",
                 price: "Prezzo: Da £100 per gruppo di quattro",
