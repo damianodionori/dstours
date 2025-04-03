@@ -13,7 +13,10 @@ const translations = {
         home: {
             title: "Discover London's Cultural Treasures",
             subtitle: "Immersive guided tours of London's most iconic museums",
-            cta: "Explore Tours"
+            cta: "Explore Tours",
+            reviews: {
+                title: "Visitor Testimonials"
+            },
         },
         tours: {
             title: "Our Signature Tours",
@@ -104,7 +107,10 @@ const translations = {
         home: {
             title: "Scopri i Tesori Culturali di Londra",
             subtitle: "Tour guidati immersivi nei musei più iconici di Londra",
-            cta: "Esplora i Tour"
+            cta: "Esplora i Tour",
+            reviews: {
+                title: "Recensioni dei Visitatori"
+            },
         },
         tours: {
             title: "I Nostri Tour Esclusivi",
@@ -219,6 +225,9 @@ function switchLanguage(lang) {
     if (homeTitle) homeTitle.textContent = translations[lang].home.title;
     if (homeSubtitle) homeSubtitle.textContent = translations[lang].home.subtitle;
     if (homeCTA) homeCTA.textContent = translations[lang].home.cta;
+
+    const reviewsTitle = document.querySelector('.reviews h2');
+    if (reviewsTitle) reviewsTitle.textContent = translations[lang].home.reviews.title;
 
     // Update tours section
     const toursTitle = document.querySelector('#tours > h2');
