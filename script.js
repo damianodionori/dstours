@@ -20,7 +20,8 @@ const translations = {
             bookYourTour: "Book Your Tour",
             options: {
                 1: "British Museum Private Tour",
-                2: "National Gallery Private Tour"
+                2: "National Gallery Private Tour",
+                3: "Natural History Museum Private Tour"
             },
             britishMuseum: {
                 title: "British Museum Private Tour",
@@ -44,6 +45,18 @@ const translations = {
                     "Leonardo da Vinci's works",
                     "Impressionist and Renaissance art",
                     "In-depth artist stories"
+                ]
+            },
+            naturalHistoryMuseum: {
+                title: "Natural History Museum Private Tour",
+                description: "Journey through Earth's wonders, from dinosaurs to diamonds.",
+                duration: "Duration: 2 hours",
+                price: "Price: From £100 per group of four",
+                highlights: [
+                    "Blue whale skeleton",
+                    "Earthquake simulator experience",
+                    "Dinosaur fossils and animatronic T-Rex",
+                    "Gems and meteorites collection"
                 ]
             }
         },
@@ -98,7 +111,8 @@ const translations = {
             bookYourTour: "Prenota il Tuo Tour",
             options: {
                 1: "Tour Privato del British Museum",
-                2: "Tour Privato della National Gallery"
+                2: "Tour Privato della National Gallery",
+                3: "Tour Privato del Natural History Museum"
             },
             britishMuseum: {
                 title: "Tour Privato del British Museum",
@@ -122,6 +136,18 @@ const translations = {
                     "Opere di Leonardo da Vinci",
                     "Arte Impressionista e Rinascimentale",
                     "Storie approfondite degli artisti"
+                ]
+            },
+            naturalHistoryMuseum: {
+                title: "Tour Privato del Natural History Museum",
+                description: "Un viaggio attraverso le meraviglie della Terra, dai dinosauri ai diamanti.",
+                duration: "Durata: 2 ore",
+                price: "Prezzo: Da £100 per gruppo di quattro",
+                highlights: [
+                    "Scheletro di una balenottera azzurra",
+                    "Simulatore di terremoti",
+                    "Fossili di dinosauri e T-Rex animatronico",
+                    "Collezione di gemme e meteoriti"
                 ]
             }
         },
@@ -205,8 +231,10 @@ function switchLanguage(lang) {
     // Update tour titles and descriptions
     if (tourTitles[0]) tourTitles[0].textContent = translations[lang].tours.britishMuseum.title;
     if (tourTitles[1]) tourTitles[1].textContent = translations[lang].tours.nationalGallery.title;
+    if (tourTitles[2]) tourTitles[2].textContent = translations[lang].tours.naturalHistoryMuseum.title;
     if (tourDescriptions[0]) tourDescriptions[0].textContent = translations[lang].tours.britishMuseum.description;
     if (tourDescriptions[1]) tourDescriptions[1].textContent = translations[lang].tours.nationalGallery.description;
+    if (tourDescriptions[2]) tourDescriptions[2].textContent = translations[lang].tours.naturalHistoryMuseum.description;
 
     // Update tour info (duration and price)
     if (tourInfoElements.length >= 2) {
@@ -214,11 +242,13 @@ function switchLanguage(lang) {
         tourInfoElements[1].textContent = translations[lang].tours.britishMuseum.price;
         tourInfoElements[2].textContent = translations[lang].tours.nationalGallery.duration;
         tourInfoElements[3].textContent = translations[lang].tours.nationalGallery.price;
+        tourInfoElements[4].textContent = translations[lang].tours.naturalHistoryMuseum.duration;
+        tourInfoElements[5].textContent = translations[lang].tours.naturalHistoryMuseum.price;
     }
 
     // Update tour highlights
     const tourHighlightLists = document.querySelectorAll('#tours .tour-details ul');
-    if (tourHighlightLists.length >= 2) {
+    if (tourHighlightLists.length >= 3) {
         // British Museum highlights
         const britishMuseumHighlights = tourHighlightLists[0].querySelectorAll('li');
         britishMuseumHighlights.forEach((li, index) => {
@@ -229,6 +259,12 @@ function switchLanguage(lang) {
         const nationalGalleryHighlights = tourHighlightLists[1].querySelectorAll('li');
         nationalGalleryHighlights.forEach((li, index) => {
             li.textContent = translations[lang].tours.nationalGallery.highlights[index];
+        });
+
+        // National Gallery highlights
+        const naturalHistoryMuseumHighlights = tourHighlightLists[2].querySelectorAll('li');
+        naturalHistoryMuseumHighlights.forEach((li, index) => {
+            li.textContent = translations[lang].tours.naturalHistoryMuseum.highlights[index];
         });
     }
 
