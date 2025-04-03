@@ -81,37 +81,53 @@ nav ul li a:hover {
 /* Responsive adjustments for mobile */
 @media (max-width: 768px) {
     nav {
-        flex-wrap: nowrap;
-        flex-direction: row;
+        display: flex;
+        flex-direction: column;
+        padding: 1rem;
+        align-items: stretch;
+    }
+    
+    /* Create a top row container for logo and language switcher */
+    nav::before {
+        content: "";
+        display: flex;
         justify-content: space-between;
-        align-items: flex-start;
-        row-gap: 15px;
+        width: 100%;
     }
     
     .logo {
+        position: absolute;
+        top: 1rem;
+        left: 1rem;
         flex: initial;
-        justify-content: flex-start;
-        order: 1;
+        margin: 0;
     }
     
     .language-switcher {
+        position: absolute;
+        top: 1rem;
+        right: 1rem;
         flex: initial;
-        justify-content: flex-end;
-        order: 2;
+        margin: 0;
     }
     
     nav ul {
         flex: 0 0 100%;
-        order: 3;
-        flex-direction: row;
-        justify-content: center;
+        flex-direction: column;
+        align-items: center;
         width: 100%;
-        margin-top: 15px;
-        flex-wrap: wrap;
+        margin-top: 70px; /* Space for the logo and language switcher */
+        padding: 0;
     }
     
     nav ul li {
-        margin: 5px 10px;
+        margin: 8px 0;
+        width: 100%;
+        text-align: center;
+    }
+    
+    .logo-image {
+        height: 40px; /* Slightly smaller on mobile */
     }
 }
 
