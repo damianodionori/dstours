@@ -20,7 +20,7 @@ body {
 }
 
 
-/* Navigation Styles */
+/* Navigation Styles - UPDATED */
 header {
     background-color: #ffffff;
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
@@ -39,14 +39,32 @@ nav {
     flex-wrap: wrap;
 }
 
-nav ul {
+/* Make the three sections equal width */
+.logo, nav ul, .language-switcher {
+    flex: 1;
     display: flex;
+}
+
+/* Left align the logo */
+.logo {
+    justify-content: flex-start;
+}
+
+/* Center align the navigation menu */
+nav ul {
+    justify-content: center;
+    margin: 0;
+    padding: 0;
     list-style: none;
-    flex-wrap: wrap;
+}
+
+/* Right align the language switcher */
+.language-switcher {
+    justify-content: flex-end;
 }
 
 nav ul li {
-    margin-left: 20px;
+    margin: 0 10px; /* Equal margin on both sides */
 }
 
 nav ul li a {
@@ -60,21 +78,53 @@ nav ul li a:hover {
     color: #0066cc;
 }
 
+/* Responsive adjustments for mobile */
 @media (max-width: 768px) {
-    nav ul {
-        flex-direction: column; /* Stack links on smaller screens */
-        align-items: center;
+    nav {
+        flex-wrap: nowrap;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: flex-start;
+        row-gap: 15px;
     }
-
+    
+    .logo {
+        flex: initial;
+        justify-content: flex-start;
+        order: 1;
+    }
+    
+    .language-switcher {
+        flex: initial;
+        justify-content: flex-end;
+        order: 2;
+    }
+    
+    nav ul {
+        flex: 0 0 100%;
+        order: 3;
+        flex-direction: row;
+        justify-content: center;
+        width: 100%;
+        margin-top: 15px;
+        flex-wrap: wrap;
+    }
+    
     nav ul li {
-        margin: 5px 0;
+        margin: 5px 10px;
     }
 }
 
-.logo {
-    display: flex;
-    align-items: center;
-    gap: 10px;
+/* For very small screens, stack the nav items vertically */
+@media (max-width: 480px) {
+    nav ul {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    nav ul li {
+        margin: 5px 0;
+    }
 }
 
 .logo a {
