@@ -217,6 +217,11 @@ nav ul li a:hover {
     width: 60%;
 }
 
+.tour-card video {
+    width: 40%;
+    object-fit: cover;
+}
+
 /* Alternate layout for even cards (image right, content left) */
 .tour-card:nth-child(even) {
     flex-direction: row-reverse;

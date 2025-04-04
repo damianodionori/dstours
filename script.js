@@ -24,7 +24,8 @@ const translations = {
             options: {
                 1: "British Museum Private Tour",
                 2: "National Gallery Private Tour",
-                3: "Natural History Museum Private Tour"
+                3: "Natural History Museum Private Tour",
+                4: "Westminster Area Private Walking Tour"
             },
             britishMuseum: {
                 title: "British Museum Private Tour",
@@ -60,6 +61,18 @@ const translations = {
                     "Earthquake simulator experience",
                     "Dinosaur fossils and animatronic T-Rex",
                     "Gems and meteorites collection"
+                ]
+            },
+            westminsterWalkingTour: {
+                title: "Westminster Area Private Walking Tour",
+                description: "Explore London's iconic landmarks and royal heritage on foot.",
+                duration: "Duration: 3 hours",
+                price: "Price: From £150 per group of four",
+                highlights: [
+                    "Big Ben & Houses of Parliament",
+                    "Westminster Abbey",
+                    "Buckingham Palace",
+                    "St. James's Park"
                 ]
             }
         },
@@ -118,7 +131,8 @@ const translations = {
             options: {
                 1: "Tour Privato del British Museum",
                 2: "Tour Privato della National Gallery",
-                3: "Tour Privato del Natural History Museum"
+                3: "Tour Privato del Natural History Museum",
+                4: "Tour Privato della zona di Westminster"
             },
             britishMuseum: {
                 title: "Tour Privato del British Museum",
@@ -154,6 +168,18 @@ const translations = {
                     "Simulatore di terremoti",
                     "Fossili di dinosauri e T-Rex animatronico",
                     "Collezione di gemme e meteoriti"
+                ]
+            },
+            westminsterWalkingTour: {
+                title: "Tour Privato della zona di Westminster",
+                description: "Esplora i luoghi iconici di Londra e il patrimonio reale a piedi.",
+                duration: "Durata: 3 ore",
+                price: "Prezzo: Da £150 per gruppo di quattro",
+                highlights: [
+                    "Big Ben & Palazzo del Parlamento",
+                    "Abbazia di Westminster",
+                    "Buckingham Palace",
+                    "Parco di St. James"
                 ]
             }
         },
@@ -241,9 +267,11 @@ function switchLanguage(lang) {
     if (tourTitles[0]) tourTitles[0].textContent = translations[lang].tours.britishMuseum.title;
     if (tourTitles[1]) tourTitles[1].textContent = translations[lang].tours.nationalGallery.title;
     if (tourTitles[2]) tourTitles[2].textContent = translations[lang].tours.naturalHistoryMuseum.title;
+    if (tourTitles[3]) tourTitles[3].textContent = translations[lang].tours.westminsterWalkingTour.title;
     if (tourDescriptions[0]) tourDescriptions[0].textContent = translations[lang].tours.britishMuseum.description;
     if (tourDescriptions[1]) tourDescriptions[1].textContent = translations[lang].tours.nationalGallery.description;
     if (tourDescriptions[2]) tourDescriptions[2].textContent = translations[lang].tours.naturalHistoryMuseum.description;
+    if (tourDescriptions[3]) tourDescriptions[3].textContent = translations[lang].tours.westminsterWalkingTour.description;
 
     // Update tour info (duration and price)
     if (tourInfoElements.length >= 2) {
@@ -253,11 +281,13 @@ function switchLanguage(lang) {
         tourInfoElements[3].textContent = translations[lang].tours.nationalGallery.price;
         tourInfoElements[4].textContent = translations[lang].tours.naturalHistoryMuseum.duration;
         tourInfoElements[5].textContent = translations[lang].tours.naturalHistoryMuseum.price;
+        tourInfoElements[6].textContent = translations[lang].tours.westminsterWalkingTour.duration;
+        tourInfoElements[7].textContent = translations[lang].tours.westminsterWalkingTour.price;
     }
 
     // Update tour highlights
     const tourHighlightLists = document.querySelectorAll('#tours .tour-details ul');
-    if (tourHighlightLists.length >= 3) {
+    if (tourHighlightLists.length >= 4) {
         // British Museum highlights
         const britishMuseumHighlights = tourHighlightLists[0].querySelectorAll('li');
         britishMuseumHighlights.forEach((li, index) => {
@@ -274,6 +304,12 @@ function switchLanguage(lang) {
         const naturalHistoryMuseumHighlights = tourHighlightLists[2].querySelectorAll('li');
         naturalHistoryMuseumHighlights.forEach((li, index) => {
             li.textContent = translations[lang].tours.naturalHistoryMuseum.highlights[index];
+        });
+
+        // Westminster walking Tour highlights
+        const westminsterWalkingTourHighlights = tourHighlightLists[3].querySelectorAll('li');
+        westminsterWalkingTourHighlights.forEach((li, index) => {
+            li.textContent = translations[lang].tours.westminsterWalkingTour.highlights[index];
         });
     }
 
