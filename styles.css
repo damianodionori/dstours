@@ -293,6 +293,11 @@ nav ul li a:hover {
         width: 100%;
         height: 200px;
     }
+
+    .tour-card video {
+        width: 100%;
+        height: 200px;
+    }
     
     .tour-details {
         width: 100%;
