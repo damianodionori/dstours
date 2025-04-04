@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Our Tours | DS Tours London</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/>
 </head>
 <body>
     <div id="header-placeholder"></div>
@@ -14,7 +16,12 @@
             <h2>Our Signature Tours</h2>
             
             <div class="tour-card" data-tour-id="1">
-                <img src="images/british museum/british-museum.jpg" alt="British Museum">
+                <div class="tour-carousel">
+                    <div><img src="images/british museum/british-museum.jpg" alt="British Museum"></div>
+                    <div><img src="images/british museum/moai.jpg" alt="Moai"></div>
+                    <div><img src="images/british museum/partenone.jpg" alt="Parthenon Marbles"></div>
+                    <div><img src="images/british museum/ramses.jpg" alt="Ramses"></div>
+                </div>
                 <div class="tour-details">
                     <h3>British Museum Private Tour</h3>
                     <p>Embark on a journey through human history, art, and culture.</p>
@@ -93,6 +100,8 @@
     
     <div id="footer-placeholder"></div>
     
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
     <script src="script.js"></script>
     <script src="components.js"></script>
 </body>

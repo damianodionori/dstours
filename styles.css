@@ -311,6 +311,79 @@ nav ul li a:hover {
     }
 }
 
+/* Tour Carousel Styles */
+.tour-carousel {
+    width: 40%;
+    height: 100%;
+}
+
+.tour-carousel .slick-list,
+.tour-carousel .slick-track {
+    height: 100%;
+}
+
+.tour-carousel div {
+    height: 100%;
+}
+
+.tour-carousel img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Styles for carousel dots within tour cards */
+.tour-carousel .slick-dots {
+    bottom: 10px;
+}
+
+.tour-carousel .slick-dots li button:before {
+    color: white;
+    opacity: 0.8;
+}
+
+.tour-carousel .slick-dots li.slick-active button:before {
+    color: white;
+    opacity: 1;
+}
+
+/* For arrow navigation within tour cards */
+.tour-carousel .slick-prev,
+.tour-carousel .slick-next {
+    z-index: 10;
+}
+
+.tour-carousel .slick-prev {
+    left: 10px;
+}
+
+.tour-carousel .slick-next {
+    right: 10px;
+}
+
+.tour-carousel .slick-prev:before,
+.tour-carousel .slick-next:before {
+    color: white;
+    text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+}
+
+/* Maintaining the existing responsive layout */
+@media (max-width: 768px) {
+    .tour-carousel {
+        width: 100%;
+        height: 200px;
+    }
+}
+
+/* For alternating layouts */
+.tour-card:nth-child(even) .tour-carousel {
+    order: 2;
+}
+
+.tour-card:nth-child(even) .tour-details {
+    order: 1;
+}
+
 /* Contact Form */
 .contact-section {
     background-color: #f9f9f9;

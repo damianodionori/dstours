@@ -44,6 +44,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Initialize features
     initializeCarousel();
     initializeTourCards();
+    handleCarouselInteractions();
     
     if (document.getElementById('tour') && sessionStorage.getItem('selectedTourId')) {
         const tourSelect = document.getElementById('tour');
@@ -155,8 +156,48 @@ function initializeCarousel() {
         ]
     });
     
+    $('.tour-carousel').slick({
+        dots: true,
+        arrows: true,
+        infinite: true,
+        speed: 500,
+        fade: true,
+        cssEase: 'linear',
+        autoplay: true,
+        autoplaySpeed: 3000,
+        pauseOnHover: true,
+        responsive: [
+            {
+                breakpoint: 768,
+                settings: {
+                    arrows: false
+                }
+            }
+        ]
+    });
+
     // Piccolo delay per assicurarsi che il carousel sia completamente inizializzato
     setTimeout(function() {
         $(window).trigger('resize');
     }, 100);
+}
+
+function handleCarouselInteractions() {
+    // Previene la propagazione del click sugli elementi del carousel
+    // per evitare che il click sui controlli del carousel attivi anche il click sul tour card
+    $('.tour-carousel').on('click', '.slick-arrow, .slick-dots', function(e) {
+        e.stopPropagation();
+    });
+    
+    // Previene la propagazione anche per i click sulle immagini del carousel
+    // quando si fa click su di esse per navigare tra le slide
+    $('.tour-carousel').on('click', function(e) {
+        // Ferma la propagazione solo se è un click sugli elementi di navigazione
+        // o se si sta trascinando (Slick usa il dragging per navigare)
+        if ($(this).hasClass('slick-initialized') && 
+            ($(e.target).closest('.slick-arrow, .slick-dots').length || 
+             $(this).hasClass('slick-dragging'))) {
+            e.stopPropagation();
+        }
+    });
 }
