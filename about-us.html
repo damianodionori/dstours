@@ -5,21 +5,41 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About Us | DS Tours London</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
     <div id="header-placeholder"></div>
     
     <main>
+        <!-- Hero section for about page -->
+        <section class="about-hero">
+            <div class="about-hero-content">
+                <h1>Meet Our Team</h1>
+                <p>Passionate guides ready to show you the best of London</p>
+            </div>
+        </section>
+        
         <section id="about-us" class="guides-section">
             <h2 class="guides-title">Let us introduce ourselves!</h2>
             
             <div class="guides-container">
                 <!-- Guide 1 -->
                 <div class="guide-card team-member">
-                    <img src="images/damianoislanda.jpeg" alt="Damiano" class="guide-image">
+                    <div class="guide-image-container">
+                        <img src="images/damianoislanda.jpeg" alt="Damiano" class="guide-image">
+                        <div class="guide-social">
+                            <a href="#" class="social-icon"><i class="fab fa-linkedin"></i></a>
+                            <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                        </div>
+                    </div>
                     <div class="guide-info">
                         <h3 class="guide-name">Damiano</h3>
                         <h4 class="guide-title">Languages and Modern Cultures Expert</h4>
+                        <div class="guide-details">
+                            <div class="guide-detail"><i class="fas fa-map-marker-alt"></i> From: Tuscany, Italy</div>
+                            <div class="guide-detail"><i class="fas fa-language"></i> Languages: Italian, English, French, German</div>
+                            <div class="guide-detail"><i class="fas fa-heart"></i> Favorite Spot: Natural History Museum</div>
+                        </div>
                         <p class="guide-bio">
                             Born in beautiful Tuscany, Damiano brings authentic Italian passion to London's cultural scene. 
                             A graduate in Languages and Modern Cultures from Università della Tuscia, he's fluent in Italian 
@@ -28,15 +48,27 @@
                             hiking, or cheering at motorsport events. His love for travel and animals makes his tours 
                             particularly engaging for visitors of all ages.
                         </p>
+                        <a href="#" class="guide-tours-btn">See Damiano's Tours <i class="fas fa-arrow-right"></i></a>
                     </div>
                 </div>
                 
                 <!-- Guide 2 -->
                 <div class="guide-card team-member">
-                    <img src="images/stefania.jpg" alt="Stefania" class="guide-image">
+                    <div class="guide-image-container">
+                        <img src="images/stefania.jpg" alt="Stefania" class="guide-image">
+                        <div class="guide-social">
+                            <a href="#" class="social-icon"><i class="fab fa-linkedin"></i></a>
+                            <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                        </div>
+                    </div>
                     <div class="guide-info">
                         <h3 class="guide-name">Stefania</h3>
                         <h4 class="guide-title">Theatre, Cinema and Arts Expert</h4>
+                        <div class="guide-details">
+                            <div class="guide-detail"><i class="fas fa-map-marker-alt"></i> From: Veneto, Italy</div>
+                            <div class="guide-detail"><i class="fas fa-language"></i> Languages: Italian, English, Spanish</div>
+                            <div class="guide-detail"><i class="fas fa-heart"></i> Favorite Spot: National Gallery</div>
+                        </div>
                         <p class="guide-bio">
                             Hailing from Veneto, Stefania earned her Master's Degree in Arts from the prestigious Università 
                             Ca' Foscari in Venice. Fluent in Italian and English with some Spanish, she brings artistic 
@@ -45,11 +77,45 @@
                             riding her motorbike or walking her dogs. Her vibrant personality and deep knowledge make every 
                             tour a memorable experience.
                         </p>
+                        <a href="#" class="guide-tours-btn">See Stefania's Tours <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- About company section -->
+            <div class="about-company">
+                <h2>Our Story</h2>
+                <div class="about-company-content">
+                    <div class="about-company-image">
+                        <img src="images/tower-bridge.jpg" alt="DS Tours London">
+                    </div>
+                    <div class="about-company-text">
+                        <p>DS Tours London was founded with a simple mission: to share our love for this incredible city through authentic, engaging experiences led by passionate locals.</p>
+                        <p>What started as two Italian friends showing their families around London has grown into a specialized tour company that combines local expertise with Italian warmth and hospitality.</p>
+                        <p>We believe that the best way to experience London is through the eyes of those who call it home and love it dearly. Our guides aren't just knowledgeable—they're passionate storytellers who bring history and culture to life.</p>
+                        <div class="company-values">
+                            <div class="value-item">
+                                <i class="fas fa-heart"></i>
+                                <h4>Passion</h4>
+                            </div>
+                            <div class="value-item">
+                                <i class="fas fa-users"></i>
+                                <h4>Personal Touch</h4>
+                            </div>
+                            <div class="value-item">
+                                <i class="fas fa-book"></i>
+                                <h4>Knowledge</h4>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
     </main>
+
+    <div class="scroll-top">
+        <i class="fas fa-chevron-up"></i>
+    </div>
     
     <div id="footer-placeholder"></div>
     
