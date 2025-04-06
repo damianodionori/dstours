@@ -67,6 +67,25 @@ document.addEventListener('DOMContentLoaded', function() {
         // Clear the session storage
         sessionStorage.removeItem('selectedTourId');
     }
+
+    const scrollTopBtn = document.querySelector('.scroll-top');
+    
+    // Show/hide button based on scroll position
+    window.addEventListener('scroll', function() {
+        if (window.pageYOffset > 300) {
+            scrollTopBtn.classList.add('show');
+        } else {
+            scrollTopBtn.classList.remove('show');
+        }
+    });
+    
+    // Scroll to top when button is clicked
+    scrollTopBtn.addEventListener('click', function() {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    });
 });
 
 // Function to fix TripAdvisor icon if it's not displaying correctly

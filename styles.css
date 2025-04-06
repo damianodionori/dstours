@@ -18,14 +18,17 @@ body {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
+    padding-top: 80px;
 }
 
 /* Stili di Navigazione */
 header {
     background-color: #ffffff;
     box-shadow: 0 4px 12px rgba(0, 114, 187, 0.1);
-    position: sticky;
+    position: fixed;
     top: 0;
+    left: 0;
+    right: 0;
     z-index: 100;
 }
 
@@ -612,31 +615,302 @@ nav ul li a:hover:after {
     order: 1;
 }
 
-/* Tour Guides Section */
-.guides-section {
-    padding: 100px 5%;
-    max-width: 1400px;
-    margin: 0 auto;
-    background-color: #f0f8ff;
+/* About page hero section */
+.about-hero {
+    background-image: linear-gradient(rgba(0, 114, 187, 0.7), rgba(0, 71, 117, 0.8)), url('images/tower-bridge.jpg');
+    background-size: cover;
+    background-position: center;
+    padding: 100px 20px;
+    text-align: center;
+    color: white;
     position: relative;
 }
 
-.guides-section:before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 80px;
-    background: linear-gradient(to bottom, #ffffff, transparent);
+.about-hero-content {
+    max-width: 800px;
+    margin: 0 auto;
 }
 
-.guides-title {
-    text-align: center;
-    margin-bottom: 60px;
-    font-size: 2.2rem;
+.about-hero-content h1 {
+    font-size: 3rem;
+    font-weight: 800;
+    margin-bottom: 20px;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+.about-hero-content p {
+    font-size: 1.3rem;
+    text-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+/* Enhanced guide cards */
+.guide-card {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    min-width: 300px;
+    max-width: 450px;
+    background: white;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 114, 187, 0.1);
+    transition: all 0.3s ease;
+    position: relative;
+    margin-bottom: 40px;
+}
+
+.guide-image-container {
+    position: relative;
+    overflow: hidden;
+    height: 550px;
+}
+
+.guide-card .guide-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: all 0.5s ease;
+    border-bottom: 4px solid #0072bb;
+}
+
+.guide-social {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    opacity: 0;
+    transform: translateX(20px);
+    transition: all 0.3s ease;
+}
+
+.social-icon {
+    background-color: #0072bb;
+    color: white;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.social-icon:hover {
+    background-color: #005999;
+    transform: scale(1.1);
+}
+
+.guide-card:hover .guide-social {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.guide-card:hover .guide-image {
+    transform: scale(1.05);
+}
+
+.guide-info {
+    padding: 30px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.guide-name {
+    font-size: 1.8rem;
+    margin-bottom: 8px;
     color: #0072bb;
     font-weight: 700;
+}
+
+.guide-title {
+    font-style: italic;
+    color: #666;
+    margin-bottom: 15px;
+    font-size: 1.1rem;
+    font-weight: 500;
+    padding-bottom: 12px;
+    border-bottom: 1px solid rgba(0, 114, 187, 0.1);
+}
+
+.guide-details {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 15px;
+    font-size: 0.95rem;
+    color: #444;
+}
+
+.guide-detail {
+    display: flex;
+    align-items: center;
+}
+
+.guide-detail i {
+    color: #0072bb;
+    margin-right: 10px;
+    width: 20px;
+    text-align: center;
+}
+
+.guide-bio {
+    line-height: 1.8;
+    color: #444;
+    font-size: 1rem;
+    margin-bottom: 20px;
+}
+
+.guide-tours-btn {
+    display: inline-block;
+    color: #0072bb;
+    text-decoration: none;
+    font-weight: 600;
+    padding: 8px 0;
+    margin-top: auto;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.guide-tours-btn::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    background-color: #0072bb;
+    bottom: 0;
+    left: 0;
+    transition: width 0.3s ease;
+}
+
+.guide-tours-btn:hover {
+    color: #005999;
+}
+
+.guide-tours-btn:hover::after {
+    width: 100%;
+}
+
+.guide-tours-btn i {
+    margin-left: 5px;
+    transition: transform 0.3s ease;
+}
+
+.guide-tours-btn:hover i {
+    transform: translateX(5px);
+}
+
+/* About company section */
+.about-company {
+    margin-top: 80px;
+    padding-top: 60px;
+    border-top: 1px solid rgba(0, 114, 187, 0.1);
+}
+
+.about-company h2 {
+    text-align: center;
+    color: #0072bb;
+    font-size: 2.2rem;
+    font-weight: 700;
+    margin-bottom: 40px;
+    position: relative;
+}
+
+.about-company h2::after {
+    content: "";
+    display: block;
+    width: 80px;
+    height: 3px;
+    background: #0072bb;
+    margin: 15px auto 0;
+}
+
+.about-company-content {
+    display: flex;
+    gap: 40px;
+    align-items: center;
+}
+
+.about-company-image {
+    flex: 1;
+    min-width: 300px;
+}
+
+.about-company-image img {
+    width: 100%;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 114, 187, 0.15);
+}
+
+.about-company-text {
+    flex: 2;
+}
+
+.about-company-text p {
+    margin-bottom: 20px;
+    line-height: 1.8;
+    color: #444;
+}
+
+.company-values {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 40px;
+    text-align: center;
+}
+
+.value-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.value-item i {
+    font-size: 2rem;
+    color: #0072bb;
+    margin-bottom: 15px;
+    height: 60px;
+    width: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0, 114, 187, 0.1);
+    border-radius: 50%;
+    transition: all 0.3s ease;
+}
+
+.value-item:hover i {
+    background-color: #0072bb;
+    color: white;
+    transform: translateY(-5px);
+}
+
+.value-item h4 {
+    font-weight: 600;
+    color: #333;
+}
+
+.guides-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+    margin: 40px auto;
+    max-width: 1200px;
+}
+
+/* Style for the guides section title */
+.guides-title {
+    text-align: center;
+    color: #0072bb;
+    font-size: 2.2rem;
+    font-weight: 700;
+    margin-bottom: 40px;
     position: relative;
 }
 
@@ -649,66 +923,67 @@ nav ul li a:hover:after {
     margin: 15px auto 0;
 }
 
-.guides-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 50px;
+/* Responsive adjustments */
+@media (max-width: 992px) {
+    .about-company-content {
+        flex-direction: column;
+    }
+    
+    .about-company-image {
+        order: 1;
+        margin-bottom: 30px;
+    }
+    
+    .about-company-text {
+        order: 2;
+    }
+    .guides-container {
+        flex-direction: column;
+        align-items: center;
+    }
+    .guide-card {
+        max-width: 100%;
+        width: 100%;
+    }
 }
 
-.guide-card {
-    flex: 1;
-    min-width: 300px;
-    max-width: 400px;
-    background: white;
-    border-radius: 16px;
-    overflow: hidden;
-    box-shadow: 0 10px 30px rgba(0, 114, 187, 0.1);
-    transition: all 0.3s ease;
-    position: relative;
+@media (max-width: 768px) {
+    .about-hero-content h1 {
+        font-size: 2.2rem;
+    }
+    
+    .company-values {
+        flex-direction: column;
+        gap: 30px;
+    }
+    
+    .guide-card {
+        max-width: 100%;
+    }
 }
 
-.guide-card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 15px 40px rgba(0, 114, 187, 0.2);
+/* Animation for guide cards */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
-.guide-image {
-    width: 100%;
-    height: 320px;
-    object-fit: cover;
-    border-bottom: 4px solid #0072bb;
-    transition: all 0.5s ease;
+.team-member {
+    animation: fadeInUp 0.6s ease-out forwards;
 }
 
-.guide-card:hover .guide-image {
-    transform: scale(1.05);
+.team-member:nth-child(2) {
+    animation-delay: 0.2s;
 }
 
-.guide-info {
-    padding: 30px;
-    position: relative;
-}
-
-.guide-name {
-    font-size: 1.6rem;
-    margin-bottom: 8px;
-    color: #0072bb;
-    font-weight: 700;
-}
-
-.guide-title {
-    font-style: italic;
-    color: #666;
-    margin-bottom: 20px;
-    font-size: 1.1rem;
-    font-weight: 500;
-}
-
-.guide-bio {
-    line-height: 1.8;
-    color: #444;
-    font-size: 1rem;
+.team-member:nth-child(3) {
+    animation-delay: 0.4s;
 }
 
 /* Contact Page Typography and Style Enhancements */
@@ -1016,4 +1291,32 @@ footer:before {
 
 .float-animation {
     animation: float 4s ease-in-out infinite;
+}
+
+/* CSS for scroll-to-top button */
+.scroll-top {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #0072bb;
+    color: white;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: 999;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+.scroll-top.show {
+    opacity: 1;
+}
+
+.scroll-top:hover {
+    background-color: #005a94;
 }
