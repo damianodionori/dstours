@@ -1,5 +1,13 @@
 // Wait for DOM to be fully loaded before fetching components
 document.addEventListener('DOMContentLoaded', function() {
+    // Ensure Font Awesome is loaded
+    if (!document.querySelector('link[href*="font-awesome"]')) {
+        const fontAwesome = document.createElement('link');
+        fontAwesome.rel = 'stylesheet';
+        fontAwesome.href = 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css';
+        document.head.appendChild(fontAwesome);
+    }
+
     // Load header
     fetch('components/header.html')
         .then(response => {
@@ -35,6 +43,9 @@ document.addEventListener('DOMContentLoaded', function() {
         })
         .then(data => {
             document.getElementById('footer-placeholder').innerHTML = data;
+            
+            // Fix TripAdvisor icon if needed
+            fixTripAdvisorIcon();
         })
         .catch(error => {
             console.error('Error loading footer:', error);
@@ -57,6 +68,55 @@ document.addEventListener('DOMContentLoaded', function() {
         sessionStorage.removeItem('selectedTourId');
     }
 });
+
+// Function to fix TripAdvisor icon if it's not displaying correctly
+function fixTripAdvisorIcon() {
+    // Check if TripAdvisor icon exists and is not rendering properly
+    const tripAdvisorLinks = document.querySelectorAll('a[href*="tripadvisor"]');
+    
+    tripAdvisorLinks.forEach(link => {
+        const icon = link.querySelector('i.fa-brands.fa-tripadvisor');
+        
+        // Check if icon exists but is not rendering properly (no width/empty)
+        if (icon && (getComputedStyle(icon).width === '0px' || !icon.offsetWidth)) {
+            // Try alternative class
+            icon.className = 'fab fa-tripadvisor';
+            
+            // If still not working after a short delay, use text alternative
+            setTimeout(() => {
+                if (!icon.offsetWidth) {
+                    const textSpan = document.createElement('span');
+                    textSpan.className = 'icon-text';
+                    textSpan.textContent = 'TA';
+                    link.insertBefore(textSpan, icon);
+                    icon.remove();
+                    
+                    // Add CSS for text alternative if not already in document
+                    if (!document.querySelector('style#trip-advisor-fix')) {
+                        const style = document.createElement('style');
+                        style.id = 'trip-advisor-fix';
+                        style.textContent = `
+                            .icon-text {
+                                display: inline-block;
+                                width: 24px;
+                                height: 24px;
+                                line-height: 24px;
+                                text-align: center;
+                                background-color: #00af87;
+                                color: white;
+                                border-radius: 50%;
+                                font-size: 0.7rem;
+                                font-weight: bold;
+                                margin-right: 10px;
+                            }
+                        `;
+                        document.head.appendChild(style);
+                    }
+                }
+            }, 300);
+        }
+    });
+}
 
 // Function to initialize language switcher
 function initializeLanguageSwitcher() {
