@@ -1,0 +1,120 @@
+/* Home Page Specific Styles */
+
+/* Hero Section */
+.hero {
+    background-image: linear-gradient(rgba(0, 114, 187, 0.7), rgba(0, 71, 117, 0.8)), url('/images/tower-bridge.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    color: white;
+    text-align: center;
+    padding: 180px 20px;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero:before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 100px;
+    background: linear-gradient(to top, #f8fcff, transparent);
+}
+
+.hero-content {
+    max-width: 800px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 2;
+}
+
+.hero-content h2 {
+    font-size: 3rem;
+    font-weight: 800;
+    margin-bottom: 20px;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+.hero-content p {
+    font-size: 1.3rem;
+    margin-bottom: 30px;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+/* Reviews Section */
+.reviews {
+    padding: 80px 20px;
+    text-align: center;
+    background-color: #f0f8ff;
+    position: relative;
+}
+
+.reviews:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 80px;
+    background: linear-gradient(to bottom, #f8fcff, transparent);
+}
+
+.reviews h2 {
+    margin-bottom: 50px;
+    color: #0072bb;
+    font-size: 2.2rem;
+    font-weight: 700;
+    position: relative;
+    display: inline-block;
+}
+
+.reviews h2:after {
+    content: '';
+    position: absolute;
+    bottom: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 3px;
+    background: #0072bb;
+}
+
+/* Tours Section - Alternating Layout */
+.tours-section {
+    padding: 100px 5%;
+    max-width: 1400px;
+    margin: 0 auto;
+    background-color: #ffffff;
+    position: relative;
+}
+
+.tours-section h2 {
+    margin-bottom: 60px;
+    text-align: center;
+    color: #0072bb;
+    font-size: 2.2rem;
+    font-weight: 700;
+    position: relative;
+}
+
+.tours-section h2::after {
+    content: "";
+    display: block;
+    width: 80px;
+    height: 3px;
+    background: #0072bb;
+    margin: 15px auto 0;
+}
+
+/* Media Queries */
+@media (max-width: 768px) {
+    .hero-content h2 {
+        font-size: 2rem;
+    }
+    
+    .hero-content p {
+        font-size: 1.1rem;
+    }
+}

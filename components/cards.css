@@ -1,0 +1,256 @@
+/* Card Styles */
+
+/* Tour Card */
+.tour-card {
+    display: flex;
+    background-color: white;
+    margin-bottom: var(--space-3xl);
+    border-radius: var(--radius-xl);
+    overflow: hidden;
+    box-shadow: var(--shadow-lg);
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+/* Default layout (image left, content right) */
+.tour-card img,
+.tour-card video {
+    width: 40%;
+    object-fit: cover;
+}
+
+.tour-details {
+    padding: var(--space-xl);
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+/* Alternate layout for even cards (image right, content left) */
+.tour-card:nth-child(even) {
+    flex-direction: row-reverse;
+}
+
+/* Visual connection between cards */
+.tour-card:not(:last-child)::after {
+    content: "";
+    position: absolute;
+    bottom: -40px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 2px;
+    height: 40px;
+    background-color: var(--color-primary);
+}
+
+/* Different background for alternating cards */
+.tour-card:nth-child(odd) {
+    background-color: var(--color-white);
+}
+
+.tour-card:nth-child(even) {
+    background-color: #f5faff;
+}
+
+.tour-details h3 {
+    color: var(--color-primary);
+    margin-bottom: var(--space-lg);
+    font-size: var(--text-xl);
+    font-weight: 700;
+}
+
+.tour-details p {
+    margin-bottom: var(--space-lg);
+    color: var(--color-text-light);
+    line-height: 1.8;
+}
+
+.tour-details ul {
+    margin: var(--space-lg) 0;
+    color: var(--color-text);
+    list-style-type: none;
+}
+
+.tour-details ul li {
+    margin-bottom: var(--space-md);
+    position: relative;
+    padding-left: 25px;
+}
+
+.tour-details ul li:before {
+    content: "✓";
+    color: var(--color-primary);
+    position: absolute;
+    left: 0;
+    font-weight: bold;
+}
+
+.tour-info {
+    display: flex;
+    justify-content: space-between;
+    margin-top: var(--space-xl);
+    font-weight: 600;
+    color: var(--color-text);
+    background-color: rgba(0, 114, 187, 0.05);
+    padding: var(--space-md);
+    border-radius: var(--radius-md);
+}
+
+/* Hover effects */
+.tour-card:hover {
+    transform: translateY(-10px);
+    box-shadow: var(--shadow-xl);
+}
+
+/* Guide Card */
+.guide-card {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    min-width: 300px;
+    max-width: 450px;
+    background: white;
+    border-radius: var(--radius-xl);
+    overflow: hidden;
+    box-shadow: var(--shadow-lg);
+    transition: all 0.3s ease;
+    position: relative;
+    margin-bottom: var(--space-xl);
+}
+
+.guide-image-container {
+    position: relative;
+    overflow: hidden;
+    height: 550px;
+}
+
+.guide-card .guide-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: all 0.5s ease;
+    border-bottom: 4px solid var(--color-primary);
+}
+
+.guide-social {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+    opacity: 0;
+    transform: translateX(20px);
+    transition: all 0.3s ease;
+}
+
+.social-icon {
+    background-color: var(--color-primary);
+    color: white;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.3s ease;
+    box-shadow: var(--shadow-sm);
+}
+
+.social-icon:hover {
+    background-color: var(--color-primary-dark);
+    transform: scale(1.1);
+}
+
+.guide-card:hover .guide-social {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.guide-card:hover .guide-image {
+    transform: scale(1.05);
+}
+
+.guide-info {
+    padding: var(--space-xl);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.guide-name {
+    font-size: var(--text-xl);
+    margin-bottom: var(--space-sm);
+    color: var(--color-primary);
+    font-weight: 700;
+    font-family: var(--font-heading);
+}
+
+.guide-title {
+    font-style: italic;
+    color: var(--color-text-lighter);
+    margin-bottom: var(--space-md);
+    font-size: var(--text-md);
+    font-weight: 500;
+    padding-bottom: var(--space-md);
+    border-bottom: 1px solid var(--color-border);
+}
+
+.guide-details {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+    margin-bottom: var(--space-md);
+    font-size: var(--text-sm);
+    color: var(--color-text);
+}
+
+.guide-detail {
+    display: flex;
+    align-items: center;
+}
+
+.guide-detail i {
+    color: var(--color-primary);
+    margin-right: var(--space-sm);
+    width: 20px;
+    text-align: center;
+}
+
+.guide-bio {
+    line-height: 1.8;
+    color: var(--color-text);
+    font-size: var(--text-base);
+    margin-bottom: var(--space-lg);
+}
+
+.guide-tours-btn {
+    margin-top: auto;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+    .tour-card,
+    .tour-card:nth-child(even) {
+        flex-direction: column;
+    }
+    
+    .tour-card img,
+    .tour-card video {
+        width: 100%;
+        height: 250px;
+    }
+    
+    .tour-details {
+        width: 100%;
+        padding: var(--space-xl);
+    }
+    
+    .tour-card:not(:last-child)::after {
+        left: 50%;
+        bottom: -25px;
+        height: 25px;
+    }
+}

@@ -1,0 +1,38 @@
+/* Contact Page Specific Styles */
+
+/* Contact section styling */
+.contact-section {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 3rem 2rem;
+}
+
+.contact-section h2 {
+    font-family: 'Playfair Display', 'Georgia', serif;
+    font-size: 2.5rem;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 2rem;
+    color: #005999;
+    position: relative;
+    padding-bottom: 1rem;
+}
+
+.contact-section h2:after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 3px;
+    background: #0072bb;
+    border-radius: 2px;
+}
+
+/* Responsive adjustments */
+@media (min-width: 768px) {
+    .contact-section {
+        padding: 4rem 2rem;
+    }
+}
