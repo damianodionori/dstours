@@ -358,83 +358,192 @@ function updateTranslatableElements(lang) {
         }
     });
 
-    // Update page-specific content
-    const pageTitle = document.querySelector('.about-hero-content h1');
-    if (pageTitle && translations[lang]?.aboutUs?.hero?.title) {
-        pageTitle.textContent = translations[lang].aboutUs.hero.title;
+    // Get the current page
+    const currentPath = window.location.pathname;
+    const isHomePage = currentPath.endsWith('index.html') || currentPath.endsWith('/');
+    const isToursPage = currentPath.includes('tours.html');
+    const isContactPage = currentPath.includes('contact.html');
+    const isAboutPage = currentPath.includes('about-us.html');
+
+    // Update Home page content
+    if (isHomePage) {
+        const heroTitle = document.querySelector('.hero-content h2');
+        const heroSubtitle = document.querySelector('.hero-content p');
+        const ctaButton = document.querySelector('.hero-content .cta-button');
+        const reviewsTitle = document.querySelector('.reviews h2');
+
+        if (heroTitle) heroTitle.textContent = translations[lang].home.title;
+        if (heroSubtitle) heroSubtitle.textContent = translations[lang].home.subtitle;
+        if (ctaButton) ctaButton.textContent = translations[lang].home.cta;
+        if (reviewsTitle) reviewsTitle.textContent = translations[lang].home.reviews.title;
     }
 
-    const pageSubtitle = document.querySelector('.about-hero-content p');
-    if (pageSubtitle && translations[lang]?.aboutUs?.hero?.subtitle) {
-        pageSubtitle.textContent = translations[lang].aboutUs.hero.subtitle;
-    }
+    // Update Tours page content
+    if (isToursPage) {
+        const toursTitle = document.querySelector('.tours-section h2');
+        if (toursTitle) toursTitle.textContent = translations[lang].tours.title;
 
-    const introTitle = document.querySelector('.about-intro h2');
-    if (introTitle && translations[lang]?.aboutUs?.intro?.title) {
-        introTitle.textContent = translations[lang].aboutUs.intro.title;
-    }
+        // Update tour cards
+        const tourCards = document.querySelectorAll('.tour-card');
+        tourCards.forEach(card => {
+            const tourId = card.getAttribute('data-tour-id');
+            const title = card.querySelector('h3');
+            const description = card.querySelector('p');
+            const highlights = card.querySelectorAll('ul li');
+            const tourInfo = card.querySelectorAll('.tour-info span');
 
-    const introDescription = document.querySelector('.about-intro p');
-    if (introDescription && translations[lang]?.aboutUs?.intro?.description) {
-        introDescription.textContent = translations[lang].aboutUs.intro.description;
-    }
+            let tourKey;
+            switch(tourId) {
+                case '1': tourKey = 'britishMuseum'; break;
+                case '2': tourKey = 'nationalGallery'; break;
+                case '3': tourKey = 'naturalHistoryMuseum'; break;
+                case '4': tourKey = 'westminsterWalkingTour'; break;
+            }
 
-    const companyTitle = document.querySelector('.about-company h2');
-    if (companyTitle && translations[lang]?.aboutUs?.company?.title) {
-        companyTitle.textContent = translations[lang].aboutUs.company.title;
-    }
-
-    const companyDescriptions = document.querySelectorAll('.about-company-text p');
-    if (companyDescriptions.length > 0 && translations[lang]?.aboutUs?.company) {
-        companyDescriptions[0].textContent = translations[lang].aboutUs.company.description1;
-        companyDescriptions[1].textContent = translations[lang].aboutUs.company.description2;
-        companyDescriptions[2].textContent = translations[lang].aboutUs.company.description3;
-    }
-
-    const valueItems = document.querySelectorAll('.value-item h4');
-    if (valueItems.length > 0 && translations[lang]?.aboutUs?.company?.values) {
-        valueItems[0].textContent = translations[lang].aboutUs.company.values.passion;
-        valueItems[1].textContent = translations[lang].aboutUs.company.values.personalTouch;
-        valueItems[2].textContent = translations[lang].aboutUs.company.values.knowledge;
-    }
-
-    // Update team member information
-    const teamMembers = document.querySelectorAll('.team-member');
-    if (teamMembers.length > 0 && translations[lang]?.aboutUs?.team) {
-        teamMembers.forEach((member, index) => {
-            const name = member.querySelector('.guide-name');
-            const title = member.querySelector('.guide-title');
-            const bio = member.querySelector('.guide-bio');
-            
-            // Update guide details labels and content
-            const detailsLabels = member.querySelectorAll('.guide-detail');
-            detailsLabels.forEach(detail => {
-                const icon = detail.querySelector('i');
-                if (icon) {
-                    const guideName = index === 0 ? 'damiano' : 'stefania';
-                    if (icon.classList.contains('fa-map-marker-alt')) {
-                        const location = index === 0 ? translations[lang].aboutUs.guideDetails.locations.tuscany : translations[lang].aboutUs.guideDetails.locations.veneto;
-                        detail.innerHTML = `<i class="fas fa-map-marker-alt"></i> ${translations[lang].aboutUs.guideDetails.from}: ${location}`;
-                    } else if (icon.classList.contains('fa-language')) {
-                        const languages = translations[lang].aboutUs.guideDetails.languagesList[guideName];
-                        detail.innerHTML = `<i class="fas fa-language"></i> ${translations[lang].aboutUs.guideDetails.languages}: ${languages}`;
-                    } else if (icon.classList.contains('fa-heart')) {
-                        const spot = translations[lang].aboutUs.guideDetails.spots[guideName];
-                        detail.innerHTML = `<i class="fas fa-heart"></i> ${translations[lang].aboutUs.guideDetails.favoriteSpot}: ${spot}`;
-                    }
+            if (tourKey) {
+                if (title) title.textContent = translations[lang].tours[tourKey].title;
+                if (description) description.textContent = translations[lang].tours[tourKey].description;
+                if (highlights && translations[lang].tours[tourKey].highlights) {
+                    highlights.forEach((li, index) => {
+                        if (translations[lang].tours[tourKey].highlights[index]) {
+                            li.textContent = translations[lang].tours[tourKey].highlights[index];
+                        }
+                    });
                 }
-            });
-
-            if (name && translations[lang].aboutUs.team[index]?.name) {
-                name.textContent = translations[lang].aboutUs.team[index].name;
-            }
-            if (title && translations[lang].aboutUs.team[index]?.title) {
-                title.textContent = translations[lang].aboutUs.team[index].title;
-            }
-            if (bio && translations[lang].aboutUs.team[index]?.bio) {
-                bio.textContent = translations[lang].aboutUs.team[index].bio;
+                if (tourInfo && tourInfo[0]) tourInfo[0].textContent = translations[lang].tours[tourKey].duration;
+                if (tourInfo && tourInfo[1]) tourInfo[1].textContent = translations[lang].tours[tourKey].price;
             }
         });
+    }
+
+    // Update Contact page content
+    if (isContactPage) {
+        const bookingTitle = document.querySelector('.contact-section h2');
+        if (bookingTitle) bookingTitle.textContent = translations[lang].tours.bookYourTour;
+
+        // Update form labels and placeholders
+        const formLabels = {
+            'name': translations[lang].form.name,
+            'email': translations[lang].form.email,
+            'tour': translations[lang].form.tour,
+            'date': translations[lang].form.date,
+            'tour-time': translations[lang].form.time,
+            'language-preference': translations[lang].form.language,
+            'message': translations[lang].form.message
+        };
+
+        // Update labels
+        Object.keys(formLabels).forEach(id => {
+            const label = document.querySelector(`label[for="${id}"]`);
+            if (label) label.textContent = formLabels[id];
+        });
+
+        // Update select options
+        const tourSelect = document.getElementById('tour');
+        if (tourSelect) {
+            tourSelect.options[0].text = translations[lang].form.tourPlaceholder;
+            Object.keys(translations[lang].tours.options).forEach(key => {
+                const option = tourSelect.querySelector(`option[value="${key}"]`);
+                if (option) option.text = translations[lang].tours.options[key];
+            });
+        }
+
+        const timeSelect = document.getElementById('tour-time');
+        if (timeSelect) {
+            timeSelect.options[0].text = translations[lang].form.timePlaceholder;
+            if (timeSelect.options[1]) timeSelect.options[1].text = translations[lang].form.morningTour;
+            if (timeSelect.options[2]) timeSelect.options[2].text = translations[lang].form.afternoonTour;
+        }
+
+        const languageSelect = document.getElementById('language-preference');
+        if (languageSelect) {
+            languageSelect.options[0].text = translations[lang].form.languagePlaceholder;
+        }
+
+        // Update submit button
+        const submitButton = document.querySelector('.submit-button');
+        if (submitButton) submitButton.textContent = translations[lang].form.submit;
+    }
+
+    // Update About page content
+    if (isAboutPage) {
+        const pageTitle = document.querySelector('.about-hero-content h1');
+        if (pageTitle && translations[lang]?.aboutUs?.hero?.title) {
+            pageTitle.textContent = translations[lang].aboutUs.hero.title;
+        }
+
+        const pageSubtitle = document.querySelector('.about-hero-content p');
+        if (pageSubtitle && translations[lang]?.aboutUs?.hero?.subtitle) {
+            pageSubtitle.textContent = translations[lang].aboutUs.hero.subtitle;
+        }
+
+        const introTitle = document.querySelector('.about-intro h2');
+        if (introTitle && translations[lang]?.aboutUs?.intro?.title) {
+            introTitle.textContent = translations[lang].aboutUs.intro.title;
+        }
+
+        const introDescription = document.querySelector('.about-intro p');
+        if (introDescription && translations[lang]?.aboutUs?.intro?.description) {
+            introDescription.textContent = translations[lang].aboutUs.intro.description;
+        }
+
+        const companyTitle = document.querySelector('.about-company h2');
+        if (companyTitle && translations[lang]?.aboutUs?.company?.title) {
+            companyTitle.textContent = translations[lang].aboutUs.company.title;
+        }
+
+        const companyDescriptions = document.querySelectorAll('.about-company-text p');
+        if (companyDescriptions.length > 0 && translations[lang]?.aboutUs?.company) {
+            companyDescriptions[0].textContent = translations[lang].aboutUs.company.description1;
+            companyDescriptions[1].textContent = translations[lang].aboutUs.company.description2;
+            companyDescriptions[2].textContent = translations[lang].aboutUs.company.description3;
+        }
+
+        const valueItems = document.querySelectorAll('.value-item h4');
+        if (valueItems.length > 0 && translations[lang]?.aboutUs?.company?.values) {
+            valueItems[0].textContent = translations[lang].aboutUs.company.values.passion;
+            valueItems[1].textContent = translations[lang].aboutUs.company.values.personalTouch;
+            valueItems[2].textContent = translations[lang].aboutUs.company.values.knowledge;
+        }
+
+        // Update team member information
+        const teamMembers = document.querySelectorAll('.team-member');
+        if (teamMembers.length > 0 && translations[lang]?.aboutUs?.team) {
+            teamMembers.forEach((member, index) => {
+                const name = member.querySelector('.guide-name');
+                const title = member.querySelector('.guide-title');
+                const bio = member.querySelector('.guide-bio');
+                
+                // Update guide details labels and content
+                const detailsLabels = member.querySelectorAll('.guide-detail');
+                detailsLabels.forEach(detail => {
+                    const icon = detail.querySelector('i');
+                    if (icon) {
+                        const guideName = index === 0 ? 'damiano' : 'stefania';
+                        if (icon.classList.contains('fa-map-marker-alt')) {
+                            const location = index === 0 ? translations[lang].aboutUs.guideDetails.locations.tuscany : translations[lang].aboutUs.guideDetails.locations.veneto;
+                            detail.innerHTML = `<i class="fas fa-map-marker-alt"></i> ${translations[lang].aboutUs.guideDetails.from}: ${location}`;
+                        } else if (icon.classList.contains('fa-language')) {
+                            const languages = translations[lang].aboutUs.guideDetails.languagesList[guideName];
+                            detail.innerHTML = `<i class="fas fa-language"></i> ${translations[lang].aboutUs.guideDetails.languages}: ${languages}`;
+                        } else if (icon.classList.contains('fa-heart')) {
+                            const spot = translations[lang].aboutUs.guideDetails.spots[guideName];
+                            detail.innerHTML = `<i class="fas fa-heart"></i> ${translations[lang].aboutUs.guideDetails.favoriteSpot}: ${spot}`;
+                        }
+                    }
+                });
+
+                if (name && translations[lang].aboutUs.team[index]?.name) {
+                    name.textContent = translations[lang].aboutUs.team[index].name;
+                }
+                if (title && translations[lang].aboutUs.team[index]?.title) {
+                    title.textContent = translations[lang].aboutUs.team[index].title;
+                }
+                if (bio && translations[lang].aboutUs.team[index]?.bio) {
+                    bio.textContent = translations[lang].aboutUs.team[index].bio;
+                }
+            });
+        }
     }
 
     // Update footer content

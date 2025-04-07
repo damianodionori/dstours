@@ -2,7 +2,7 @@
 
 /* Hero Section */
 .hero {
-    background-image: linear-gradient(rgba(0, 114, 187, 0.7), rgba(0, 71, 117, 0.8)), url('/images/tower-bridge.jpg');
+    background-image: linear-gradient(rgba(0, 114, 187, 0.7), rgba(0, 71, 117, 0.8)), url('../images/tower-bridge.jpg');
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
