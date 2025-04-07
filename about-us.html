@@ -11,17 +11,21 @@
     <div id="header-placeholder"></div>
     
     <main>
-        <!-- Hero section for about page -->
         <section class="about-hero">
             <div class="about-hero-content">
                 <h1>Meet Our Team</h1>
                 <p>Passionate guides ready to show you the best of London</p>
             </div>
         </section>
-        
+
+        <section class="about-intro">
+            <div class="container">
+                <h2 class="section-title">Let us introduce ourselves!</h2>
+                <p>We are a team of passionate London tour guides dedicated to providing unforgettable experiences. With years of experience and deep knowledge of the city's history, culture, and hidden gems, we're here to make your visit truly special.</p>
+            </div>
+        </section>
+
         <section id="about-us" class="guides-section">
-            <h2 class="guides-title">Let us introduce ourselves!</h2>
-            
             <div class="guides-container">
                 <!-- Guide 1 -->
                 <div class="guide-card team-member">
@@ -48,7 +52,6 @@
                             hiking, or cheering at motorsport events. His love for travel and animals makes his tours 
                             particularly engaging for visitors of all ages.
                         </p>
-                        <a href="#" class="guide-tours-btn">See Damiano's Tours <i class="fas fa-arrow-right"></i></a>
                     </div>
                 </div>
                 
@@ -77,17 +80,16 @@
                             riding her motorbike or walking her dogs. Her vibrant personality and deep knowledge make every 
                             tour a memorable experience.
                         </p>
-                        <a href="#" class="guide-tours-btn">See Stefania's Tours <i class="fas fa-arrow-right"></i></a>
                     </div>
                 </div>
             </div>
             
             <!-- About company section -->
             <div class="about-company">
-                <h2>Our Story</h2>
+                <h2 class="section-title">Our Story</h2>
                 <div class="about-company-content">
                     <div class="about-company-image">
-                        <img src="images/tower-bridge.jpg" alt="DS Tours London">
+                        <img src="images/logo-ds-tours.png" alt="DS Tours London">
                     </div>
                     <div class="about-company-text">
                         <p>DS Tours London was founded with a simple mission: to share our love for this incredible city through authentic, engaging experiences led by passionate locals.</p>
@@ -119,7 +121,21 @@
     
     <div id="footer-placeholder"></div>
     
-    <script src="script.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
     <script src="components.js"></script>
+    <script src="script.js"></script>
+    <script>
+        // Ensure language is initialized after all components are loaded
+        window.addEventListener('load', function() {
+            if (!window.languageInitialized) {
+                const savedLang = localStorage.getItem('preferredLanguage') || 'en';
+                if (typeof switchLanguage === 'function') {
+                    switchLanguage(savedLang);
+                    window.languageInitialized = true;
+                }
+            }
+        });
+    </script>
 </body>
 </html>

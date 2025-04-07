@@ -1,0 +1,47 @@
+/* Reset e Stili di Base */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100%;
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Open Sans', 'Arial', sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background-color: #f8fcff;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    padding-top: 80px;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+a {
+    text-decoration: none;
+    color: #0072bb;
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: #005999;
+}
+
+ul, ol {
+    list-style-position: inside;
+}
+
+/* Focus outline accessibility */
+:focus-visible {
+    outline: 3px solid rgba(0, 114, 187, 0.5);
+    outline-offset: 1px;
+}

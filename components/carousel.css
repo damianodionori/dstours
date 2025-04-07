@@ -1,0 +1,169 @@
+/* Carousel Component Styles */
+
+/* Reviews Carousel */
+.reviews-carousel {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px 40px;
+    position: relative;
+}
+
+.reviews-carousel .slick-list {
+    padding: 0 40px !important;
+}
+
+.review-slide {
+    padding: 20px;
+    transform: scale(0.85);
+    transition: all 0.3s ease;
+    opacity: 0.7;
+}
+
+.slick-center .review-slide {
+    transform: scale(1);
+    opacity: 1;
+}
+
+.review-slide img {
+    width: 100%;
+    height: auto;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0, 114, 187, 0.15);
+    border: 1px solid rgba(0, 114, 187, 0.1);
+    transition: all 0.3s ease;
+}
+
+.review-slide:hover img {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 30px rgba(0, 114, 187, 0.2);
+}
+
+/* Slick Carousel Customizations */
+.slick-prev:before, 
+.slick-next:before {
+    color: #0072bb;
+    font-size: 24px;
+}
+
+.slick-prev {
+    left: 0;
+    z-index: 10;
+}
+
+.slick-next {
+    right: 0;
+    z-index: 10;
+}
+
+.slick-dots {
+    bottom: -40px;
+    width: calc(100% - 80px); /* Compensate for the padding */
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    text-align: center;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.slick-dots li button:before {
+    color: #0072bb;
+    opacity: 0.5;
+    font-size: 10px;
+}
+
+.slick-dots li.slick-active button:before {
+    color: #0072bb;
+    opacity: 1;
+}
+
+.slick-slider {
+    margin-bottom: 60px;
+}
+
+/* Tour Carousel Styles */
+.tour-carousel {
+    width: 40%;
+    height: 100%;
+    position: relative;
+    overflow: hidden;
+}
+
+.tour-carousel:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(to bottom, rgba(0, 114, 187, 0.05), rgba(0, 114, 187, 0.2));
+    z-index: 1;
+    pointer-events: none;
+}
+
+.tour-carousel .slick-list,
+.tour-carousel .slick-track {
+    height: 100%;
+}
+
+.tour-carousel div {
+    height: 100%;
+}
+
+.tour-carousel img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: all 0.5s ease;
+}
+
+.tour-carousel:hover img {
+    transform: scale(1.05);
+}
+
+/* Styles for carousel dots within tour cards */
+.tour-carousel .slick-dots {
+    bottom: 20px;
+    z-index: 2;
+}
+
+.tour-carousel .slick-dots li button:before {
+    color: white;
+    opacity: 0.8;
+    font-size: 10px;
+}
+
+.tour-carousel .slick-dots li.slick-active button:before {
+    color: white;
+    opacity: 1;
+}
+
+/* For arrow navigation within tour cards */
+.tour-carousel .slick-prev,
+.tour-carousel .slick-next {
+    z-index: 10;
+}
+
+.tour-carousel .slick-prev {
+    left: 15px;
+}
+
+.tour-carousel .slick-next {
+    right: 15px;
+}
+
+.tour-carousel .slick-prev:before,
+.tour-carousel .slick-next:before {
+    color: white;
+    text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+    font-size: 24px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .tour-carousel {
+        width: 100%;
+        height: 250px;
+    }
+}

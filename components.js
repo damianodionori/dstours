@@ -19,13 +19,14 @@ document.addEventListener('DOMContentLoaded', function() {
         .then(data => {
             document.getElementById('header-placeholder').innerHTML = data;
             
-            // Re-initialize language switchers after header is loaded
+            // Initialize language switchers after header is loaded
             initializeLanguageSwitcher();
             
-            // Apply current language
-            const savedLang = localStorage.getItem('preferredLanguage') || 'en';
-            if (typeof switchLanguage === 'function') {
+            // Only initialize language if it hasn't been initialized yet
+            if (!window.languageInitialized && typeof switchLanguage === 'function') {
+                const savedLang = localStorage.getItem('preferredLanguage') || 'en';
                 switchLanguage(savedLang);
+                window.languageInitialized = true;
             }
         })
         .catch(error => {
@@ -53,39 +54,69 @@ document.addEventListener('DOMContentLoaded', function() {
         });
         
     // Initialize features
-    initializeCarousel();
-    initializeTourCards();
-    handleCarouselInteractions();
-    
-    if (document.getElementById('tour') && sessionStorage.getItem('selectedTourId')) {
-        const tourSelect = document.getElementById('tour');
-        const selectedTourId = sessionStorage.getItem('selectedTourId');
+    function initializeFeatures() {
+        // Initialize carousel if jQuery and Slick are available
+        if (typeof $ !== 'undefined' && typeof $.fn.slick !== 'undefined') {
+            initializeCarousel();
+            handleCarouselInteractions();
+        } else {
+            console.warn('jQuery or Slick carousel not loaded, skipping carousel initialization');
+        }
         
-        // Simply set the value - language switching will handle the text
-        tourSelect.value = selectedTourId;
+        initializeTourCards();
         
-        // Clear the session storage
-        sessionStorage.removeItem('selectedTourId');
+        if (document.getElementById('tour') && sessionStorage.getItem('selectedTourId')) {
+            const tourSelect = document.getElementById('tour');
+            const selectedTourId = sessionStorage.getItem('selectedTourId');
+            
+            // Simply set the value - language switching will handle the text
+            tourSelect.value = selectedTourId;
+            
+            // Clear the session storage
+            sessionStorage.removeItem('selectedTourId');
+        }
     }
 
-    const scrollTopBtn = document.querySelector('.scroll-top');
-    
-    // Show/hide button based on scroll position
-    window.addEventListener('scroll', function() {
-        if (window.pageYOffset > 300) {
-            scrollTopBtn.classList.add('show');
+    // Call the initialization function
+    initializeFeatures();
+
+    // Initialize scroll-to-top functionality
+    function initializeScrollToTop() {
+        const scrollTopBtn = document.querySelector('.scroll-top');
+        console.log('Initializing scroll-to-top, button found:', !!scrollTopBtn);
+        
+        if (scrollTopBtn) {
+            // Show/hide button based on scroll position
+            const handleScroll = function() {
+                if (window.pageYOffset > 300) {
+                    scrollTopBtn.classList.add('show');
+                } else {
+                    scrollTopBtn.classList.remove('show');
+                }
+            };
+            
+            // Initial check
+            handleScroll();
+            
+            // Add scroll event listener
+            window.addEventListener('scroll', handleScroll);
+            
+            // Scroll to top when button is clicked
+            scrollTopBtn.addEventListener('click', function() {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+            
+            console.log('Scroll-to-top functionality initialized successfully');
         } else {
-            scrollTopBtn.classList.remove('show');
+            console.warn('Scroll-to-top button not found in the DOM');
         }
-    });
-    
-    // Scroll to top when button is clicked
-    scrollTopBtn.addEventListener('click', function() {
-        window.scrollTo({
-            top: 0,
-            behavior: 'smooth'
-        });
-    });
+    }
+
+    // Call the initialization function
+    initializeScrollToTop();
 });
 
 // Function to fix TripAdvisor icon if it's not displaying correctly
@@ -215,21 +246,15 @@ function initializeCarousel() {
         infinite: true,
         speed: 300,
         slidesToShow: 1,
-        centerMode: true,
-        variableWidth: true,
-        adaptiveHeight: true,
+        slidesToScroll: 1,
         autoplay: true,
         autoplaySpeed: 5000,
-        dotsClass: 'slick-dots', // Classe esplicita per i dots
+        pauseOnHover: true,
         responsive: [
             {
                 breakpoint: 768,
                 settings: {
-                    arrows: false,
-                    centerMode: false,
-                    variableWidth: false,
-                    dots: true,
-                    adaptiveHeight: true
+                    arrows: false
                 }
             }
         ]

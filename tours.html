@@ -5,9 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Our Tours | DS Tours London</title>
     <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
-    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Open+Sans:wght@400;500&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styling/base.css">
+    <link rel="stylesheet" href="components/header.css">
+    <link rel="stylesheet" href="components/footer.css">
+    <link rel="stylesheet" href="pages/tours.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
     <div id="header-placeholder"></div>
@@ -17,12 +19,7 @@
             <h2>Our Signature Tours</h2>
             
             <div class="tour-card" data-tour-id="1">
-                <div class="tour-carousel">
-                    <div><img src="images/british museum/british-museum.jpg" alt="British Museum"></div>
-                    <div><img src="images/british museum/moai.jpg" alt="Moai"></div>
-                    <div><img src="images/british museum/partenone.jpg" alt="Parthenon Marbles"></div>
-                    <div><img src="images/british museum/ramses.jpg" alt="Ramses"></div>
-                </div>
+                <img src="images/british museum/british-museum.jpg" alt="British Museum">
                 <div class="tour-details">
                     <h3>British Museum Private Tour</h3>
                     <p>Embark on a journey through human history, art, and culture.</p>
@@ -89,14 +86,13 @@
                         <li>Buckingham Palace</li>
                         <li>St. James's Park</li>
                     </ul>
-                <div class="tour-info">
-                    <span>Duration: 3 hours</span>
-                    <span>Price: From £150 per group of four</span>
-                </div>
+                    <div class="tour-info">
+                        <span>Duration: 3 hours</span>
+                        <span>Price: From £150 per group of four</span>
+                    </div>
                 </div>
             </div>
         </section>
-
     </main>
 
     <div class="scroll-top">
@@ -105,8 +101,6 @@
     
     <div id="footer-placeholder"></div>
     
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
     <script src="script.js"></script>
     <script src="components.js"></script>
 </body>
