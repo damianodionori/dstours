@@ -19,13 +19,14 @@ document.addEventListener('DOMContentLoaded', function() {
         .then(data => {
             document.getElementById('header-placeholder').innerHTML = data;
             
-            // Re-initialize language switchers after header is loaded
+            // Initialize language switchers after header is loaded
             initializeLanguageSwitcher();
             
-            // Apply current language
-            const savedLang = localStorage.getItem('preferredLanguage') || 'en';
-            if (typeof switchLanguage === 'function') {
+            // Only initialize language if it hasn't been initialized yet
+            if (!window.languageInitialized && typeof switchLanguage === 'function') {
+                const savedLang = localStorage.getItem('preferredLanguage') || 'en';
                 switchLanguage(savedLang);
+                window.languageInitialized = true;
             }
         })
         .catch(error => {
@@ -245,21 +246,15 @@ function initializeCarousel() {
         infinite: true,
         speed: 300,
         slidesToShow: 1,
-        centerMode: true,
-        variableWidth: true,
-        adaptiveHeight: true,
+        slidesToScroll: 1,
         autoplay: true,
         autoplaySpeed: 5000,
-        dotsClass: 'slick-dots', // Classe esplicita per i dots
+        pauseOnHover: true,
         responsive: [
             {
                 breakpoint: 768,
                 settings: {
-                    arrows: false,
-                    centerMode: false,
-                    variableWidth: false,
-                    dots: true,
-                    adaptiveHeight: true
+                    arrows: false
                 }
             }
         ]

@@ -92,7 +92,25 @@ const translations = {
             afternoonTour: "Afternoon Tour (PM)"
         },
         aboutUs: {
-            title: "Let us introduce ourselves!",
+            hero: {
+                title: "Meet Our Team",
+                subtitle: "Passionate guides ready to show you the best of London"
+            },
+            intro: {
+                title: "Let us introduce ourselves!",
+                description: "We are a team of passionate London tour guides dedicated to providing unforgettable experiences. With years of experience and deep knowledge of the city's history, culture, and hidden gems, we're here to make your visit truly special."
+            },
+            company: {
+                title: "Our Story",
+                description1: "DS Tours London was founded with a simple mission: to share our love for this incredible city through authentic, engaging experiences led by passionate locals.",
+                description2: "What started as two Italian friends showing their families around London has grown into a specialized tour company that combines local expertise with Italian warmth and hospitality.",
+                description3: "We believe that the best way to experience London is through the eyes of those who call it home and love it dearly. Our guides aren't just knowledgeable—they're passionate storytellers who bring history and culture to life.",
+                values: {
+                    passion: "Passion",
+                    personalTouch: "Personal Touch",
+                    knowledge: "Knowledge"
+                }
+            },
             team: [
                 {
                     name: "Damiano",
@@ -212,7 +230,25 @@ const translations = {
             afternoonTour: "Tour Pomeridiano (PM)"
         },
         aboutUs: {
-            title: "Presentazione del nostro team!",
+            hero: {
+                title: "Il Nostro Team",
+                subtitle: "Guide appassionate pronte a mostrarti il meglio di Londra"
+            },
+            intro: {
+                title: "Lasciaci presentare!",
+                description: "Siamo un team di guide turistiche londinesi appassionate dedite a fornire esperienze indimenticabili. Con anni di esperienza e profonda conoscenza della storia della città, della cultura e dei luoghi nascosti, siamo qui per rendere la tua visita davvero speciale."
+            },
+            company: {
+                title: "La Nostra Storia",
+                description1: "DS Tours London è stata fondata con una missione semplice: condividere il nostro amore per questa incredibile città attraverso esperienze autentiche e coinvolgenti guidate da locals appassionati.",
+                description2: "Quello che è iniziato come due amici italiani che mostravano Londra alle loro famiglie si è trasformato in una società di tour specializzata che combina competenza locale con il calore e l'ospitalità italiana.",
+                description3: "Crediamo che il modo migliore per vivere Londra sia attraverso gli occhi di chi la chiama casa e la ama profondamente. Le nostre guide non sono solo preparate, sono narratrici appassionate che danno vita alla storia e alla cultura.",
+                values: {
+                    passion: "Passione",
+                    personalTouch: "Tocco Personale",
+                    knowledge: "Conoscenza"
+                }
+            },
             team: [
                 {
                     name: "Damiano",
@@ -252,202 +288,133 @@ const DATE_CONFIG = {
     }
 };
 
+// Function to switch language
 function switchLanguage(lang) {
-    // Validate language
+    // Only proceed if the language is supported
     if (!SUPPORTED_LANGUAGES.includes(lang)) {
-        console.warn(`Unsupported language: ${lang}. Defaulting to English.`);
-        lang = 'en';
+        console.error('Unsupported language:', lang);
+        return;
     }
 
-    // Update HTML language attribute
-    document.documentElement.lang = lang;
+    // Save the preferred language
+    localStorage.setItem('preferredLanguage', lang);
 
-    // Update navigation links
-    const navLinks = document.querySelectorAll('nav ul li a');
-    const navTexts = ['home', 'tours', 'contact', 'about-us'];
-    navLinks.forEach((link, index) => {
-        link.textContent = translations[lang].nav[navTexts[index]];
-    });
-
-    // Update home section
-    const homeTitle = document.querySelector('#home h2');
-    const homeSubtitle = document.querySelector('#home p');
-    const homeCTA = document.querySelector('#home .cta-button');
-    
-    if (homeTitle) homeTitle.textContent = translations[lang].home.title;
-    if (homeSubtitle) homeSubtitle.textContent = translations[lang].home.subtitle;
-    if (homeCTA) homeCTA.textContent = translations[lang].home.cta;
-
-    const reviewsTitle = document.querySelector('.reviews h2');
-    if (reviewsTitle) reviewsTitle.textContent = translations[lang].home.reviews.title;
-
-    // Update tours section
-    const toursTitle = document.querySelector('#tours > h2');
-    const tourTitles = document.querySelectorAll('#tours .tour-details h3');
-    const tourDescriptions = document.querySelectorAll('#tours .tour-details p');
-    const tourInfoElements = document.querySelectorAll('#tours .tour-info span');
-    
-    if (toursTitle) toursTitle.textContent = translations[lang].tours.title;
-    
-    // Update tour titles and descriptions
-    if (tourTitles[0]) tourTitles[0].textContent = translations[lang].tours.britishMuseum.title;
-    if (tourTitles[1]) tourTitles[1].textContent = translations[lang].tours.nationalGallery.title;
-    if (tourTitles[2]) tourTitles[2].textContent = translations[lang].tours.naturalHistoryMuseum.title;
-    if (tourTitles[3]) tourTitles[3].textContent = translations[lang].tours.westminsterWalkingTour.title;
-    if (tourDescriptions[0]) tourDescriptions[0].textContent = translations[lang].tours.britishMuseum.description;
-    if (tourDescriptions[1]) tourDescriptions[1].textContent = translations[lang].tours.nationalGallery.description;
-    if (tourDescriptions[2]) tourDescriptions[2].textContent = translations[lang].tours.naturalHistoryMuseum.description;
-    if (tourDescriptions[3]) tourDescriptions[3].textContent = translations[lang].tours.westminsterWalkingTour.description;
-
-    // Update tour info (duration and price)
-    if (tourInfoElements.length >= 2) {
-        tourInfoElements[0].textContent = translations[lang].tours.britishMuseum.duration;
-        tourInfoElements[1].textContent = translations[lang].tours.britishMuseum.price;
-        tourInfoElements[2].textContent = translations[lang].tours.nationalGallery.duration;
-        tourInfoElements[3].textContent = translations[lang].tours.nationalGallery.price;
-        tourInfoElements[4].textContent = translations[lang].tours.naturalHistoryMuseum.duration;
-        tourInfoElements[5].textContent = translations[lang].tours.naturalHistoryMuseum.price;
-        tourInfoElements[6].textContent = translations[lang].tours.westminsterWalkingTour.duration;
-        tourInfoElements[7].textContent = translations[lang].tours.westminsterWalkingTour.price;
-    }
-
-    // Update tour highlights
-    const tourHighlightLists = document.querySelectorAll('#tours .tour-details ul');
-    if (tourHighlightLists.length >= 4) {
-        // British Museum highlights
-        const britishMuseumHighlights = tourHighlightLists[0].querySelectorAll('li');
-        britishMuseumHighlights.forEach((li, index) => {
-            li.textContent = translations[lang].tours.britishMuseum.highlights[index];
-        });
-
-        // National Gallery highlights
-        const nationalGalleryHighlights = tourHighlightLists[1].querySelectorAll('li');
-        nationalGalleryHighlights.forEach((li, index) => {
-            li.textContent = translations[lang].tours.nationalGallery.highlights[index];
-        });
-
-        // National Gallery highlights
-        const naturalHistoryMuseumHighlights = tourHighlightLists[2].querySelectorAll('li');
-        naturalHistoryMuseumHighlights.forEach((li, index) => {
-            li.textContent = translations[lang].tours.naturalHistoryMuseum.highlights[index];
-        });
-
-        // Westminster walking Tour highlights
-        const westminsterWalkingTourHighlights = tourHighlightLists[3].querySelectorAll('li');
-        westminsterWalkingTourHighlights.forEach((li, index) => {
-            li.textContent = translations[lang].tours.westminsterWalkingTour.highlights[index];
-        });
-    }
-
-    const aboutUsTitle = document.querySelector('#about-us h2');
-    if (aboutUsTitle) aboutUsTitle.textContent = translations[lang].aboutUs.title;
-    
-    // Update team members information
-    const teamMembers = document.querySelectorAll('.team-member');
-    if (teamMembers.length >= 2) {
-        // Update first team member
-        const member1Name = teamMembers[0].querySelector('h3');
-        const member1Title = teamMembers[0].querySelector('h4');
-        const member1Bio = teamMembers[0].querySelector('p');
-        
-        if (member1Name) member1Name.textContent = translations[lang].aboutUs.team[0].name;
-        if (member1Title) member1Title.textContent = translations[lang].aboutUs.team[0].title;
-        if (member1Bio) member1Bio.textContent = translations[lang].aboutUs.team[0].bio;
-        
-        // Update second team member
-        const member2Name = teamMembers[1].querySelector('h3');
-        const member2Title = teamMembers[1].querySelector('h4');
-        const member2Bio = teamMembers[1].querySelector('p');
-        
-        if (member2Name) member2Name.textContent = translations[lang].aboutUs.team[1].name;
-        if (member2Title) member2Title.textContent = translations[lang].aboutUs.team[1].title;
-        if (member2Bio) member2Bio.textContent = translations[lang].aboutUs.team[1].bio;
-    }
-
-    // Update contact section title
-    const contactTitle = document.querySelector('#contact h2');
-    if (contactTitle) contactTitle.textContent = translations[lang].tours.bookYourTour;
-
-    // Update form labels and placeholders
-    const formTranslations = translations[lang].form;
-    const labelMap = {
-        'name': 'name',
-        'email': 'email',
-        'tour': 'tour',
-        'date': 'date',
-        'tour-time': 'time',
-        'language-preference': 'language',
-        'message': 'message'
-    };
-
-    Object.entries(labelMap).forEach(([elementId, translationKey]) => {
-        const label = document.querySelector(`label[for="${elementId}"]`);
-        const element = document.getElementById(elementId);
-
-        if (label) label.textContent = formTranslations[translationKey];
-        
-        // Handle select elements
-        if (element && element.tagName === 'SELECT') {
-            const firstOption = element.querySelector('option');
-            
-            if (firstOption) {
-                if (elementId === 'tour') {
-                    firstOption.textContent = formTranslations.tourPlaceholder;
-                    // Update all tour options
-                    const tourOptions = translations[lang].tours.options;
-                    for (let i = 1; i <= Object.keys(tourOptions).length; i++) {
-                        const option = element.querySelector(`option[value="${i}"]`);
-                        if (option) {
-                            option.textContent = tourOptions[i];
-                        }
-                    }
-                }
-                if (elementId === 'tour-time') {
-                    firstOption.textContent = formTranslations.timePlaceholder;
-                    element.querySelectorAll('option')[1].textContent = formTranslations.morningTour;
-                    element.querySelectorAll('option')[2].textContent = formTranslations.afternoonTour;
-                }
-                if (elementId === 'language-preference') firstOption.textContent = formTranslations.languagePlaceholder;
-            }
+    // Update the language switcher UI
+    const langButtons = document.querySelectorAll('.lang-btn');
+    langButtons.forEach(button => {
+        if (button.getAttribute('data-lang') === lang) {
+            button.classList.add('active');
+        } else {
+            button.classList.remove('active');
         }
     });
 
-    // Update submit button
-    const submitButton = document.querySelector('.submit-button');
-    if (submitButton) submitButton.textContent = formTranslations.submit;
+    // Update all translatable elements
+    updateTranslatableElements(lang);
+}
+
+// Function to update all translatable elements
+function updateTranslatableElements(lang) {
+    // Update navigation
+    const navLinks = document.querySelectorAll('nav a');
+    navLinks.forEach(link => {
+        const key = link.getAttribute('data-translate');
+        if (key && translations[lang]?.nav?.[key]) {
+            link.textContent = translations[lang].nav[key];
+        }
+    });
+
+    // Update page-specific content
+    const pageTitle = document.querySelector('h1');
+    if (pageTitle && translations[lang]?.aboutUs?.hero?.title) {
+        pageTitle.textContent = translations[lang].aboutUs.hero.title;
+    }
+
+    const pageSubtitle = document.querySelector('.about-hero-content p');
+    if (pageSubtitle && translations[lang]?.aboutUs?.hero?.subtitle) {
+        pageSubtitle.textContent = translations[lang].aboutUs.hero.subtitle;
+    }
+
+    const introTitle = document.querySelector('.about-intro h2');
+    if (introTitle && translations[lang]?.aboutUs?.intro?.title) {
+        introTitle.textContent = translations[lang].aboutUs.intro.title;
+    }
+
+    const introDescription = document.querySelector('.about-intro p');
+    if (introDescription && translations[lang]?.aboutUs?.intro?.description) {
+        introDescription.textContent = translations[lang].aboutUs.intro.description;
+    }
+
+    const companyTitle = document.querySelector('.about-company h2');
+    if (companyTitle && translations[lang]?.aboutUs?.company?.title) {
+        companyTitle.textContent = translations[lang].aboutUs.company.title;
+    }
+
+    const companyDescriptions = document.querySelectorAll('.about-company-text p');
+    if (companyDescriptions.length > 0 && translations[lang]?.aboutUs?.company) {
+        companyDescriptions[0].textContent = translations[lang].aboutUs.company.description1;
+        companyDescriptions[1].textContent = translations[lang].aboutUs.company.description2;
+        companyDescriptions[2].textContent = translations[lang].aboutUs.company.description3;
+    }
+
+    const valueItems = document.querySelectorAll('.value-item h4');
+    if (valueItems.length > 0 && translations[lang]?.aboutUs?.company?.values) {
+        valueItems[0].textContent = translations[lang].aboutUs.company.values.passion;
+        valueItems[1].textContent = translations[lang].aboutUs.company.values.personalTouch;
+        valueItems[2].textContent = translations[lang].aboutUs.company.values.knowledge;
+    }
+
+    // Update team member information
+    const teamMembers = document.querySelectorAll('.team-member');
+    if (teamMembers.length > 0 && translations[lang]?.aboutUs?.team) {
+        teamMembers.forEach((member, index) => {
+            const name = member.querySelector('.guide-name');
+            const title = member.querySelector('.guide-title');
+            const bio = member.querySelector('.guide-bio');
+
+            if (name && translations[lang].aboutUs.team[index]?.name) {
+                name.textContent = translations[lang].aboutUs.team[index].name;
+            }
+            if (title && translations[lang].aboutUs.team[index]?.title) {
+                title.textContent = translations[lang].aboutUs.team[index].title;
+            }
+            if (bio && translations[lang].aboutUs.team[index]?.bio) {
+                bio.textContent = translations[lang].aboutUs.team[index].bio;
+            }
+        });
+    }
 
     // Update footer content
-    const connectTitle = document.querySelector('.connect-title');
+    const footerTitle = document.querySelector('.footer-title');
+    if (footerTitle && translations[lang]?.footer?.connectWithUs) {
+        footerTitle.textContent = translations[lang].footer.connectWithUs;
+    }
+
     const footerTagline = document.querySelector('.footer-tagline');
-    const footerCopyright = document.querySelector('.footer-copyright');
-    const footerSignature = document.querySelector('.footer-signature');
-    const socialLinks = document.querySelectorAll('.social-links a span');
+    if (footerTagline && translations[lang]?.footer?.tagline) {
+        footerTagline.textContent = translations[lang].footer.tagline;
+    }
 
-    if (connectTitle) connectTitle.textContent = translations[lang].footer.connectWithUs;
-    if (footerTagline) footerTagline.textContent = translations[lang].footer.tagline;
-    if (footerCopyright) footerCopyright.textContent = translations[lang].footer.copyright;
-    if (footerSignature) footerSignature.textContent = translations[lang].footer.signature;
-
-    // Update social links text
-    const socialTexts = ['instagram', 'tripadvisor', 'email', 'whatsapp'];
-    socialLinks.forEach((link, index) => {
-        link.textContent = translations[lang].footer.socialLinks[socialTexts[index]];
-    });
-
-    // Update review alt texts
-    const reviewImages = document.querySelectorAll('.review-slide img');
-    reviewImages.forEach(img => {
-        img.alt = translations[lang].reviews.altText;
-    });
-
-    document.querySelectorAll('.lang-btn').forEach(btn => {
-        const btnLang = btn.getAttribute('data-lang');
-        btn.setAttribute('aria-label', `Switch to ${btnLang === 'en' ? 'English' : 'Italian'}`);
-    });
-
-    // Store language preference
-    localStorage.setItem('preferredLanguage', lang);
+    const socialLinks = document.querySelectorAll('.social-links a');
+    if (socialLinks.length > 0 && translations[lang]?.footer?.socialLinks) {
+        socialLinks.forEach(link => {
+            const platform = link.getAttribute('data-platform');
+            if (platform && translations[lang].footer.socialLinks[platform]) {
+                link.setAttribute('title', translations[lang].footer.socialLinks[platform]);
+            }
+        });
+    }
 }
+
+// Initialize language on page load
+document.addEventListener('DOMContentLoaded', function() {
+    // Only initialize language if it hasn't been initialized yet and components are loaded
+    if (!window.languageInitialized && document.getElementById('header-placeholder').innerHTML) {
+        const savedLang = localStorage.getItem('preferredLanguage') || 'en';
+        switchLanguage(savedLang);
+        window.languageInitialized = true;
+    }
+});
 
 // Tour Booking Form Submission
 document.addEventListener('DOMContentLoaded', function() {
@@ -628,7 +595,10 @@ document.addEventListener('DOMContentLoaded', function() {
         // Load Preferred Language on Page Load
         const savedLang = localStorage.getItem('preferredLanguage') || 'en';
         console.log('Initializing with language:', savedLang);
-        switchLanguage(savedLang);
+        if (!window.languageInitialized) {
+            switchLanguage(savedLang);
+            window.languageInitialized = true;
+        }
         initializeDatePicker();
     }
 });

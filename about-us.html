@@ -86,7 +86,7 @@
             
             <!-- About company section -->
             <div class="about-company">
-                <h2>Our Story</h2>
+                <h2 class="section-title">Our Story</h2>
                 <div class="about-company-content">
                     <div class="about-company-image">
                         <img src="images/logo-ds-tours.png" alt="DS Tours London">
@@ -123,7 +123,19 @@
     
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
-    <script src="script.js"></script>
     <script src="components.js"></script>
+    <script src="script.js"></script>
+    <script>
+        // Ensure language is initialized after all components are loaded
+        window.addEventListener('load', function() {
+            if (!window.languageInitialized) {
+                const savedLang = localStorage.getItem('preferredLanguage') || 'en';
+                if (typeof switchLanguage === 'function') {
+                    switchLanguage(savedLang);
+                    window.languageInitialized = true;
+                }
+            }
+        });
+    </script>
 </body>
 </html>
