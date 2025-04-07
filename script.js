@@ -349,6 +349,19 @@ function switchLanguage(lang) {
 
 // Function to update all translatable elements
 function updateTranslatableElements(lang) {
+    // Update elements with data-i18n attributes
+    document.querySelectorAll('[data-i18n]').forEach(element => {
+        const key = element.getAttribute('data-i18n');
+        const keys = key.split('.');
+        let translation = translations[lang];
+        for (const k of keys) {
+            translation = translation?.[k];
+        }
+        if (translation) {
+            element.textContent = translation;
+        }
+    });
+
     // Update navigation
     const navLinks = document.querySelectorAll('nav a');
     navLinks.forEach(link => {
@@ -370,19 +383,19 @@ function updateTranslatableElements(lang) {
         const heroTitle = document.querySelector('.hero-content h2');
         const heroSubtitle = document.querySelector('.hero-content p');
         const ctaButton = document.querySelector('.hero-content .cta-button');
-        const reviewsTitle = document.querySelector('.reviews h2');
+    const reviewsTitle = document.querySelector('.reviews h2');
 
         if (heroTitle) heroTitle.textContent = translations[lang].home.title;
         if (heroSubtitle) heroSubtitle.textContent = translations[lang].home.subtitle;
         if (ctaButton) ctaButton.textContent = translations[lang].home.cta;
-        if (reviewsTitle) reviewsTitle.textContent = translations[lang].home.reviews.title;
+    if (reviewsTitle) reviewsTitle.textContent = translations[lang].home.reviews.title;
     }
 
     // Update Tours page content
     if (isToursPage) {
         const toursTitle = document.querySelector('.tours-section h2');
-        if (toursTitle) toursTitle.textContent = translations[lang].tours.title;
-
+    if (toursTitle) toursTitle.textContent = translations[lang].tours.title;
+    
         // Update tour cards
         const tourCards = document.querySelectorAll('.tour-card');
         tourCards.forEach(card => {
@@ -762,5 +775,39 @@ document.addEventListener('DOMContentLoaded', function() {
             window.languageInitialized = true;
         }
         initializeDatePicker();
+    }
+});
+
+// Hamburger Menu Functionality
+document.addEventListener('DOMContentLoaded', function() {
+    const hamburger = document.querySelector('.hamburger');
+    const navLinks = document.querySelector('.nav-links');
+    const body = document.body;
+    
+    if (hamburger && navLinks) {
+        hamburger.addEventListener('click', function() {
+            this.classList.toggle('active');
+            navLinks.classList.toggle('active');
+            body.classList.toggle('menu-open');
+        });
+
+        // Close menu when clicking outside
+        document.addEventListener('click', function(event) {
+            if (!navLinks.contains(event.target) && !hamburger.contains(event.target)) {
+                hamburger.classList.remove('active');
+                navLinks.classList.remove('active');
+                body.classList.remove('menu-open');
+            }
+        });
+
+        // Close menu when clicking on a link
+        const navItems = navLinks.querySelectorAll('a');
+        navItems.forEach(item => {
+            item.addEventListener('click', function() {
+                hamburger.classList.remove('active');
+                navLinks.classList.remove('active');
+                body.classList.remove('menu-open');
+            });
+        });
     }
 });

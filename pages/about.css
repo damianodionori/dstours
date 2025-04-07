@@ -1,11 +1,15 @@
 /* About Page Specific Styles */
+body.about-page {
+    padding-top: 0;
+}
 
 /* About page hero section */
 .about-hero {
-    background-image: url('../images/tower-bridge.jpg');
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../images/tower-bridge.jpg');
     background-size: cover;
-    background-position: center;
-    height: 400px;
+    background-position: center 40%;
+    height: 550px;
+    margin-top: -60px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -33,6 +37,7 @@
     padding: 0 20px;
     transform: translateY(0);
     transition: transform 0.3s ease;
+    margin-top: 80px;
 }
 
 .about-hero:hover .about-hero-content {
@@ -40,16 +45,20 @@
 }
 
 .about-hero-content h1 {
-    font-size: 3rem;
+    font-size: 2.5rem;
     margin-bottom: 1rem;
     color: white;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    font-family: var(--font-heading);
+    font-weight: 700;
 }
 
 .about-hero-content p {
     font-size: 1.2rem;
     color: white;
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+    font-family: var(--font-body);
+    line-height: 1.6;
 }
 
 /* About company section */

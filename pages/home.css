@@ -1,4 +1,7 @@
 /* Home Page Specific Styles */
+body.home-page {
+    padding-top: 0;
+}
 
 /* Hero Section */
 .hero {

@@ -1,5 +1,18 @@
 // Wait for DOM to be fully loaded before fetching components
 document.addEventListener('DOMContentLoaded', function() {
+    let headerLoaded = false;
+    let footerLoaded = false;
+
+    // Function to initialize translations after both components are loaded
+    function initializeTranslationsIfReady() {
+        if (headerLoaded && footerLoaded && typeof switchLanguage === 'function') {
+            const savedLang = localStorage.getItem('preferredLanguage') || 'en';
+            console.log('Initializing translations with language:', savedLang);
+            switchLanguage(savedLang);
+            window.languageInitialized = true;
+        }
+    }
+
     // Ensure Font Awesome is loaded
     if (!document.querySelector('link[href*="font-awesome"]')) {
         const fontAwesome = document.createElement('link');
@@ -18,16 +31,9 @@ document.addEventListener('DOMContentLoaded', function() {
         })
         .then(data => {
             document.getElementById('header-placeholder').innerHTML = data;
-            
-            // Initialize language switchers after header is loaded
+            headerLoaded = true;
             initializeLanguageSwitcher();
-            
-            // Only initialize language if it hasn't been initialized yet
-            if (!window.languageInitialized && typeof switchLanguage === 'function') {
-                const savedLang = localStorage.getItem('preferredLanguage') || 'en';
-                switchLanguage(savedLang);
-                window.languageInitialized = true;
-            }
+            initializeTranslationsIfReady();
         })
         .catch(error => {
             console.error('Error loading header:', error);
@@ -44,9 +50,9 @@ document.addEventListener('DOMContentLoaded', function() {
         })
         .then(data => {
             document.getElementById('footer-placeholder').innerHTML = data;
-            
-            // Fix TripAdvisor icon if needed
+            footerLoaded = true;
             fixTripAdvisorIcon();
+            initializeTranslationsIfReady();
         })
         .catch(error => {
             console.error('Error loading footer:', error);
