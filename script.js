@@ -107,7 +107,20 @@ const translations = {
             ]
         },
         footer: {
-            copyright: "© 2022 DS Tours | Tour Guide"
+            connectWithUs: "Connect With Us",
+            tagline: "Exploring London's History & Culture",
+            copyright: "© 2022-2025 DS Tours | Tour Guide",
+            signature: "Website created by Damiano Dionori",
+            socialLinks: {
+                instagram: "Instagram",
+                tripadvisor: "TripAdvisor",
+                email: "Email",
+                whatsapp: "WhatsApp"
+            }
+        },
+        reviews: {
+            title: "Visitor Testimonials",
+            altText: "5-star Airbnb review"
         }
     },
     it: {
@@ -214,7 +227,20 @@ const translations = {
             ]
         },
         footer: {
-            copyright: "© 2022 DS Tours | Guida Turistica"
+            connectWithUs: "Contattaci",
+            tagline: "Esplora la Storia e la Cultura di Londra",
+            copyright: "© 2022-2025 DS Tours | Guida Turistica",
+            signature: "Sito web creato da Damiano Dionori",
+            socialLinks: {
+                instagram: "Instagram",
+                tripadvisor: "TripAdvisor",
+                email: "Email",
+                whatsapp: "WhatsApp"
+            }
+        },
+        reviews: {
+            title: "Recensioni dei Visitatori",
+            altText: "Recensione 5 stelle su Airbnb"
         }
     }
 };
@@ -390,9 +416,29 @@ function switchLanguage(lang) {
     const submitButton = document.querySelector('.submit-button');
     if (submitButton) submitButton.textContent = formTranslations.submit;
 
-    // Update footer
-    const footerCopyright = document.querySelector('footer p');
+    // Update footer content
+    const connectTitle = document.querySelector('.connect-title');
+    const footerTagline = document.querySelector('.footer-tagline');
+    const footerCopyright = document.querySelector('.footer-copyright');
+    const footerSignature = document.querySelector('.footer-signature');
+    const socialLinks = document.querySelectorAll('.social-links a span');
+
+    if (connectTitle) connectTitle.textContent = translations[lang].footer.connectWithUs;
+    if (footerTagline) footerTagline.textContent = translations[lang].footer.tagline;
     if (footerCopyright) footerCopyright.textContent = translations[lang].footer.copyright;
+    if (footerSignature) footerSignature.textContent = translations[lang].footer.signature;
+
+    // Update social links text
+    const socialTexts = ['instagram', 'tripadvisor', 'email', 'whatsapp'];
+    socialLinks.forEach((link, index) => {
+        link.textContent = translations[lang].footer.socialLinks[socialTexts[index]];
+    });
+
+    // Update review alt texts
+    const reviewImages = document.querySelectorAll('.review-slide img');
+    reviewImages.forEach(img => {
+        img.alt = translations[lang].reviews.altText;
+    });
 
     document.querySelectorAll('.lang-btn').forEach(btn => {
         const btnLang = btn.getAttribute('data-lang');

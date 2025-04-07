@@ -16,16 +16,12 @@ nav {
     padding: var(--space-md) 5%;
     max-width: 1400px;
     margin: 0 auto;
-    flex-wrap: wrap;
-}
-
-.logo, nav ul, .language-switcher {
-    flex: 1;
-    display: flex;
 }
 
 .logo {
-    justify-content: flex-start;
+    flex: 0 0 auto;
+    display: flex;
+    align-items: center;
 }
 
 .logo a {
@@ -64,7 +60,11 @@ nav {
 }
 
 nav ul {
+    flex: 1;
+    display: flex;
     justify-content: center;
+    align-items: center;
+    gap: var(--space-xl);
     margin: 0;
     padding: 0;
     list-style: none;
@@ -109,9 +109,8 @@ nav ul li a:hover:after {
 }
 
 .language-switcher {
-    justify-content: flex-end;
+    flex: 0 0 auto;
     display: flex;
-    align-items: center;
     gap: var(--space-md);
 }
 

@@ -1,19 +1,22 @@
 /* Tours Page Specific Styles */
+body {
+    overflow-x: hidden;
+}
 
 /* Tours Section - Alternating Layout */
 .tours-section {
-    padding: 100px 5%;
-    max-width: 1400px;
+    padding: 60px 5%;
+    max-width: 1200px;
     margin: 0 auto;
     background-color: #ffffff;
-    position: relative;
 }
 
 .tours-section h2 {
     margin-bottom: 60px;
     text-align: center;
-    color: #0072bb;
-    font-size: 2.2rem;
+    color: var(--color-primary);
+    font-size: var(--text-3xl);
+    font-family: var(--font-heading);
     font-weight: 700;
     position: relative;
 }
@@ -23,78 +26,61 @@
     display: block;
     width: 80px;
     height: 3px;
-    background: #0072bb;
+    background: var(--color-primary);
     margin: 15px auto 0;
 }
 
 .tour-card {
     display: flex;
     background-color: white;
-    margin-bottom: 80px;
-    border-radius: 16px;
+    margin-bottom: 60px;
+    border-radius: var(--radius-lg);
     overflow: hidden;
-    box-shadow: 0 10px 30px rgba(0, 114, 187, 0.1);
-    transition: all 0.3s ease;
-    position: relative;
+    box-shadow: var(--shadow-lg);
+    transition: transform 0.3s ease;
+    max-width: 100%;
 }
 
-/* Default layout (image left, content right) */
 .tour-card img,
 .tour-card video {
-    width: 40%;
+    width: 45%;
+    height: 400px;
     object-fit: cover;
+    flex-shrink: 0;
 }
 
 .tour-details {
     padding: 40px;
-    width: 60%;
+    width: 55%;
     display: flex;
     flex-direction: column;
     justify-content: center;
 }
 
-/* Alternate layout for even cards (image right, content left) */
+/* Alternate layout for even cards */
 .tour-card:nth-child(even) {
     flex-direction: row-reverse;
 }
 
-/* Visual connection between cards */
-.tour-card:not(:last-child)::after {
-    content: "";
-    position: absolute;
-    bottom: -40px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 2px;
-    height: 40px;
-    background-color: #0072bb;
-}
-
-/* Different background for alternating cards */
-.tour-card:nth-child(odd) {
-    background-color: #ffffff;
-}
-
-.tour-card:nth-child(even) {
-    background-color: #f5faff;
-}
-
 .tour-details h3 {
-    color: #0072bb;
+    color: var(--color-primary);
     margin-bottom: 20px;
-    font-size: 1.8rem;
+    font-size: var(--text-xl);
+    font-family: var(--font-heading);
     font-weight: 700;
 }
 
 .tour-details p {
     margin-bottom: 20px;
-    color: #555;
+    color: var(--color-text-light);
     line-height: 1.8;
+    font-family: var(--font-body);
+    font-size: var(--text-base);
 }
 
 .tour-details ul {
     margin: 20px 0;
-    color: #444;
+    padding: 0;
     list-style-type: none;
 }
 
@@ -102,11 +88,14 @@
     margin-bottom: 12px;
     position: relative;
     padding-left: 25px;
+    color: var(--color-text);
+    font-family: var(--font-body);
+    font-size: var(--text-base);
 }
 
 .tour-details ul li:before {
     content: "✓";
-    color: #0072bb;
+    color: var(--color-primary);
     position: absolute;
     left: 0;
     font-weight: bold;
@@ -115,31 +104,28 @@
 .tour-info {
     display: flex;
     justify-content: space-between;
-    margin-top: 30px;
+    margin-top: auto;
+    padding: 15px 20px;
+    background-color: var(--color-secondary);
+    border-radius: var(--radius-md);
     font-weight: 600;
-    color: #333;
-    background-color: rgba(0, 114, 187, 0.05);
-    padding: 15px;
-    border-radius: 8px;
+    color: var(--color-text);
+    font-family: var(--font-body);
+    font-size: var(--text-base);
+}
+
+.tour-info span {
+    font-family: var(--font-body);
 }
 
 /* Hover effects */
 .tour-card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 15px 40px rgba(0, 114, 187, 0.15);
-}
-
-/* For alternating layouts */
-.tour-card:nth-child(even) .tour-carousel {
-    order: 2;
-}
-
-.tour-card:nth-child(even) .tour-details {
-    order: 1;
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-xl);
 }
 
 /* Mobile responsiveness */
-@media (max-width: 768px) {
+@media (max-width: 900px) {
     .tour-card,
     .tour-card:nth-child(even) {
         flex-direction: column;
@@ -148,7 +134,7 @@
     .tour-card img,
     .tour-card video {
         width: 100%;
-        height: 250px;
+        height: 300px;
     }
     
     .tour-details {
@@ -156,9 +142,28 @@
         padding: 30px;
     }
     
-    .tour-card:not(:last-child)::after {
-        left: 50%;
-        bottom: -25px;
-        height: 25px;
+    .tour-info {
+        flex-direction: column;
+        gap: 10px;
+        text-align: center;
+    }
+}
+
+@media (max-width: 600px) {
+    .tours-section {
+        padding: 40px 20px;
+    }
+    
+    .tour-card img,
+    .tour-card video {
+        height: 200px;
+    }
+    
+    .tour-details {
+        padding: 20px;
+    }
+    
+    .tour-details h3 {
+        font-size: var(--text-lg);
     }
 }
