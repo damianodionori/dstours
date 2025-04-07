@@ -33,23 +33,34 @@ nav {
     color: var(--color-primary);
     display: flex;
     align-items: center;
-    font-weight: 700;
-    font-size: var(--text-lg);
-    letter-spacing: 0.5px;
+    gap: var(--space-sm);
+}
+
+.logo h1 {
     font-family: var(--font-heading);
+    font-weight: 600;
+    font-size: var(--text-lg);
+    margin: 0;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    color: var(--color-primary);
+    line-height: 1.2;
 }
 
 .logo-image {
-    height: 50px;
+    height: 40px;
     width: auto;
     object-fit: contain;
-    margin-right: var(--space-sm);
     filter: drop-shadow(0 2px 4px rgba(0, 114, 187, 0.2));
     transition: transform 0.3s ease;
 }
 
 .logo a:hover .logo-image {
     transform: scale(1.05);
+}
+
+.logo a:hover h1 {
+    color: var(--color-primary-dark);
 }
 
 nav ul {
@@ -75,6 +86,7 @@ nav ul li a {
     padding: var(--space-sm) 0;
     position: relative;
     font-family: var(--font-heading);
+    line-height: 1.2;
 }
 
 nav ul li a:after {

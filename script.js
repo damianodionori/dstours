@@ -406,180 +406,183 @@ function switchLanguage(lang) {
 // Tour Booking Form Submission
 document.addEventListener('DOMContentLoaded', function() {
     const form = document.getElementById('tour-booking-form');
-    const dateInput = document.getElementById('date');
-
-    if (typeof emailjs !== 'undefined') {
-        emailjs.init("Nxj6VliNcy5V2PG40");
-    }
     
-    form.addEventListener('submit', function(event) {
-        event.preventDefault();
-        
-        // Collect form data
-        const formData = {
-            name: document.getElementById('name').value,
-            email: document.getElementById('email').value,
-            tour: document.getElementById('tour').value,
-            tourText: document.getElementById('tour').options[document.getElementById('tour').selectedIndex].text,
-            date: document.getElementById('date').value,
-            tourTime: document.getElementById('tour-time').value,
-            tourTimeText: document.getElementById('tour-time').options[document.getElementById('tour-time').selectedIndex].text,
-            language: document.getElementById('language-preference').value,
-            languageText: document.getElementById('language-preference').options[document.getElementById('language-preference').selectedIndex].text,
-            message: document.getElementById('message').value
-        };
-
-        // Basic form validation
-        if (!formData.name || !formData.email || !formData.tour || 
-            !formData.date || !formData.tourTime || !formData.language) {
-            const currentLang = localStorage.getItem('preferredLanguage') || 'en';
-            const errorMessage = currentLang === 'it' 
-                ? 'Per favore compila tutti i campi obbligatori' 
-                : 'Please fill in all required fields';
-            alert(errorMessage);
-            return;
-        }
-
-        const currentLang = localStorage.getItem('preferredLanguage') || 'en';
-
-        const submitButton = document.querySelector('.submit-button');
-        const originalButtonText = submitButton.textContent;
-        submitButton.textContent = currentLang === 'it' ? 'Invio in corso...' : 'Sending...';
-        submitButton.disabled = true;
-
-        const templateParams = {
-            from_name: formData.name,
-            from_email: formData.email,
-            tour_type: formData.tourText,
-            tour_date: formData.date,
-            tour_time: formData.tourTimeText,
-            language: formData.languageText,
-            message: formData.message,
-            site_language: currentLang
-        };
+    if (form) {
+        const dateInput = document.getElementById('date');
 
         if (typeof emailjs !== 'undefined') {
-            emailjs.send('service_nqtc5gy', 'template_vb48wy2', templateParams)
-                .then(function(response) {
-                    console.log('Email sent!', response.status, response.text);
-                    
-                    const successMessage = currentLang === 'it' 
-                        ? 'Prenotazione inviata con successo! Ti contatteremo presto.' 
-                        : 'Tour booking request submitted! We will contact you soon.';
-                    alert(successMessage);
-                    
-                    form.reset();
-                    
-                    submitButton.textContent = originalButtonText;
-                    submitButton.disabled = false;
-                })
-                .catch(function(error) {
-                    console.log('Email sending error:', error);
-                    
-                    const errorMessage = currentLang === 'it' 
-                        ? 'Si è verificato un errore durante l\'invio. Riprova più tardi o contattaci direttamente.' 
-                        : 'An error occurred while sending. Please try again later or contact us directly.';
-                    alert(errorMessage);
-                    
-                    submitButton.textContent = originalButtonText;
-                    submitButton.disabled = false;
-                });
-        } else {
-            console.log('EmailJS not available. Form data:', formData);
-            
-            const fallbackMessage = currentLang === 'it' 
-                ? 'Sistema di invio non disponibile. Ti preghiamo di contattarci direttamente.' 
-                : 'Sending system not available. Please contact us directly.';
-            alert(fallbackMessage);
-            
-            submitButton.textContent = originalButtonText;
-            submitButton.disabled = false;
-        }
-    });
-    
-    // Event Listeners for Language Buttons
-    document.querySelectorAll('.lang-btn').forEach(btn => {
-        btn.addEventListener('click', () => {
-            const lang = btn.getAttribute('data-lang');
-            console.log('Language button clicked:', lang);
-            switchLanguage(lang);
-        });
-    });
-
-    // Date Picker Initialization Function
-    function initializeDatePicker() {
-        const dateInput = document.getElementById('date');
-        if (!dateInput) {
-            console.log('No date input found, skipping datepicker initialization');
-            return;
+            emailjs.init("Nxj6VliNcy5V2PG40");
         }
         
-        if (typeof Pikaday === 'undefined' || typeof moment === 'undefined') {
-            console.log('Pikaday or moment not available - using native date picker');
-            const today = new Date();
-            const yyyy = today.getFullYear();
-            const mm = String(today.getMonth() + 1).padStart(2, '0');
-            const dd = String(today.getDate()).padStart(2, '0');
-            const formattedToday = `${yyyy}-${mm}-${dd}`;
+        form.addEventListener('submit', function(event) {
+            event.preventDefault();
             
-            dateInput.setAttribute('min', formattedToday);
-            return;
-        }
-        
-        const config = DATE_CONFIG['en'];
-        const today = new Date();
+            // Collect form data
+            const formData = {
+                name: document.getElementById('name').value,
+                email: document.getElementById('email').value,
+                tour: document.getElementById('tour').value,
+                tourText: document.getElementById('tour').options[document.getElementById('tour').selectedIndex].text,
+                date: document.getElementById('date').value,
+                tourTime: document.getElementById('tour-time').value,
+                tourTimeText: document.getElementById('tour-time').options[document.getElementById('tour-time').selectedIndex].text,
+                language: document.getElementById('language-preference').value,
+                languageText: document.getElementById('language-preference').options[document.getElementById('language-preference').selectedIndex].text,
+                message: document.getElementById('message').value
+            };
 
-        window.datePicker = new Pikaday({
-            field: dateInput,
-            format: config.format,
-            formatStrict: config.format,
-            defaultDate: null,
-            setDefaultDate: false,
-            minDate: today,
-            disableDayFn: function(date) {
-                return date < new Date(today.setHours(0, 0, 0, 0));
-            },
-            onSelect: function(date) {
-                const formattedDate = moment(date).format('DD/MM/YYYY');
-                dateInput.value = formattedDate;
-                dateInput.setAttribute('data-selected-date', formattedDate);
+            // Basic form validation
+            if (!formData.name || !formData.email || !formData.tour || 
+                !formData.date || !formData.tourTime || !formData.language) {
+                const currentLang = localStorage.getItem('preferredLanguage') || 'en';
+                const errorMessage = currentLang === 'it' 
+                    ? 'Per favore compila tutti i campi obbligatori' 
+                    : 'Please fill in all required fields';
+                alert(errorMessage);
+                return;
             }
-        });
 
-        dateInput.setAttribute('placeholder', config.placeholder);
+            const currentLang = localStorage.getItem('preferredLanguage') || 'en';
 
-        if (dateInput.getAttribute('data-selected-date')) {
-            const savedDate = dateInput.getAttribute('data-selected-date');
-            dateInput.value = savedDate;
-        }
-    }
+            const submitButton = document.querySelector('.submit-button');
+            const originalButtonText = submitButton.textContent;
+            submitButton.textContent = currentLang === 'it' ? 'Invio in corso...' : 'Sending...';
+            submitButton.disabled = true;
 
-    // Modify switchLanguage to include date picker reinitialization
-    const originalSwitchLanguage = switchLanguage;
-    switchLanguage = function(lang) {
-        originalSwitchLanguage.call(this, lang);
-        initializeDatePicker();
-    };
+            const templateParams = {
+                from_name: formData.name,
+                from_email: formData.email,
+                tour_type: formData.tourText,
+                tour_date: formData.date,
+                tour_time: formData.tourTimeText,
+                language: formData.languageText,
+                message: formData.message,
+                site_language: currentLang
+            };
 
-    // Additional event listener to handle manual input
-    if (dateInput) {
-        dateInput.addEventListener('change', function() {
-            const config = DATE_CONFIG['en'];
-            const inputDate = moment(this.value, config.format, true);
-            
-            if (inputDate.isValid()) {
-                if (window.datePicker) {
-                    window.datePicker.setDate(inputDate.toDate());
-                }
+            if (typeof emailjs !== 'undefined') {
+                emailjs.send('service_nqtc5gy', 'template_vb48wy2', templateParams)
+                    .then(function(response) {
+                        console.log('Email sent!', response.status, response.text);
+                        
+                        const successMessage = currentLang === 'it' 
+                            ? 'Prenotazione inviata con successo! Ti contatteremo presto.' 
+                            : 'Tour booking request submitted! We will contact you soon.';
+                        alert(successMessage);
+                        
+                        form.reset();
+                        
+                        submitButton.textContent = originalButtonText;
+                        submitButton.disabled = false;
+                    })
+                    .catch(function(error) {
+                        console.log('Email sending error:', error);
+                        
+                        const errorMessage = currentLang === 'it' 
+                            ? 'Si è verificato un errore durante l\'invio. Riprova più tardi o contattaci direttamente.' 
+                            : 'An error occurred while sending. Please try again later or contact us directly.';
+                        alert(errorMessage);
+                        
+                        submitButton.textContent = originalButtonText;
+                        submitButton.disabled = false;
+                    });
             } else {
-                this.value = '';
+                console.log('EmailJS not available. Form data:', formData);
+                
+                const fallbackMessage = currentLang === 'it' 
+                    ? 'Sistema di invio non disponibile. Ti preghiamo di contattarci direttamente.' 
+                    : 'Sending system not available. Please contact us directly.';
+                alert(fallbackMessage);
+                
+                submitButton.textContent = originalButtonText;
+                submitButton.disabled = false;
             }
         });
-    }
+        
+        // Event Listeners for Language Buttons
+        document.querySelectorAll('.lang-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const lang = btn.getAttribute('data-lang');
+                console.log('Language button clicked:', lang);
+                switchLanguage(lang);
+            });
+        });
 
-    // Load Preferred Language on Page Load
-    const savedLang = localStorage.getItem('preferredLanguage') || 'en';
-    console.log('Initializing with language:', savedLang);
-    switchLanguage(savedLang);
-    initializeDatePicker();
+        // Date Picker Initialization Function
+        function initializeDatePicker() {
+            const dateInput = document.getElementById('date');
+            if (!dateInput) {
+                console.log('No date input found, skipping datepicker initialization');
+                return;
+            }
+            
+            if (typeof Pikaday === 'undefined' || typeof moment === 'undefined') {
+                console.log('Pikaday or moment not available - using native date picker');
+                const today = new Date();
+                const yyyy = today.getFullYear();
+                const mm = String(today.getMonth() + 1).padStart(2, '0');
+                const dd = String(today.getDate()).padStart(2, '0');
+                const formattedToday = `${yyyy}-${mm}-${dd}`;
+                
+                dateInput.setAttribute('min', formattedToday);
+                return;
+            }
+            
+            const config = DATE_CONFIG['en'];
+            const today = new Date();
+
+            window.datePicker = new Pikaday({
+                field: dateInput,
+                format: config.format,
+                formatStrict: config.format,
+                defaultDate: null,
+                setDefaultDate: false,
+                minDate: today,
+                disableDayFn: function(date) {
+                    return date < new Date(today.setHours(0, 0, 0, 0));
+                },
+                onSelect: function(date) {
+                    const formattedDate = moment(date).format('DD/MM/YYYY');
+                    dateInput.value = formattedDate;
+                    dateInput.setAttribute('data-selected-date', formattedDate);
+                }
+            });
+
+            dateInput.setAttribute('placeholder', config.placeholder);
+
+            if (dateInput.getAttribute('data-selected-date')) {
+                const savedDate = dateInput.getAttribute('data-selected-date');
+                dateInput.value = savedDate;
+            }
+        }
+
+        // Modify switchLanguage to include date picker reinitialization
+        const originalSwitchLanguage = switchLanguage;
+        switchLanguage = function(lang) {
+            originalSwitchLanguage.call(this, lang);
+            initializeDatePicker();
+        };
+
+        // Additional event listener to handle manual input
+        if (dateInput) {
+            dateInput.addEventListener('change', function() {
+                const config = DATE_CONFIG['en'];
+                const inputDate = moment(this.value, config.format, true);
+                
+                if (inputDate.isValid()) {
+                    if (window.datePicker) {
+                        window.datePicker.setDate(inputDate.toDate());
+                    }
+                } else {
+                    this.value = '';
+                }
+            });
+        }
+
+        // Load Preferred Language on Page Load
+        const savedLang = localStorage.getItem('preferredLanguage') || 'en';
+        console.log('Initializing with language:', savedLang);
+        switchLanguage(savedLang);
+        initializeDatePicker();
+    }
 });

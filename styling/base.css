@@ -1,3 +1,6 @@
+/* Font Imports */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Open+Sans:wght@400;500&family=Playfair+Display:wght@700&display=swap');
+
 /* Variables */
 :root {
     /* Colors */
@@ -15,6 +18,7 @@
     /* Typography */
     --font-heading: 'Montserrat', 'Arial', sans-serif;
     --font-body: 'Open Sans', 'Arial', sans-serif;
+    --font-display: 'Playfair Display', serif;
     
     /* Font Sizes */
     --text-xs: 0.75rem;   /* 12px */
@@ -123,4 +127,93 @@ p {
     h3 {
         font-size: var(--text-lg);
     }
+}
+
+/* About Hero Section */
+.about-hero {
+    background-image: url('../images/tower-bridge.jpg');
+    background-size: cover;
+    background-position: center;
+    height: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    position: relative;
+    color: white;
+    margin-bottom: 4rem;
+}
+
+.about-hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.2));
+    z-index: 1;
+}
+
+.about-hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 800px;
+    padding: 0 20px;
+    transform: translateY(0);
+    transition: transform 0.3s ease;
+}
+
+.about-hero:hover .about-hero-content {
+    transform: translateY(-5px);
+}
+
+.about-hero h1 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    color: white;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.about-hero p {
+    font-size: 1.2rem;
+    color: white;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.about-intro {
+    padding: 2rem 0;
+    margin-bottom: 3rem;
+    text-align: center;
+}
+
+.about-intro .section-title {
+    margin-bottom: 2rem;
+}
+
+.about-intro p {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.guide-card {
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+    margin-bottom: 2rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.guide-info {
+    padding: 1.5rem;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.guide-bio {
+    margin-bottom: 0;
 }
