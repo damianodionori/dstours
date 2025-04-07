@@ -96,6 +96,23 @@ const translations = {
                 title: "Meet Our Team",
                 subtitle: "Passionate guides ready to show you the best of London"
             },
+            guideDetails: {
+                from: "From",
+                languages: "Languages",
+                favoriteSpot: "Favorite Spot",
+                locations: {
+                    tuscany: "Tuscany, Italy",
+                    veneto: "Veneto, Italy"
+                },
+                languagesList: {
+                    damiano: "Italian, English, French, German",
+                    stefania: "Italian, English, Spanish"
+                },
+                spots: {
+                    damiano: "Natural History Museum",
+                    stefania: "National Gallery"
+                }
+            },
             intro: {
                 title: "Let us introduce ourselves!",
                 description: "We are a team of passionate London tour guides dedicated to providing unforgettable experiences. With years of experience and deep knowledge of the city's history, culture, and hidden gems, we're here to make your visit truly special."
@@ -234,6 +251,23 @@ const translations = {
                 title: "Il Nostro Team",
                 subtitle: "Guide appassionate pronte a mostrarti il meglio di Londra"
             },
+            guideDetails: {
+                from: "Da",
+                languages: "Lingue",
+                favoriteSpot: "Luogo Preferito",
+                locations: {
+                    tuscany: "Toscana, Italia",
+                    veneto: "Veneto, Italia"
+                },
+                languagesList: {
+                    damiano: "Italiano, Inglese, Francese, Tedesco",
+                    stefania: "Italiano, Inglese, Spagnolo"
+                },
+                spots: {
+                    damiano: "Museo di Storia Naturale",
+                    stefania: "National Gallery"
+                }
+            },
             intro: {
                 title: "Lasciaci presentare!",
                 description: "Siamo un team di guide turistiche londinesi appassionate dedite a fornire esperienze indimenticabili. Con anni di esperienza e profonda conoscenza della storia della città, della cultura e dei luoghi nascosti, siamo qui per rendere la tua visita davvero speciale."
@@ -325,7 +359,7 @@ function updateTranslatableElements(lang) {
     });
 
     // Update page-specific content
-    const pageTitle = document.querySelector('h1');
+    const pageTitle = document.querySelector('.about-hero-content h1');
     if (pageTitle && translations[lang]?.aboutUs?.hero?.title) {
         pageTitle.textContent = translations[lang].aboutUs.hero.title;
     }
@@ -371,6 +405,25 @@ function updateTranslatableElements(lang) {
             const name = member.querySelector('.guide-name');
             const title = member.querySelector('.guide-title');
             const bio = member.querySelector('.guide-bio');
+            
+            // Update guide details labels and content
+            const detailsLabels = member.querySelectorAll('.guide-detail');
+            detailsLabels.forEach(detail => {
+                const icon = detail.querySelector('i');
+                if (icon) {
+                    const guideName = index === 0 ? 'damiano' : 'stefania';
+                    if (icon.classList.contains('fa-map-marker-alt')) {
+                        const location = index === 0 ? translations[lang].aboutUs.guideDetails.locations.tuscany : translations[lang].aboutUs.guideDetails.locations.veneto;
+                        detail.innerHTML = `<i class="fas fa-map-marker-alt"></i> ${translations[lang].aboutUs.guideDetails.from}: ${location}`;
+                    } else if (icon.classList.contains('fa-language')) {
+                        const languages = translations[lang].aboutUs.guideDetails.languagesList[guideName];
+                        detail.innerHTML = `<i class="fas fa-language"></i> ${translations[lang].aboutUs.guideDetails.languages}: ${languages}`;
+                    } else if (icon.classList.contains('fa-heart')) {
+                        const spot = translations[lang].aboutUs.guideDetails.spots[guideName];
+                        detail.innerHTML = `<i class="fas fa-heart"></i> ${translations[lang].aboutUs.guideDetails.favoriteSpot}: ${spot}`;
+                    }
+                }
+            });
 
             if (name && translations[lang].aboutUs.team[index]?.name) {
                 name.textContent = translations[lang].aboutUs.team[index].name;
