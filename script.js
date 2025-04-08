@@ -12,14 +12,14 @@ const translations = {
         },
         home: {
             title: "Discover London's Cultural Treasures",
-            subtitle: "Immersive guided tours of London's most iconic museums",
+            subtitle: "Private guided tours of London's most iconic museums",
             cta: "Explore Tours",
             reviews: {
                 title: "Visitor Testimonials"
             },
         },
         tours: {
-            title: "Our Signature Tours",
+            title: "Our Private Tours",
             bookYourTour: "Book Your Tour",
             options: {
                 1: "British Museum Private Tour",
@@ -167,14 +167,14 @@ const translations = {
         },
         home: {
             title: "Scopri i Tesori Culturali di Londra",
-            subtitle: "Tour guidati immersivi nei musei più iconici di Londra",
+            subtitle: "Tour guidati privati nei musei più iconici di Londra",
             cta: "Esplora i Tour",
             reviews: {
                 title: "Recensioni dei Visitatori"
             },
         },
         tours: {
-            title: "I Nostri Tour Esclusivi",
+            title: "I Nostri Tour Privati",
             bookYourTour: "Prenota il Tuo Tour",
             options: {
                 1: "Tour Privato del British Museum",
