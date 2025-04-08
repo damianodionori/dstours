@@ -596,33 +596,54 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    // Gestione del menu hamburger
-    const hamburger = document.querySelector('.hamburger');
-    const navLinks = document.querySelector('.nav-links');
-    const body = document.body;
-
-    if (hamburger && navLinks) {
-        hamburger.addEventListener('click', function() {
-            // Toggle class active sul bottone hamburger
-            this.classList.toggle('active');
+    // Load header
+    fetch('components/header.html')
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok for header');
+            }
+            return response.text();
+        })
+        .then(data => {
+            document.getElementById('header-placeholder').innerHTML = data;
+            headerLoaded = true;
+            initializeLanguageSwitcher();
             
-            // Toggle class active sul menu di navigazione
-            navLinks.classList.toggle('active');
-            
-            // Toggle classe menu-open sul body per bloccare lo scroll quando il menu è aperto
-            body.classList.toggle('menu-open');
-        });
+            // Inizializza il menu hamburger dopo che l'header è stato caricato
+            const hamburger = document.querySelector('.hamburger');
+            const navLinks = document.querySelector('.nav-links');
+            const body = document.body;
 
-        // Chiudi il menu quando si clicca su un link
-        const navItems = navLinks.querySelectorAll('a');
-        navItems.forEach(item => {
-            item.addEventListener('click', function() {
-                hamburger.classList.remove('active');
-                navLinks.classList.remove('active');
-                body.classList.remove('menu-open');
-            });
+            if (hamburger && navLinks) {
+                hamburger.addEventListener('click', function() {
+                    console.log('Hamburger clicked'); // Debug log
+                    // Toggle class active sul bottone hamburger
+                    this.classList.toggle('active');
+                    
+                    // Toggle class active sul menu di navigazione
+                    navLinks.classList.toggle('active');
+                    
+                    // Toggle classe menu-open sul body per bloccare lo scroll quando il menu è aperto
+                    body.classList.toggle('menu-open');
+                });
+
+                // Chiudi il menu quando si clicca su un link
+                const navItems = navLinks.querySelectorAll('a');
+                navItems.forEach(item => {
+                    item.addEventListener('click', function() {
+                        hamburger.classList.remove('active');
+                        navLinks.classList.remove('active');
+                        body.classList.remove('menu-open');
+                    });
+                });
+            }
+            
+            initializeTranslationsIfReady();
+        })
+        .catch(error => {
+            console.error('Error loading header:', error);
+            document.getElementById('header-placeholder').innerHTML = '<p>Error loading header. Please refresh the page.</p>';
         });
-    }
 
     // Ensure Font Awesome is loaded
     if (!document.querySelector('link[href*="font-awesome"]')) {
