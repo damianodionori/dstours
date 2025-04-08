@@ -581,18 +581,58 @@ function updateTranslatableElements(lang) {
     }
 }
 
-// Initialize language on page load
+// Wait for DOM to be fully loaded before fetching components
 document.addEventListener('DOMContentLoaded', function() {
-    // Only initialize language if it hasn't been initialized yet and components are loaded
-    if (!window.languageInitialized && document.getElementById('header-placeholder').innerHTML) {
-        const savedLang = localStorage.getItem('preferredLanguage') || 'en';
-        switchLanguage(savedLang);
-        window.languageInitialized = true;
-    }
-});
+    let headerLoaded = false;
+    let footerLoaded = false;
 
-// Tour Booking Form Submission
-document.addEventListener('DOMContentLoaded', function() {
+    // Function to initialize translations after both components are loaded
+    function initializeTranslationsIfReady() {
+        if (headerLoaded && footerLoaded && typeof switchLanguage === 'function') {
+            const savedLang = localStorage.getItem('preferredLanguage') || 'en';
+            console.log('Initializing translations with language:', savedLang);
+            switchLanguage(savedLang);
+            window.languageInitialized = true;
+        }
+    }
+
+    // Gestione del menu hamburger
+    const hamburger = document.querySelector('.hamburger');
+    const navLinks = document.querySelector('.nav-links');
+    const body = document.body;
+
+    if (hamburger && navLinks) {
+        hamburger.addEventListener('click', function() {
+            // Toggle class active sul bottone hamburger
+            this.classList.toggle('active');
+            
+            // Toggle class active sul menu di navigazione
+            navLinks.classList.toggle('active');
+            
+            // Toggle classe menu-open sul body per bloccare lo scroll quando il menu è aperto
+            body.classList.toggle('menu-open');
+        });
+
+        // Chiudi il menu quando si clicca su un link
+        const navItems = navLinks.querySelectorAll('a');
+        navItems.forEach(item => {
+            item.addEventListener('click', function() {
+                hamburger.classList.remove('active');
+                navLinks.classList.remove('active');
+                body.classList.remove('menu-open');
+            });
+        });
+    }
+
+    // Ensure Font Awesome is loaded
+    if (!document.querySelector('link[href*="font-awesome"]')) {
+        const fontAwesome = document.createElement('link');
+        fontAwesome.rel = 'stylesheet';
+        fontAwesome.href = 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css';
+        document.head.appendChild(fontAwesome);
+    }
+
+    // Tour Booking Form Submission
     const form = document.getElementById('tour-booking-form');
     
     if (form) {
@@ -775,32 +815,5 @@ document.addEventListener('DOMContentLoaded', function() {
             window.languageInitialized = true;
         }
         initializeDatePicker();
-    }
-});
-
-// Hamburger Menu Functionality
-document.addEventListener('DOMContentLoaded', function() {
-    const hamburger = document.querySelector('.hamburger');
-    const navLinks = document.querySelector('.nav-links');
-    const body = document.body;
-    
-    if (hamburger && navLinks) {
-        hamburger.addEventListener('click', function(event) {
-            event.stopPropagation();
-            this.classList.toggle('active');
-            navLinks.classList.toggle('active');
-            body.classList.toggle('menu-open');
-        });
-
-        // Close menu when clicking outside
-        document.addEventListener('click', function(event) {
-            const isClickInside = navLinks.contains(event.target) || hamburger.contains(event.target);
-
-            if (!isClickInside) {
-                hamburger.classList.remove('active');
-                navLinks.classList.remove('active');
-                body.classList.remove('menu-open');
-            }
-        });
     }
 });
