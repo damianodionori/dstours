@@ -269,7 +269,7 @@ const translations = {
                 }
             },
             intro: {
-                title: "Lasciaci presentare!",
+                title: "Chi siamo?",
                 description: "Siamo un team di guide turistiche londinesi appassionate dedite a fornire esperienze indimenticabili. Con anni di esperienza e profonda conoscenza della storia della città, della cultura e dei luoghi nascosti, siamo qui per rendere la tua visita davvero speciale."
             },
             company: {
