@@ -1,8 +1,11 @@
 /* Home Page Specific Styles */
+body.home-page {
+    padding-top: 0;
+}
 
 /* Hero Section */
 .hero {
-    background-image: linear-gradient(rgba(0, 114, 187, 0.7), rgba(0, 71, 117, 0.8)), url('/images/tower-bridge.jpg');
+    background-image: linear-gradient(rgba(0, 114, 187, 0.7), rgba(0, 71, 117, 0.8)), url('../images/tower-bridge.jpg');
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
@@ -11,6 +14,14 @@
     padding: 180px 20px;
     position: relative;
     overflow: hidden;
+}
+
+/* Modifiche solo per dispositivi mobili */
+@media (max-width: 768px) {
+    .hero {
+        background-attachment: scroll;
+        background-image: linear-gradient(rgba(0, 114, 187, 0.5), rgba(0, 71, 117, 0.6)), url('../images/tower-bridge.jpg');
+    }
 }
 
 .hero:before {

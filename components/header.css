@@ -6,20 +6,23 @@ header {
     top: 0;
     left: 0;
     right: 0;
-    z-index: 100;
+    z-index: 1000;
+    height: 70px; /* Altezza fissa per l'header */
 }
 
 nav {
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    padding: var(--space-md) 5%;
+    padding: calc(var(--space-md) + 5px) 5%;
     max-width: 1400px;
     margin: 0 auto;
+    position: relative;
+    height: 100%;
 }
 
 .logo {
-    flex: 0 0 auto;
+    position: absolute;
+    left: 5%;
     display: flex;
     align-items: center;
 }
@@ -59,8 +62,14 @@ nav {
     color: var(--color-primary-dark);
 }
 
-nav ul {
+.nav-links {
     flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+nav ul {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -68,11 +77,6 @@ nav ul {
     margin: 0;
     padding: 0;
     list-style: none;
-}
-
-nav ul li {
-    margin: 0 var(--space-md);
-    position: relative;
 }
 
 nav ul li a {
@@ -86,7 +90,6 @@ nav ul li a {
     padding: var(--space-sm) 0;
     position: relative;
     font-family: var(--font-heading);
-    line-height: 1.2;
 }
 
 nav ul li a:after {
@@ -100,27 +103,131 @@ nav ul li a:after {
     transition: width 0.3s ease;
 }
 
-nav ul li a:hover {
-    color: var(--color-primary-dark);
-}
-
 nav ul li a:hover:after {
     width: 100%;
 }
 
+/* Hamburger Menu Styles */
+.hamburger {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+    z-index: 1001;
+}
+
+.hamburger-line {
+    display: block;
+    width: 25px;
+    height: 2px;
+    background-color: var(--color-primary);
+    margin: 5px 0;
+    transition: all 0.3s ease;
+}
+
+/* Mobile Styles */
+@media (max-width: 768px) {
+    .hamburger {
+        display: block;
+        position: absolute;
+        right: var(--space-md);
+        top: 50%;
+        transform: translateY(-50%);
+        z-index: 1002;
+    }
+
+    .logo {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        left: var(--space-md);
+        flex: initial;
+    }
+
+    .nav-links {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 45%;
+        height: 100vh; /* Cambiato a 100vh */
+        background-color: var(--color-white);
+        flex-direction: column;
+        justify-content: flex-start;
+        padding: 90px var(--space-sm) 20px; /* Aumentato il padding top */
+        transition: right 0.3s ease;
+        box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
+        z-index: 1001;
+    }
+
+    .nav-links.active {
+        right: 0;
+    }
+
+    nav ul {
+        flex-direction: column;
+        width: 100%;
+        gap: var(--space-sm);
+    }
+
+    nav ul li {
+        width: 100%;
+        text-align: left;
+        border-bottom: 1px solid rgba(0, 114, 187, 0.1);
+    }
+
+    nav ul li:last-child {
+        border-bottom: none;
+    }
+
+    nav ul li a {
+        display: block;
+        padding: var(--space-sm) 0;
+        font-size: 0.95rem;
+        color: var(--color-primary);
+    }
+
+    .language-switcher {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        right: calc(var(--space-md) + 60px); /* Aumentato lo spazio dal hamburger */
+        margin-top: 0;
+        padding-top: 0;
+        border-top: none;
+    }
+
+    .hamburger.active .hamburger-line:nth-child(1) {
+        transform: rotate(45deg) translate(5px, 5px);
+    }
+
+    .hamburger.active .hamburger-line:nth-child(2) {
+        opacity: 0;
+    }
+
+    .hamburger.active .hamburger-line:nth-child(3) {
+        transform: rotate(-45deg) translate(7px, -6px);
+    }
+
+    body.menu-open {
+        overflow: hidden;
+    }
+}
+
 .language-switcher {
-    flex: 0 0 auto;
+    position: absolute;
+    right: 5%;
     display: flex;
-    gap: var(--space-md);
+    gap: var(--space-sm);
+    align-items: center;
 }
 
 .lang-btn {
     background: none;
     border: none;
     cursor: pointer;
-    padding: var(--space-xs);
-    transition: all 0.3s ease;
-    position: relative;
+    padding: 5px;
+    transition: transform 0.3s ease;
 }
 
 .lang-btn:hover {
@@ -170,4 +277,9 @@ nav ul li a:hover:after {
     .logo-image {
         height: 40px;
     }
+}
+
+/* Aggiungiamo uno stile specifico per la home page */
+body.home-page {
+    padding-top: 70px; /* Stesso valore dell'altezza dell'header */
 }

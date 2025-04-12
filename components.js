@@ -1,5 +1,58 @@
 // Wait for DOM to be fully loaded before fetching components
 document.addEventListener('DOMContentLoaded', function() {
+    let headerLoaded = false;
+    let footerLoaded = false;
+
+    // Function to initialize translations after both components are loaded
+    function initializeTranslationsIfReady() {
+        if (headerLoaded && footerLoaded && typeof switchLanguage === 'function') {
+            const savedLang = localStorage.getItem('preferredLanguage') || 'en';
+            console.log('Initializing translations with language:', savedLang);
+            switchLanguage(savedLang);
+            window.languageInitialized = true;
+        }
+    }
+
+    // Function to initialize hamburger menu
+    function initializeHamburgerMenu() {
+        console.log('Initializing hamburger menu...');
+        const hamburger = document.querySelector('.hamburger');
+        const navLinks = document.querySelector('.nav-links');
+        const body = document.body;
+
+        if (hamburger && navLinks) {
+            console.log('Hamburger and nav-links elements found');
+            
+            // Remove any existing event listeners
+            const newHamburger = hamburger.cloneNode(true);
+            hamburger.parentNode.replaceChild(newHamburger, hamburger);
+            
+            // Add click event listener to hamburger
+            newHamburger.addEventListener('click', function(e) {
+                console.log('Hamburger clicked');
+                e.preventDefault();
+                e.stopPropagation();
+                
+                // Toggle classes
+                this.classList.toggle('active');
+                navLinks.classList.toggle('active');
+                body.classList.toggle('menu-open');
+            });
+
+            // Add click events to nav links
+            const navItems = navLinks.querySelectorAll('a');
+            navItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    newHamburger.classList.remove('active');
+                    navLinks.classList.remove('active');
+                    body.classList.remove('menu-open');
+                });
+            });
+        } else {
+            console.warn('Hamburger menu elements not found');
+        }
+    }
+
     // Ensure Font Awesome is loaded
     if (!document.querySelector('link[href*="font-awesome"]')) {
         const fontAwesome = document.createElement('link');
@@ -18,16 +71,15 @@ document.addEventListener('DOMContentLoaded', function() {
         })
         .then(data => {
             document.getElementById('header-placeholder').innerHTML = data;
+            headerLoaded = true;
             
-            // Initialize language switchers after header is loaded
+            // Initialize hamburger menu after header is loaded
+            setTimeout(() => {
+                initializeHamburgerMenu();
+            }, 100);
+            
             initializeLanguageSwitcher();
-            
-            // Only initialize language if it hasn't been initialized yet
-            if (!window.languageInitialized && typeof switchLanguage === 'function') {
-                const savedLang = localStorage.getItem('preferredLanguage') || 'en';
-                switchLanguage(savedLang);
-                window.languageInitialized = true;
-            }
+            initializeTranslationsIfReady();
         })
         .catch(error => {
             console.error('Error loading header:', error);
@@ -44,9 +96,9 @@ document.addEventListener('DOMContentLoaded', function() {
         })
         .then(data => {
             document.getElementById('footer-placeholder').innerHTML = data;
-            
-            // Fix TripAdvisor icon if needed
+            footerLoaded = true;
             fixTripAdvisorIcon();
+            initializeTranslationsIfReady();
         })
         .catch(error => {
             console.error('Error loading footer:', error);

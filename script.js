@@ -12,20 +12,23 @@ const translations = {
         },
         home: {
             title: "Discover London's Cultural Treasures",
-            subtitle: "Immersive guided tours of London's most iconic museums",
+            subtitle: "Private guided tours of London's most iconic museums",
             cta: "Explore Tours",
             reviews: {
                 title: "Visitor Testimonials"
             },
         },
         tours: {
-            title: "Our Signature Tours",
-            bookYourTour: "Book Your Tour",
+            title: "Our Private Tours",
+            bookYourTour: "Request Your Tour",
             options: {
                 1: "British Museum Private Tour",
                 2: "National Gallery Private Tour",
                 3: "Natural History Museum Private Tour",
-                4: "Westminster Area Private Walking Tour"
+                4: "Westminster Area Private Walking Tour",
+                5: "City Area Private Walking Tour",
+                6: "Changing of the Guard Ceremony Private Tour",
+                7: "Harry Potter Filming Location Private Tour"
             },
             britishMuseum: {
                 title: "British Museum Private Tour",
@@ -74,6 +77,42 @@ const translations = {
                     "Buckingham Palace",
                     "St. James's Park"
                 ]
+            },
+            cityWalkingTour: {
+                title: "City Area Private Walking Tour",
+                description: "Discover the historic heart of London with a private guide.",
+                duration: "Duration: 3 hours",
+                price: "Price: From £150 per group of four",
+                highlights: [
+                    "St Paul's Cathedral",
+                    "Monument to the Great Fire of London",
+                    "Tower of London",
+                    "Tower Bridge"
+                ]
+            },
+            changingOfTheGuard: {
+                title: "Changing of the Guard Private Tour",
+                description: "Experience the iconic Changing of the Guard ceremony with exclusive insights.",
+                duration: "Duration: 2 hours",
+                price: "Price: From £100 per group of four",
+                highlights: [
+                    "Buckingham Palace",
+                    "St. James's Palace",
+                    "The Mall",
+                    "Horse Guards Parade"
+                ]
+            },
+            harryPotter: {
+                title: "Harry Potter Filming Locations Private Tour",
+                description: "Walk in the footsteps of Harry Potter across famous London locations.",
+                duration: "Duration: 2 hours",
+                price: "Price: From £100 per group of four",
+                highlights: [
+                    "Ministry of Magic",
+                    "Grimmauld Place",
+                    "Platform 9¾",
+                    "Gringotts Wizarding Bank"
+                ]
             }
         },
         form: {
@@ -87,7 +126,7 @@ const translations = {
             language: "Preferred Tour Language",
             languagePlaceholder: "Select Language",
             message: "Additional Notes",
-            submit: "Book Tour",
+            submit: "Request Tour",
             morningTour: "Morning Tour (AM)",
             afternoonTour: "Afternoon Tour (PM)"
         },
@@ -137,7 +176,7 @@ const translations = {
                 {
                     name: "Stefania",
                     title: "Theatre, Cinema and Arts Expert",
-                    bio: "Hailing from Veneto, Stefania earned her Master's Degree in Arts from the prestigious Università Ca' Foscari in Venice. Fluent in Italian and English with some Spanish, she brings artistic flair to every tour. The National Gallery is her second home, though she knows all of London's cultural gems intimately. When not guiding, this pasta-loving, music-enthusiast can be found riding her motorbike or walking her dogs. Her vibrant personality and deep knowledge make every tour a memorable experience."
+                    bio: "Hailing from Veneto, Stefania earned her Master's Degree in Arts from the prestigious Università Ca' Foscari in Venice. Fluent in Italian and English with some Spanish, she brings artistic flair to every tour. The National Gallery is her second home, though she knows all of London's cultural gems intimately. When not guiding, this pasta-loving, music-enthusiast can be found watching motorbikes and petting dogs. Her vibrant personality and deep knowledge make every tour a memorable experience."
                 }
             ]
         },
@@ -167,20 +206,23 @@ const translations = {
         },
         home: {
             title: "Scopri i Tesori Culturali di Londra",
-            subtitle: "Tour guidati immersivi nei musei più iconici di Londra",
+            subtitle: "Tour guidati privati nei musei più iconici di Londra",
             cta: "Esplora i Tour",
             reviews: {
                 title: "Recensioni dei Visitatori"
             },
         },
         tours: {
-            title: "I Nostri Tour Esclusivi",
-            bookYourTour: "Prenota il Tuo Tour",
+            title: "I Nostri Tour Privati",
+            bookYourTour: "Richiedi il Tuo Tour",
             options: {
                 1: "Tour Privato del British Museum",
                 2: "Tour Privato della National Gallery",
                 3: "Tour Privato del Natural History Museum",
-                4: "Tour Privato della zona di Westminster"
+                4: "Tour Privato della zona di Westminster",
+                5: "Tour Privato della zona della City",
+                6: "Tour Privato della cerimonia del Cambio della Guardia",
+                7: "Tour Privato dei luoghi di Harry Potter"
             },
             britishMuseum: {
                 title: "Tour Privato del British Museum",
@@ -229,7 +271,45 @@ const translations = {
                     "Buckingham Palace",
                     "Parco di St. James"
                 ]
-            }
+            },
+            cityWalkingTour: {
+                title: "Tour Privato a Piedi nella zona della City",
+                description: "Scopri il cuore storico di Londra con una guida privata.",
+                duration: "Durata: 3 ore",
+                price: "Prezzo: Da £150 per gruppo di quattro",
+                highlights: [
+                    "Cattedrale di St Paul",
+                    "Monumento al Grande Incendio di Londra",
+                    "Torre di Londra",
+                    "Tower Bridge"
+                ]
+            },
+            
+            changingOfTheGuard: {
+                title: "Tour Privato del Cambio della Guardia",
+                description: "Vivi l'iconico Cambio della Guardia con approfondimenti esclusivi.",
+                duration: "Durata: 2 ore",
+                price: "Prezzo: Da £100 per gruppo di quattro",
+                highlights: [
+                    "Buckingham Palace",
+                    "Palazzo di St. James's",
+                    "The Mall",
+                    "Horse Guards Parade"
+                ]
+            },
+            
+            harryPotter: {
+                title: "Tour Privato dei Luoghi di Harry Potter",
+                description: "Cammina sulle orme di Harry Potter visitando famose location londinesi.",
+                duration: "Durata: 2 ore",
+                price: "Prezzo: Da £100 per gruppo di quattro",
+                highlights: [
+                    "Ministero della Magia",
+                    "Grimmauld Place",
+                    "Binario 9¾",
+                    "Banca dei Maghi Gringott"
+                ]
+            },            
         },
         form: {
             name: "Nome Completo",
@@ -242,7 +322,7 @@ const translations = {
             language: "Lingua Preferita del Tour",
             languagePlaceholder: "Seleziona Lingua",
             message: "Note Aggiuntive",
-            submit: "Prenota Tour",
+            submit: "Richiedi Tour",
             morningTour: "Tour Mattutino (AM)",
             afternoonTour: "Tour Pomeridiano (PM)"
         },
@@ -269,7 +349,7 @@ const translations = {
                 }
             },
             intro: {
-                title: "Lasciaci presentare!",
+                title: "Chi siamo?",
                 description: "Siamo un team di guide turistiche londinesi appassionate dedite a fornire esperienze indimenticabili. Con anni di esperienza e profonda conoscenza della storia della città, della cultura e dei luoghi nascosti, siamo qui per rendere la tua visita davvero speciale."
             },
             company: {
@@ -292,7 +372,7 @@ const translations = {
                 {
                     name: "Stefania",
                     title: "Esperta di Teatro, Cinema e Arti",
-                    bio: "Originaria del Veneto, Stefania ha conseguito una Laurea Magistrale in Arti presso la prestigiosa Università Ca' Foscari di Venezia. Parla fluentemente italiano e inglese con alcune conoscenze di spagnolo, portando un tocco artistico ad ogni tour. La National Gallery è la sua seconda casa, sebbene conosca intimamente tutti i tesori culturali di Londra. Quando non fa da guida, questa appassionata di pasta e musica può essere trovata in giro con la sua moto o a passeggiare con i suoi cani. La sua personalità vivace e la sua profonda conoscenza rendono ogni tour un'esperienza memorabile."
+                    bio: "Originaria del Veneto, Stefania ha conseguito una Laurea Magistrale in Arti presso la prestigiosa Università Ca' Foscari di Venezia. Parla fluentemente italiano e inglese con alcune conoscenze di spagnolo, portando un tocco artistico ad ogni tour. La National Gallery è la sua seconda casa, sebbene conosca intimamente tutti i tesori culturali di Londra. Quando non fa da guida, questa appassionata di pasta e musica può essere trovata in giro ad ammirare moto o accarezzare cani. La sua personalità vivace e la sua profonda conoscenza rendono ogni tour un'esperienza memorabile."
                 }
             ]
         },
@@ -349,6 +429,19 @@ function switchLanguage(lang) {
 
 // Function to update all translatable elements
 function updateTranslatableElements(lang) {
+    // Update elements with data-i18n attributes
+    document.querySelectorAll('[data-i18n]').forEach(element => {
+        const key = element.getAttribute('data-i18n');
+        const keys = key.split('.');
+        let translation = translations[lang];
+        for (const k of keys) {
+            translation = translation?.[k];
+        }
+        if (translation) {
+            element.textContent = translation;
+        }
+    });
+
     // Update navigation
     const navLinks = document.querySelectorAll('nav a');
     navLinks.forEach(link => {
@@ -358,83 +451,195 @@ function updateTranslatableElements(lang) {
         }
     });
 
-    // Update page-specific content
-    const pageTitle = document.querySelector('.about-hero-content h1');
-    if (pageTitle && translations[lang]?.aboutUs?.hero?.title) {
-        pageTitle.textContent = translations[lang].aboutUs.hero.title;
+    // Get the current page
+    const currentPath = window.location.pathname;
+    const isHomePage = currentPath.endsWith('index.html') || currentPath.endsWith('/');
+    const isToursPage = currentPath.includes('tours.html');
+    const isContactPage = currentPath.includes('contact.html');
+    const isAboutPage = currentPath.includes('about-us.html');
+
+    // Update Home page content
+    if (isHomePage) {
+        const heroTitle = document.querySelector('.hero-content h2');
+        const heroSubtitle = document.querySelector('.hero-content p');
+        const ctaButton = document.querySelector('.hero-content .cta-button');
+    const reviewsTitle = document.querySelector('.reviews h2');
+
+        if (heroTitle) heroTitle.textContent = translations[lang].home.title;
+        if (heroSubtitle) heroSubtitle.textContent = translations[lang].home.subtitle;
+        if (ctaButton) ctaButton.textContent = translations[lang].home.cta;
+    if (reviewsTitle) reviewsTitle.textContent = translations[lang].home.reviews.title;
     }
 
-    const pageSubtitle = document.querySelector('.about-hero-content p');
-    if (pageSubtitle && translations[lang]?.aboutUs?.hero?.subtitle) {
-        pageSubtitle.textContent = translations[lang].aboutUs.hero.subtitle;
-    }
+    // Update Tours page content
+    if (isToursPage) {
+        const toursTitle = document.querySelector('.tours-section h2');
+    if (toursTitle) toursTitle.textContent = translations[lang].tours.title;
+    
+        // Update tour cards
+        const tourCards = document.querySelectorAll('.tour-card');
+        tourCards.forEach(card => {
+            const tourId = card.getAttribute('data-tour-id');
+            const title = card.querySelector('h3');
+            const description = card.querySelector('p');
+            const highlights = card.querySelectorAll('ul li');
+            const tourInfo = card.querySelectorAll('.tour-info span');
 
-    const introTitle = document.querySelector('.about-intro h2');
-    if (introTitle && translations[lang]?.aboutUs?.intro?.title) {
-        introTitle.textContent = translations[lang].aboutUs.intro.title;
-    }
+            let tourKey;
+            switch(tourId) {
+                case '1': tourKey = 'britishMuseum'; break;
+                case '2': tourKey = 'nationalGallery'; break;
+                case '3': tourKey = 'naturalHistoryMuseum'; break;
+                case '4': tourKey = 'westminsterWalkingTour'; break;
+                case '5': tourKey = 'cityWalkingTour'; break;
+                case '6': tourKey = 'changingOfTheGuard'; break;
+                case '7': tourKey = 'harryPotter'; break;
+            }
 
-    const introDescription = document.querySelector('.about-intro p');
-    if (introDescription && translations[lang]?.aboutUs?.intro?.description) {
-        introDescription.textContent = translations[lang].aboutUs.intro.description;
-    }
-
-    const companyTitle = document.querySelector('.about-company h2');
-    if (companyTitle && translations[lang]?.aboutUs?.company?.title) {
-        companyTitle.textContent = translations[lang].aboutUs.company.title;
-    }
-
-    const companyDescriptions = document.querySelectorAll('.about-company-text p');
-    if (companyDescriptions.length > 0 && translations[lang]?.aboutUs?.company) {
-        companyDescriptions[0].textContent = translations[lang].aboutUs.company.description1;
-        companyDescriptions[1].textContent = translations[lang].aboutUs.company.description2;
-        companyDescriptions[2].textContent = translations[lang].aboutUs.company.description3;
-    }
-
-    const valueItems = document.querySelectorAll('.value-item h4');
-    if (valueItems.length > 0 && translations[lang]?.aboutUs?.company?.values) {
-        valueItems[0].textContent = translations[lang].aboutUs.company.values.passion;
-        valueItems[1].textContent = translations[lang].aboutUs.company.values.personalTouch;
-        valueItems[2].textContent = translations[lang].aboutUs.company.values.knowledge;
-    }
-
-    // Update team member information
-    const teamMembers = document.querySelectorAll('.team-member');
-    if (teamMembers.length > 0 && translations[lang]?.aboutUs?.team) {
-        teamMembers.forEach((member, index) => {
-            const name = member.querySelector('.guide-name');
-            const title = member.querySelector('.guide-title');
-            const bio = member.querySelector('.guide-bio');
-            
-            // Update guide details labels and content
-            const detailsLabels = member.querySelectorAll('.guide-detail');
-            detailsLabels.forEach(detail => {
-                const icon = detail.querySelector('i');
-                if (icon) {
-                    const guideName = index === 0 ? 'damiano' : 'stefania';
-                    if (icon.classList.contains('fa-map-marker-alt')) {
-                        const location = index === 0 ? translations[lang].aboutUs.guideDetails.locations.tuscany : translations[lang].aboutUs.guideDetails.locations.veneto;
-                        detail.innerHTML = `<i class="fas fa-map-marker-alt"></i> ${translations[lang].aboutUs.guideDetails.from}: ${location}`;
-                    } else if (icon.classList.contains('fa-language')) {
-                        const languages = translations[lang].aboutUs.guideDetails.languagesList[guideName];
-                        detail.innerHTML = `<i class="fas fa-language"></i> ${translations[lang].aboutUs.guideDetails.languages}: ${languages}`;
-                    } else if (icon.classList.contains('fa-heart')) {
-                        const spot = translations[lang].aboutUs.guideDetails.spots[guideName];
-                        detail.innerHTML = `<i class="fas fa-heart"></i> ${translations[lang].aboutUs.guideDetails.favoriteSpot}: ${spot}`;
-                    }
+            if (tourKey) {
+                if (title) title.textContent = translations[lang].tours[tourKey].title;
+                if (description) description.textContent = translations[lang].tours[tourKey].description;
+                if (highlights && translations[lang].tours[tourKey].highlights) {
+                    highlights.forEach((li, index) => {
+                        if (translations[lang].tours[tourKey].highlights[index]) {
+                            li.textContent = translations[lang].tours[tourKey].highlights[index];
+                        }
+                    });
                 }
-            });
-
-            if (name && translations[lang].aboutUs.team[index]?.name) {
-                name.textContent = translations[lang].aboutUs.team[index].name;
-            }
-            if (title && translations[lang].aboutUs.team[index]?.title) {
-                title.textContent = translations[lang].aboutUs.team[index].title;
-            }
-            if (bio && translations[lang].aboutUs.team[index]?.bio) {
-                bio.textContent = translations[lang].aboutUs.team[index].bio;
+                if (tourInfo && tourInfo[0]) tourInfo[0].textContent = translations[lang].tours[tourKey].duration;
+                if (tourInfo && tourInfo[1]) tourInfo[1].textContent = translations[lang].tours[tourKey].price;
             }
         });
+    }
+
+    // Update Contact page content
+    if (isContactPage) {
+        const bookingTitle = document.querySelector('.contact-section h2');
+        if (bookingTitle) bookingTitle.textContent = translations[lang].tours.bookYourTour;
+
+        // Update form labels and placeholders
+        const formLabels = {
+            'name': translations[lang].form.name,
+            'email': translations[lang].form.email,
+            'tour': translations[lang].form.tour,
+            'date': translations[lang].form.date,
+            'tour-time': translations[lang].form.time,
+            'language-preference': translations[lang].form.language,
+            'message': translations[lang].form.message
+        };
+
+        // Update labels
+        Object.keys(formLabels).forEach(id => {
+            const label = document.querySelector(`label[for="${id}"]`);
+            if (label) label.textContent = formLabels[id];
+        });
+
+        // Update select options
+        const tourSelect = document.getElementById('tour');
+        if (tourSelect) {
+            tourSelect.options[0].text = translations[lang].form.tourPlaceholder;
+            Object.keys(translations[lang].tours.options).forEach(key => {
+                const option = tourSelect.querySelector(`option[value="${key}"]`);
+                if (option) option.text = translations[lang].tours.options[key];
+            });
+        }
+
+        const timeSelect = document.getElementById('tour-time');
+        if (timeSelect) {
+            timeSelect.options[0].text = translations[lang].form.timePlaceholder;
+            if (timeSelect.options[1]) timeSelect.options[1].text = translations[lang].form.morningTour;
+            if (timeSelect.options[2]) timeSelect.options[2].text = translations[lang].form.afternoonTour;
+        }
+
+        const languageSelect = document.getElementById('language-preference');
+        if (languageSelect) {
+            languageSelect.options[0].text = translations[lang].form.languagePlaceholder;
+        }
+
+        // Update submit button
+        const submitButton = document.querySelector('.submit-button');
+        if (submitButton) submitButton.textContent = translations[lang].form.submit;
+    }
+
+    // Update About page content
+    if (isAboutPage) {
+        const pageTitle = document.querySelector('.about-hero-content h1');
+        if (pageTitle && translations[lang]?.aboutUs?.hero?.title) {
+            pageTitle.textContent = translations[lang].aboutUs.hero.title;
+        }
+
+        const pageSubtitle = document.querySelector('.about-hero-content p');
+        if (pageSubtitle && translations[lang]?.aboutUs?.hero?.subtitle) {
+            pageSubtitle.textContent = translations[lang].aboutUs.hero.subtitle;
+        }
+
+        const introTitle = document.querySelector('.about-intro h2');
+        if (introTitle && translations[lang]?.aboutUs?.intro?.title) {
+            introTitle.textContent = translations[lang].aboutUs.intro.title;
+        }
+
+        const introDescription = document.querySelector('.about-intro p');
+        if (introDescription && translations[lang]?.aboutUs?.intro?.description) {
+            introDescription.textContent = translations[lang].aboutUs.intro.description;
+        }
+
+        const companyTitle = document.querySelector('.about-company h2');
+        if (companyTitle && translations[lang]?.aboutUs?.company?.title) {
+            companyTitle.textContent = translations[lang].aboutUs.company.title;
+        }
+
+        const companyDescriptions = document.querySelectorAll('.about-company-text p');
+        if (companyDescriptions.length > 0 && translations[lang]?.aboutUs?.company) {
+            companyDescriptions[0].textContent = translations[lang].aboutUs.company.description1;
+            companyDescriptions[1].textContent = translations[lang].aboutUs.company.description2;
+            companyDescriptions[2].textContent = translations[lang].aboutUs.company.description3;
+        }
+
+        const valueItems = document.querySelectorAll('.value-item h4');
+        if (valueItems.length > 0 && translations[lang]?.aboutUs?.company?.values) {
+            valueItems[0].textContent = translations[lang].aboutUs.company.values.passion;
+            valueItems[1].textContent = translations[lang].aboutUs.company.values.personalTouch;
+            valueItems[2].textContent = translations[lang].aboutUs.company.values.knowledge;
+        }
+
+        // Update team member information
+        const teamMembers = document.querySelectorAll('.team-member');
+        if (teamMembers.length > 0 && translations[lang]?.aboutUs?.team) {
+            teamMembers.forEach((member, index) => {
+                const name = member.querySelector('.guide-name');
+                const title = member.querySelector('.guide-title');
+                const bio = member.querySelector('.guide-bio');
+                
+                // Update guide details labels and content
+                const detailsLabels = member.querySelectorAll('.guide-detail');
+                detailsLabels.forEach(detail => {
+                    const icon = detail.querySelector('i');
+                    if (icon) {
+                        const guideName = index === 0 ? 'damiano' : 'stefania';
+                        if (icon.classList.contains('fa-map-marker-alt')) {
+                            const location = index === 0 ? translations[lang].aboutUs.guideDetails.locations.tuscany : translations[lang].aboutUs.guideDetails.locations.veneto;
+                            detail.innerHTML = `<i class="fas fa-map-marker-alt"></i> ${translations[lang].aboutUs.guideDetails.from}: ${location}`;
+                        } else if (icon.classList.contains('fa-language')) {
+                            const languages = translations[lang].aboutUs.guideDetails.languagesList[guideName];
+                            detail.innerHTML = `<i class="fas fa-language"></i> ${translations[lang].aboutUs.guideDetails.languages}: ${languages}`;
+                        } else if (icon.classList.contains('fa-heart')) {
+                            const spot = translations[lang].aboutUs.guideDetails.spots[guideName];
+                            detail.innerHTML = `<i class="fas fa-heart"></i> ${translations[lang].aboutUs.guideDetails.favoriteSpot}: ${spot}`;
+                        }
+                    }
+                });
+
+                if (name && translations[lang].aboutUs.team[index]?.name) {
+                    name.textContent = translations[lang].aboutUs.team[index].name;
+                }
+                if (title && translations[lang].aboutUs.team[index]?.title) {
+                    title.textContent = translations[lang].aboutUs.team[index].title;
+                }
+                if (bio && translations[lang].aboutUs.team[index]?.bio) {
+                    bio.textContent = translations[lang].aboutUs.team[index].bio;
+                }
+            });
+        }
     }
 
     // Update footer content
@@ -459,22 +664,104 @@ function updateTranslatableElements(lang) {
     }
 }
 
-// Initialize language on page load
+// Wait for DOM to be fully loaded before fetching components
 document.addEventListener('DOMContentLoaded', function() {
-    // Only initialize language if it hasn't been initialized yet and components are loaded
-    if (!window.languageInitialized && document.getElementById('header-placeholder').innerHTML) {
-        const savedLang = localStorage.getItem('preferredLanguage') || 'en';
-        switchLanguage(savedLang);
-        window.languageInitialized = true;
-    }
-});
+    let headerLoaded = false;
+    let footerLoaded = false;
 
-// Tour Booking Form Submission
-document.addEventListener('DOMContentLoaded', function() {
+    // Function to initialize translations after both components are loaded
+    function initializeTranslationsIfReady() {
+        if (headerLoaded && footerLoaded && typeof switchLanguage === 'function') {
+            const savedLang = localStorage.getItem('preferredLanguage') || 'en';
+            console.log('Initializing translations with language:', savedLang);
+            switchLanguage(savedLang);
+            window.languageInitialized = true;
+        }
+    }
+
+    // Load header
+    fetch('components/header.html')
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok for header');
+            }
+            return response.text();
+        })
+        .then(data => {
+            document.getElementById('header-placeholder').innerHTML = data;
+            headerLoaded = true;
+            initializeLanguageSwitcher();
+            
+            // Inizializza il menu hamburger dopo che l'header è stato caricato
+            const hamburger = document.querySelector('.hamburger');
+            const navLinks = document.querySelector('.nav-links');
+            const body = document.body;
+
+            if (hamburger && navLinks) {
+                hamburger.addEventListener('click', function() {
+                    console.log('Hamburger clicked'); // Debug log
+                    // Toggle class active sul bottone hamburger
+                    this.classList.toggle('active');
+                    
+                    // Toggle class active sul menu di navigazione
+                    navLinks.classList.toggle('active');
+                    
+                    // Toggle classe menu-open sul body per bloccare lo scroll quando il menu è aperto
+                    body.classList.toggle('menu-open');
+                });
+
+                // Chiudi il menu quando si clicca su un link
+                const navItems = navLinks.querySelectorAll('a');
+                navItems.forEach(item => {
+                    item.addEventListener('click', function() {
+                        hamburger.classList.remove('active');
+                        navLinks.classList.remove('active');
+                        body.classList.remove('menu-open');
+                    });
+                });
+            }
+            
+            initializeTranslationsIfReady();
+        })
+        .catch(error => {
+            console.error('Error loading header:', error);
+            document.getElementById('header-placeholder').innerHTML = '<p>Error loading header. Please refresh the page.</p>';
+        });
+
+    // Ensure Font Awesome is loaded
+    if (!document.querySelector('link[href*="font-awesome"]')) {
+        const fontAwesome = document.createElement('link');
+        fontAwesome.rel = 'stylesheet';
+        fontAwesome.href = 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css';
+        document.head.appendChild(fontAwesome);
+    }
+
+    // Tour Booking Form Submission
     const form = document.getElementById('tour-booking-form');
     
     if (form) {
         const dateInput = document.getElementById('date');
+        if (dateInput) {
+            // Set minimum date to today
+            const today = new Date();
+            const yyyy = today.getFullYear();
+            const mm = String(today.getMonth() + 1).padStart(2, '0');
+            const dd = String(today.getDate()).padStart(2, '0');
+            const formattedToday = `${yyyy}-${mm}-${dd}`;
+            
+            dateInput.setAttribute('min', formattedToday);
+            
+            // Prevent manual input
+            dateInput.addEventListener('keydown', function(e) {
+                e.preventDefault();
+                return false;
+            });
+            
+            // Make the entire input area clickable
+            dateInput.addEventListener('click', function() {
+                this.showPicker();
+            });
+        }
 
         if (typeof emailjs !== 'undefined') {
             emailjs.init("Nxj6VliNcy5V2PG40");
@@ -532,7 +819,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         console.log('Email sent!', response.status, response.text);
                         
                         const successMessage = currentLang === 'it' 
-                            ? 'Prenotazione inviata con successo! Ti contatteremo presto.' 
+                            ? 'Richiesta inviata con successo! Ti contatteremo presto.' 
                             : 'Tour booking request submitted! We will contact you soon.';
                         alert(successMessage);
                         
