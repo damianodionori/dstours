@@ -658,6 +658,27 @@ document.addEventListener('DOMContentLoaded', function() {
     
     if (form) {
         const dateInput = document.getElementById('date');
+        if (dateInput) {
+            // Set minimum date to today
+            const today = new Date();
+            const yyyy = today.getFullYear();
+            const mm = String(today.getMonth() + 1).padStart(2, '0');
+            const dd = String(today.getDate()).padStart(2, '0');
+            const formattedToday = `${yyyy}-${mm}-${dd}`;
+            
+            dateInput.setAttribute('min', formattedToday);
+            
+            // Prevent manual input
+            dateInput.addEventListener('keydown', function(e) {
+                e.preventDefault();
+                return false;
+            });
+            
+            // Make the entire input area clickable
+            dateInput.addEventListener('click', function() {
+                this.showPicker();
+            });
+        }
 
         if (typeof emailjs !== 'undefined') {
             emailjs.init("Nxj6VliNcy5V2PG40");

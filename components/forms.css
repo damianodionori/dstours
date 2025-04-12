@@ -120,6 +120,22 @@ input[type="date"]::after {
     box-shadow: 0 0 0 3px rgba(231, 76, 60, 0.1);
 }
 
+/* Datepicker styling enhancement */
+input[type="date"] {
+    position: relative;
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+    background-color: transparent;
+    cursor: pointer;
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 20px;
+    height: 20px;
+}
+
 /* Form layout enhancements */
 @media (min-width: 768px) {
     .form-row {
