@@ -20,7 +20,7 @@ const translations = {
         },
         tours: {
             title: "Our Private Tours",
-            bookYourTour: "Book Your Tour",
+            bookYourTour: "Request Your Tour",
             options: {
                 1: "British Museum Private Tour",
                 2: "National Gallery Private Tour",
@@ -87,7 +87,7 @@ const translations = {
             language: "Preferred Tour Language",
             languagePlaceholder: "Select Language",
             message: "Additional Notes",
-            submit: "Book Tour",
+            submit: "Request Tour",
             morningTour: "Morning Tour (AM)",
             afternoonTour: "Afternoon Tour (PM)"
         },
@@ -175,7 +175,7 @@ const translations = {
         },
         tours: {
             title: "I Nostri Tour Privati",
-            bookYourTour: "Prenota il Tuo Tour",
+            bookYourTour: "Richiedi il Tuo Tour",
             options: {
                 1: "Tour Privato del British Museum",
                 2: "Tour Privato della National Gallery",
@@ -242,7 +242,7 @@ const translations = {
             language: "Lingua Preferita del Tour",
             languagePlaceholder: "Seleziona Lingua",
             message: "Note Aggiuntive",
-            submit: "Prenota Tour",
+            submit: "Richiedi Tour",
             morningTour: "Tour Mattutino (AM)",
             afternoonTour: "Tour Pomeridiano (PM)"
         },
@@ -715,7 +715,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         console.log('Email sent!', response.status, response.text);
                         
                         const successMessage = currentLang === 'it' 
-                            ? 'Prenotazione inviata con successo! Ti contatteremo presto.' 
+                            ? 'Richiesta inviata con successo! Ti contatteremo presto.' 
                             : 'Tour booking request submitted! We will contact you soon.';
                         alert(successMessage);
                         
