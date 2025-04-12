@@ -25,7 +25,10 @@ const translations = {
                 1: "British Museum Private Tour",
                 2: "National Gallery Private Tour",
                 3: "Natural History Museum Private Tour",
-                4: "Westminster Area Private Walking Tour"
+                4: "Westminster Area Private Walking Tour",
+                5: "City Area Private Walking Tour",
+                6: "Changing of the Guard Ceremony Private Tour",
+                7: "Harry Potter Filming Location Private Tour"
             },
             britishMuseum: {
                 title: "British Museum Private Tour",
@@ -73,6 +76,42 @@ const translations = {
                     "Westminster Abbey",
                     "Buckingham Palace",
                     "St. James's Park"
+                ]
+            },
+            cityWalkingTour: {
+                title: "City Area Private Walking Tour",
+                description: "Discover the historic heart of London with a private guide.",
+                duration: "Duration: 3 hours",
+                price: "Price: From £150 per group of four",
+                highlights: [
+                    "St Paul's Cathedral",
+                    "Monument to the Great Fire of London",
+                    "Tower of London",
+                    "Tower Bridge"
+                ]
+            },
+            changingOfTheGuard: {
+                title: "Changing of the Guard Private Tour",
+                description: "Experience the iconic Changing of the Guard ceremony with exclusive insights.",
+                duration: "Duration: 2 hours",
+                price: "Price: From £100 per group of four",
+                highlights: [
+                    "Buckingham Palace",
+                    "St. James's Palace",
+                    "The Mall",
+                    "Horse Guards Parade"
+                ]
+            },
+            harryPotter: {
+                title: "Harry Potter Filming Locations Private Tour",
+                description: "Walk in the footsteps of Harry Potter across famous London locations.",
+                duration: "Duration: 2 hours",
+                price: "Price: From £100 per group of four",
+                highlights: [
+                    "Ministry of Magic",
+                    "Grimmauld Place",
+                    "Platform 9¾",
+                    "Gringotts Wizarding Bank"
                 ]
             }
         },
@@ -180,7 +219,10 @@ const translations = {
                 1: "Tour Privato del British Museum",
                 2: "Tour Privato della National Gallery",
                 3: "Tour Privato del Natural History Museum",
-                4: "Tour Privato della zona di Westminster"
+                4: "Tour Privato della zona di Westminster",
+                5: "Tour Privato della zona della City",
+                6: "Tour Privato della cerimonia del Cambio della Guardia",
+                7: "Tour Privato dei luoghi di Harry Potter"
             },
             britishMuseum: {
                 title: "Tour Privato del British Museum",
@@ -229,7 +271,45 @@ const translations = {
                     "Buckingham Palace",
                     "Parco di St. James"
                 ]
-            }
+            },
+            cityWalkingTour: {
+                title: "Tour Privato a Piedi nella zona della City",
+                description: "Scopri il cuore storico di Londra con una guida privata.",
+                duration: "Durata: 3 ore",
+                price: "Prezzo: Da £150 per gruppo di quattro",
+                highlights: [
+                    "Cattedrale di St Paul",
+                    "Monumento al Grande Incendio di Londra",
+                    "Torre di Londra",
+                    "Tower Bridge"
+                ]
+            },
+            
+            changingOfTheGuard: {
+                title: "Tour Privato del Cambio della Guardia",
+                description: "Vivi l'iconico Cambio della Guardia con approfondimenti esclusivi.",
+                duration: "Durata: 2 ore",
+                price: "Prezzo: Da £100 per gruppo di quattro",
+                highlights: [
+                    "Buckingham Palace",
+                    "Palazzo di St. James's",
+                    "The Mall",
+                    "Horse Guards Parade"
+                ]
+            },
+            
+            harryPotter: {
+                title: "Tour Privato dei Luoghi di Harry Potter",
+                description: "Cammina sulle orme di Harry Potter visitando famose location londinesi.",
+                duration: "Durata: 2 ore",
+                price: "Prezzo: Da £100 per gruppo di quattro",
+                highlights: [
+                    "Ministero della Magia",
+                    "Grimmauld Place",
+                    "Binario 9¾",
+                    "Banca dei Maghi Gringott"
+                ]
+            },            
         },
         form: {
             name: "Nome Completo",
@@ -411,6 +491,9 @@ function updateTranslatableElements(lang) {
                 case '2': tourKey = 'nationalGallery'; break;
                 case '3': tourKey = 'naturalHistoryMuseum'; break;
                 case '4': tourKey = 'westminsterWalkingTour'; break;
+                case '5': tourKey = 'cityWalkingTour'; break;
+                case '6': tourKey = 'changingOfTheGuard'; break;
+                case '7': tourKey = 'harryPotter'; break;
             }
 
             if (tourKey) {
