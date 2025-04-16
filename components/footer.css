@@ -114,8 +114,19 @@ footer:before {
     .footer-content {
         flex-direction: column;
         text-align: center;
+        align-items: center;
     }
     
+    .footer-section {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        padding: 0;
+        margin-bottom: var(--space-xl);
+    }
+
     .footer-section h3:after {
         left: 50%;
         transform: translateX(-50%);
@@ -124,8 +135,18 @@ footer:before {
     .social-links {
         align-items: center;
     }
+
+    .social-links a {
+        justify-content: center;
+        width: 100%;
+    }
     
     .social-links a:hover {
         transform: translateY(-3px);
+    }
+
+    .footer-bottom {
+        text-align: center;
+        width: 100%;
     }
 }
