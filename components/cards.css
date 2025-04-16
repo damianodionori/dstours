@@ -224,6 +224,9 @@
     color: var(--color-text);
     font-size: var(--text-base);
     margin-bottom: var(--space-lg);
+    text-align: justify;
+    text-align-last: left;
+    hyphens: auto;
 }
 
 .guide-tours-btn {
