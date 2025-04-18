@@ -302,11 +302,19 @@ function initializeCarousel() {
         autoplay: true,
         autoplaySpeed: 5000,
         pauseOnHover: true,
+        centerMode: true,
+        centerPadding: '0',
         responsive: [
             {
                 breakpoint: 768,
                 settings: {
-                    arrows: false
+                    arrows: false,
+                    centerMode: true,
+                    centerPadding: '0',
+                    slidesToShow: 1,
+                    slidesToScroll: 1,
+                    dots: true,
+                    adaptiveHeight: true
                 }
             }
         ]
