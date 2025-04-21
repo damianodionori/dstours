@@ -1,0 +1,21 @@
+# Allow all web crawlers
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://dstours.vercel.app/sitemap.xml
+
+# Disallow access to system folders and files
+Disallow: /admin/
+Disallow: /backup/
+Disallow: /temp/
+Disallow: /private/
+Disallow: /*.php$
+Disallow: /*.log$
+Disallow: /*.sql$
+Disallow: /*.zip$
+Disallow: /*.tar$
+Disallow: /*.gz$
+
+# Crawl delay to prevent server overload
+Crawl-delay: 10 
