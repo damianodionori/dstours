@@ -3,14 +3,213 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Our Tours | DS Tours London</title>
-    <link rel="icon" href="images/logo-ds-tours.png" type="Logo DS Tours">
+    <meta name="description" content="Explore our private guided tours of London's most iconic museums and landmarks. From the British Museum to Westminster, experience London like never before.">
+    <meta name="keywords" content="London museum tours, private guided tours, British Museum tour, National Gallery tour, Natural History Museum tour, Westminster walking tour">
+    <meta name="author" content="DS Tours London">
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content="Private Tours of London | DS Tours London">
+    <meta property="og:description" content="Discover our range of private guided tours through London's most famous museums and landmarks. Expert guides, personalized experiences.">
+    <meta property="og:image" content="images/logo-ds-tours.png">
+    <meta property="og:url" content="https://dstours.vercel.app/tours.html">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+    <title>Private Tours of London | DS Tours London</title>
+    <link rel="icon" href="images/logo-ds-tours.png" type="image/png">
+    <link rel="canonical" href="https://dstours.vercel.app/tours.html">
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="styling/base.css">
     <link rel="stylesheet" href="components/header.css">
     <link rel="stylesheet" href="components/footer.css">
     <link rel="stylesheet" href="pages/tours.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "TouristAttraction",
+        "name": "DS Tours London - Private Tours",
+        "description": "Private guided tours of London's museums and landmarks",
+        "image": "images/logo-ds-tours.png",
+        "url": "https://dstours.vercel.app/tours.html",
+        "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "London",
+            "addressCountry": "UK"
+        },
+        "priceRange": "£100-£150",
+        "telephone": "+447871882524",
+        "email": "dstourslondon@gmail.com",
+        "sameAs": [
+            "https://www.instagram.com/dstourslondon/",
+            "https://www.tripadvisor.co.uk/Attraction_Review-g186338-d25150513-Reviews-DS_Tours-London_England.html"
+        ]
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "TouristAttraction",
+        "name": "British Museum Private Tour",
+        "description": "Embark on a journey through human history, art, and culture at the British Museum",
+        "image": "images/british museum/british-museum.jpg",
+        "url": "https://dstours.vercel.app/tours.html#british-museum",
+        "offers": {
+            "@type": "Offer",
+            "price": "100",
+            "priceCurrency": "GBP",
+            "availability": "https://schema.org/InStock"
+        },
+        "duration": "PT2H",
+        "touristType": "Museum Lovers, History Enthusiasts",
+        "includesAttraction": [
+            "The Rosetta Stone",
+            "Ancient Egyptian Mummies",
+            "Parthenon Sculptures"
+        ]
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "TouristAttraction",
+        "name": "National Gallery Private Tour",
+        "description": "Explore masterpieces from the Renaissance to Post-Impressionism at the National Gallery",
+        "image": "images/national gallery/national-gallery.jpeg",
+        "url": "https://dstours.vercel.app/tours.html#national-gallery",
+        "offers": {
+            "@type": "Offer",
+            "price": "100",
+            "priceCurrency": "GBP",
+            "availability": "https://schema.org/InStock"
+        },
+        "duration": "PT2H",
+        "touristType": "Art Lovers, Culture Enthusiasts",
+        "includesAttraction": [
+            "Van Gogh's Sunflowers",
+            "Leonardo da Vinci's works",
+            "Impressionist and Renaissance art"
+        ]
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "TouristAttraction",
+        "name": "Natural History Museum Private Tour",
+        "description": "Journey through Earth's wonders, from dinosaurs to diamonds at the Natural History Museum",
+        "image": "images/natural history museum/hope.jpg",
+        "url": "https://dstours.vercel.app/tours.html#natural-history",
+        "offers": {
+            "@type": "Offer",
+            "price": "100",
+            "priceCurrency": "GBP",
+            "availability": "https://schema.org/InStock"
+        },
+        "duration": "PT2H",
+        "touristType": "Science Enthusiasts, Families",
+        "includesAttraction": [
+            "Blue whale skeleton",
+            "Earthquake simulator",
+            "Dinosaur fossils",
+            "Gems and meteorites collection"
+        ]
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "TouristAttraction",
+        "name": "Westminster Private Walking Tour",
+        "description": "Explore London's iconic landmarks and royal heritage on foot in Westminster",
+        "image": "images/westminster/the mall.jpeg",
+        "url": "https://dstours.vercel.app/tours.html#westminster",
+        "offers": {
+            "@type": "Offer",
+            "price": "150",
+            "priceCurrency": "GBP",
+            "availability": "https://schema.org/InStock"
+        },
+        "duration": "PT3H",
+        "touristType": "History Lovers, First-time Visitors",
+        "includesAttraction": [
+            "Big Ben & Houses of Parliament",
+            "Westminster Abbey",
+            "Buckingham Palace",
+            "St. James's Park"
+        ]
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "TouristAttraction",
+        "name": "City Area Private Walking Tour",
+        "description": "Discover the historic heart of London with a private guide",
+        "image": "images/tower-bridge.jpg",
+        "url": "https://dstours.vercel.app/tours.html#city-area",
+        "offers": {
+            "@type": "Offer",
+            "price": "150",
+            "priceCurrency": "GBP",
+            "availability": "https://schema.org/InStock"
+        },
+        "duration": "PT3H",
+        "touristType": "History Enthusiasts, Architecture Lovers",
+        "includesAttraction": [
+            "St Paul's Cathedral",
+            "Monument to the Great Fire of London",
+            "Tower of London",
+            "Tower Bridge"
+        ]
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "TouristAttraction",
+        "name": "Changing of the Guard Private Tour",
+        "description": "Experience the iconic Changing of the Guard ceremony with exclusive insights",
+        "image": "images/guards.jpg",
+        "url": "https://dstours.vercel.app/tours.html#changing-guard",
+        "offers": {
+            "@type": "Offer",
+            "price": "100",
+            "priceCurrency": "GBP",
+            "availability": "https://schema.org/InStock"
+        },
+        "duration": "PT2H",
+        "touristType": "Culture Enthusiasts, Royal History Lovers",
+        "includesAttraction": [
+            "Buckingham Palace",
+            "St. James's Palace",
+            "The Mall",
+            "Horse Guards Parade"
+        ]
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "TouristAttraction",
+        "name": "Harry Potter Filming Locations Private Tour",
+        "description": "Walk in the footsteps of Harry Potter across famous London locations",
+        "image": "images/harrypotter.jpg",
+        "url": "https://dstours.vercel.app/tours.html#harry-potter",
+        "offers": {
+            "@type": "Offer",
+            "price": "100",
+            "priceCurrency": "GBP",
+            "availability": "https://schema.org/InStock"
+        },
+        "duration": "PT2H",
+        "touristType": "Harry Potter Fans, Movie Enthusiasts",
+        "includesAttraction": [
+            "Ministry of Magic",
+            "Grimmauld Place",
+            "Platform 9¾",
+            "Gringotts Wizarding Bank"
+        ]
+    }
+    </script>
 </head>
 <body>
     <div id="header-placeholder"></div>
@@ -20,7 +219,9 @@
             <h2>Our Private Tours</h2>
             
             <div class="tour-card" data-tour-id="1">
-                <img src="images/british museum/british-museum.jpg" alt="British Museum">
+                <img src="images/british museum/british-museum.jpg" 
+                     alt="British Museum Private Tour - Explore ancient artifacts and history" 
+                     title="British Museum Private Tour - Discover ancient civilizations">
                 <div class="tour-details">
                     <h3>British Museum Private Tour</h3>
                     <p>Embark on a journey through human history, art, and culture.</p>
@@ -38,7 +239,9 @@
             </div>
 
             <div class="tour-card" data-tour-id="2">
-                <img src="images/national gallery/national-gallery.jpeg" alt="National Gallery">
+                <img src="images/national gallery/national-gallery.jpeg" 
+                     alt="National Gallery Private Tour - Masterpieces of European art" 
+                     title="National Gallery Private Tour - Explore Renaissance to Impressionism">
                 <div class="tour-details">
                     <h3>National Gallery Private Tour</h3>
                     <p>Explore masterpieces from the Renaissance to Post-Impressionism.</p>
@@ -56,7 +259,9 @@
             </div>
 
             <div class="tour-card" data-tour-id="3">
-                <img src="images/natural history museum/hope.jpg" alt="Natural History Museum">
+                <img src="images/natural history museum/hope.jpg" 
+                     alt="Natural History Museum Private Tour - Dinosaurs and natural wonders" 
+                     title="Natural History Museum Private Tour - Discover Earth's history">
                 <div class="tour-details">
                     <h3>Natural History Museum Private Tour</h3>
                     <p>Journey through Earth's wonders, from dinosaurs to diamonds.</p>
@@ -76,7 +281,9 @@
             <div class="tour-card" data-tour-id="4">
                 <video autoplay loop muted playsinline width="403.8" height="326">
                     <source src="videos/westminster/westminster.MP4" type="video/mp4">
-                    <img src="images/westminster/the mall.jpeg" alt="Westminster Tour">
+                    <img src="images/westminster/the mall.jpeg" 
+                         alt="Westminster Private Walking Tour - Iconic London landmarks" 
+                         title="Westminster Private Walking Tour - Royal London experience">
                 </video>
                 <div class="tour-details">
                     <h3>Westminster Private Walking Tour</h3>
@@ -95,7 +302,9 @@
             </div>
 
             <div class="tour-card" data-tour-id="5">
-                <img src="images/tower-bridge.jpg" alt="City Area Private Walking Tour">
+                <img src="images/tower-bridge.jpg" 
+                     alt="City Area Private Walking Tour - Historic London landmarks" 
+                     title="City Area Private Walking Tour - Explore London's financial district">
                 <div class="tour-details">
                     <h3>City Area Private Walking Tour</h3>
                     <p>Discover the historic heart of London with a private guide.</p>
@@ -113,7 +322,9 @@
             </div>
 
             <div class="tour-card" data-tour-id="6">
-                <img src="images/guards.jpg" alt="Changing of the Guard">
+                <img src="images/guards.jpg" 
+                     alt="Changing of the Guard Private Tour - Royal ceremony experience" 
+                     title="Changing of the Guard Private Tour - Witness British tradition">
                 <div class="tour-details">
                     <h3>Changing of the Guard Private Tour</h3>
                     <p>Experience the iconic Changing of the Guard ceremony with exclusive insights.</p>
@@ -131,7 +342,9 @@
             </div>
 
             <div class="tour-card" data-tour-id="7">
-                <img src="images/harrypotter.jpg" alt="Harry Potter">
+                <img src="images/harrypotter.jpg" 
+                     alt="Harry Potter Filming Locations Tour - Magical London experience" 
+                     title="Harry Potter Filming Locations Tour - Walk in wizard footsteps">
                 <div class="tour-details">
                     <h3>Harry Potter Filming Locations Private Tour</h3>
                     <p>Walk in the footsteps of Harry Potter across famous London locations.</p>
